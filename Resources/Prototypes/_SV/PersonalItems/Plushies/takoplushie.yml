@@ -1,0 +1,34 @@
+# Player: Tako - Character: Tako-Ja
+- type: entity
+  parent: [ PlushieLizard, BaseFoldable ]
+  id: PersonalItemTakoPlushie
+  name: tako plushie
+  description: A lizard plushie made to look like Tako-Ja, it smells faintly of roses.
+  suffix: PersonalItem
+  components:
+  - type: Sprite
+    state: plushie_tako
+    sprite: /Textures/_SV/PersonalItems/Plushies/takoplushie.rsi
+  - type: Item
+    sprite: /Textures/_SV/PersonalItems/Plushies/takoplushie.rsi
+  - type: Clothing
+    quickEquip: false
+    sprite: /Textures/_SV/PersonalItems/Plushies/takoplushie_64.rsi
+  - type: Appearance
+  - type: Foldable
+    canFoldInsideContainer: true
+    unfoldVerbText: drag-verb
+    foldVerbText: hold-verb
+  - type: FoldableClothing
+    foldedEquippedPrefix: holding
+    foldedHeldPrefix: holding
+
+- type: loadout
+  id: PersonalItemTakoPlushie
+  storage:
+    back:
+    - PersonalItemTakoPlushie
+  effects:
+  - !type:PersonalItemLoadoutEffect
+    character:
+    - Tako-Ja
