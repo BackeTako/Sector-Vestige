@@ -14,10 +14,10 @@
   components:
   - type: Sprite
     state: plushie_dawn
-    sprite: /Textures/_SV/PersonalItems/DawnPlushie.rsi
+    sprite: /Textures/_SV/PersonalItems/Plushies/DawnPlushie.rsi
   - type: Clothing
     quickEquip: false
-    sprite: /Textures/_SV/PersonalItems/DawnPlushie.rsi
+    sprite: /Textures/_SV/PersonalItems/Plushies/DawnPlushie.rsi
     equippedPrefix: dawn
     slots:
     - HEAD
