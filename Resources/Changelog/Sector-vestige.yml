@@ -1333,3 +1333,17 @@ Entries:
       message: Tako-Ja Plush
   id: 183
   time: '2026-01-28T18:39:56.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Add
+      message: Added several new narcotics.
+    - type: Add
+      message: Added Dynamoxine.
+    - type: Add
+      message: Added Stray.
+    - type: Tweak
+      message: Unmarked cigarette packets return to hacked cig vendors.
+    - type: Tweak
+      message: Lowers the chance of seeing the red addictine flavor text popup.
+  id: 184
+  time: '2026-01-28T18:40:47.0000000+00:00'
