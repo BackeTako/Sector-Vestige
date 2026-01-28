@@ -1229,3 +1229,95 @@ Entries:
         Cluster
   id: 167
   time: '2025-12-28T10:54:52.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Add
+      message: People can now emote in their sleep
+    - type: Add
+      message: People can now whisper in their sleep
+  id: 168
+  time: '2026-01-02T17:05:05.0000000+00:00'
+- author: NicoSGF64
+  changes:
+    - type: Add
+      message: Added Jaytau's personal item
+  id: 169
+  time: '2026-01-03T14:57:48.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Tweak
+      message: Reintroduced most ways of obtaining cigarettes.
+  id: 170
+  time: '2026-01-05T12:26:32.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Fix
+      message: Fixed the wheelchairs.
+    - type: Fix
+      message: Crutches and wheelchairs are back in the lathe.
+  id: 171
+  time: '2026-01-06T08:48:48.0000000+00:00'
+- author: Mixmaster49
+  changes:
+    - type: Add
+      message: Added SOP and Space Law to the guidebook
+  id: 172
+  time: '2026-01-09T09:55:47.0000000+00:00'
+- author: akirrer
+  changes:
+    - type: Add
+      message: Added S77-Locust along with .22LR caliber.
+  id: 173
+  time: '2026-01-09T12:40:09.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Add
+      message: Added the B.O.R.I.S module.
+  id: 174
+  time: '2026-01-10T17:56:10.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Add
+      message: Added antag categories.
+    - type: Tweak
+      message: Tweaked all the preferences to be more logical
+  id: 175
+  time: '2026-01-16T12:39:04.0000000+00:00'
+- author: akirrer
+  changes:
+    - type: Add
+      message: Added .22LR rubber ammunition, magazine and ammo box
+    - type: Add
+      message: Added .22LR drum magazine
+    - type: Tweak
+      message: Adjusted .22LR base magazine.
+  id: 176
+  time: '2026-01-16T19:06:08.0000000+00:00'
+- author: lambdatiger
+  changes:
+    - type: Add
+      message: Silver ring personal item for Beem-Kilaya.
+  id: 177
+  time: '2026-01-19T10:29:34.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Fix
+      message: Crutches now work as mobility aids.
+  id: 178
+  time: '2026-01-20T10:59:34.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Tweak
+      message: Felinds now can use Undergarment and snout markings.
+  id: 179
+  time: '2026-01-24T11:58:03.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Add
+      message: Added Cortexene and Saprodipine.
+  id: 180
+  time: '2026-01-27T13:54:05.0000000+00:00'
+- author: Added new pickup and drop sounds
+  changes: []
+  id: 181
+  time: '2026-01-27T18:35:03.0000000+00:00'

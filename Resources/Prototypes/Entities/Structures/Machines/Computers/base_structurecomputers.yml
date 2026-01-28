@@ -33,6 +33,7 @@
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
+      visible: false
   - type: Appearance
   - type: GenericVisualizer
     visuals:

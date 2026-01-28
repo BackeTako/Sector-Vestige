@@ -32,6 +32,7 @@
       state: unpowered
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: panel_open
+      visible: false
   - type: Appearance
   - type: GenericVisualizer
     visuals:

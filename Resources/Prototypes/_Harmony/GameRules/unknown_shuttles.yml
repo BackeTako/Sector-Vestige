@@ -9,14 +9,14 @@
   - type: LoadMapRule
     preloadedGrid: ShuttleChemLab
 
-- type: entity
-  id: UnknownShuttleBrigmedic
-  parent: BaseUnknownShuttleRule
-  components:
-  - type: StationEvent
-    startAnnouncement: station-event-unknown-shuttle-incoming #!!
-  - type: LoadMapRule
-    preloadedGrid: ShuttleBrigmedic
+# - type: entity
+#   id: UnknownShuttleBrigmedic
+#   parent: BaseUnknownShuttleRule
+#   components:
+#   - type: StationEvent
+#     startAnnouncement: station-event-unknown-shuttle-incoming #!!
+#   - type: LoadMapRule
+#     preloadedGrid: ShuttleBrigmedic
 
 # Harmony Hostile Shuttles
 

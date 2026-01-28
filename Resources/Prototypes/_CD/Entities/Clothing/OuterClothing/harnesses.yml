@@ -36,7 +36,7 @@
         - PillCanister
         - Radio
         - DiscreteHealthAnalyzer
-      components:
         - Hypospray
+      components:
         - Injector
         - Pill

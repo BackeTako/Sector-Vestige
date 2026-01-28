@@ -1,5 +1,5 @@
-# SPDX-FileCopyrightText: 2025 Wizards Den contributors
-# SPDX-FileCopyrightText: 2025 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 Wizards Den contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
 # SPDX-FileCopyrightText: 2024 BuildTools <unconfigured@null.spigotmc.org>
 # SPDX-FileCopyrightText: 2024 DieselMohawk <gavin.drinka@gmail.com>
 # SPDX-FileCopyrightText: 2024 Doctor-Cpu <77215380+Doctor-Cpu@users.noreply.github.com>
@@ -20,7 +20,6 @@
 # SPDX-FileCopyrightText: 2025 Julian Giebel <juliangiebel@live.de>
 # SPDX-FileCopyrightText: 2025 Momo <Rsnesrud@gmail.com>
 # SPDX-FileCopyrightText: 2025 Mora <46364955+TrixxedHeart@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 OnyxTheBrave <131422822+OnyxTheBrave@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
 # SPDX-FileCopyrightText: 2025 T <theo75cg@gmail.com>
@@ -28,6 +27,7 @@
 # SPDX-FileCopyrightText: 2025 centcomofficer24 <theo75cg@gmail.com>
 # SPDX-FileCopyrightText: 2025 lzk <124214523+lzk228@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 qrwas <aleksandr.vernigora93@gmail.com>
+# SPDX-FileCopyrightText: 2026 OnyxTheBrave <131422822+OnyxTheBrave@users.noreply.github.com>
 #
 # SPDX-License-Identifier: MIT
 
@@ -91,55 +91,53 @@
     - Lighter
   groupBy: "smokeables"
 
-# SV - Begin: Smokers blight event, revert when event is concluded
-#- type: loadout
-#  id: CigPackGreen
-#  storage:
-#    back:
-#    - CigPackGreen
-#  groupBy: "smokeables"
+- type: loadout
+  id: CigPackGreen
+  storage:
+    back:
+    - CigPackGreen
+  groupBy: "smokeables"
 
-#- type: loadout
-#  id: CigPackRed
-#  storage:
-#    back:
-#    - CigPackRed
-#  groupBy: "smokeables"
+- type: loadout
+  id: CigPackRed
+  storage:
+    back:
+    - CigPackRed
+  groupBy: "smokeables"
 
-#- type: loadout
-#  id: CigPackBlue
-#  storage:
-#    back:
-#    - CigPackBlue
-#  groupBy: "smokeables"
+- type: loadout
+  id: CigPackBlue
+  storage:
+    back:
+    - CigPackBlue
+  groupBy: "smokeables"
 
-#- type: loadout
-#  id: CigPackBlack
-#  storage:
-#    back:
-#    - CigPackBlack
-#  groupBy: "smokeables"
+- type: loadout
+  id: CigPackBlack
+  storage:
+    back:
+    - CigPackBlack
+  groupBy: "smokeables"
 
-#- type: loadout
-#  id: CigarCase
-#  effects:
-#  - !type:GroupLoadoutEffect
-#    proto: Command
-#  storage:
-#    back:
-#    - CigarCase
-#  groupBy: "smokeables"
+- type: loadout
+  id: CigarCase
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: Command
+  storage:
+    back:
+    - CigarCase
+  groupBy: "smokeables"
 
-#- type: loadout
-#  id: CigarGold
-#  effects:
-#  - !type:GroupLoadoutEffect
-#    proto: Command
-#  storage:
-#    back:
-#    - CigarGold
-#  groupBy: "smokeables"
-# SV - End: Smokers blight event, revert when event is concluded
+- type: loadout
+  id: CigarGold
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: Command
+  storage:
+    back:
+    - CigarGold
+  groupBy: "smokeables"
 
 # Folders
 - type: loadout
