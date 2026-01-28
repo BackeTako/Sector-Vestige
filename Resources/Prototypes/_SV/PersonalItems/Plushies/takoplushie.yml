@@ -1,3 +1,9 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2025 BackeTako <branne33@gmail.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 # Player: Tako - Character: Tako-Ja
 - type: entity
   parent: [ PlushieLizard, BaseFoldable ]
