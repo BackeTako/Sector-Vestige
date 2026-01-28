@@ -8,7 +8,7 @@
 - type: entity
   parent: [ PlushieLizard, BaseFoldable ]
   id: PersonalItemTakoPlushie
-  name: tako plushie
+  name: Tako plushie
   description: A lizard plushie made to look like Tako-Ja, it smells faintly of roses.
   suffix: PersonalItem
   components:
