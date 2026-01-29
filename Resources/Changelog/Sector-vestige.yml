@@ -1347,3 +1347,9 @@ Entries:
       message: Lowers the chance of seeing the red addictine flavor text popup.
   id: 184
   time: '2026-01-28T18:40:47.0000000+00:00'
+- author: MissKay1994
+  changes:
+    - type: Add
+      message: Added Skrikikaki's plushie
+  id: 185
+  time: '2026-01-29T09:39:41.0000000+00:00'
