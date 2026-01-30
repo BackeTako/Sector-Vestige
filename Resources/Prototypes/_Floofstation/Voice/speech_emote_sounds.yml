@@ -1,0 +1,19 @@
+﻿- type: emoteSounds
+  id: MaleReptilian
+  params:
+    variation: 0.125
+  sounds:
+    Yip:
+      collection: Yip
+    Hiss:
+      collection: ReptilianHiss
+
+- type: emoteSounds
+  id: FemaleReptilian
+  params:
+    variation: 0.125
+  sounds:
+    Yip:
+      collection: Yip
+    Hiss:
+      collection: ReptilianHiss

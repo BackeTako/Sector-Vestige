@@ -81,6 +81,8 @@
       collection: HarpyHowls # LateStation
     Whine:
       collection: HarpyWhines # LateStation
+    Coo:
+      collection: HarpyCoos # FloofStation
 
 - type: emoteSounds
   id: SoundsHarpyFemale
@@ -157,3 +159,5 @@
       collection: HarpyHowls # LateStation
     Whine:
       collection: HarpyWhines # LateStation
+    Coo:
+      collection: HarpyCoos # FloofStation

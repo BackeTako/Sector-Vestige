@@ -58,6 +58,8 @@
       collection: Whistles
     Weh:
       collection: Weh
+    Coo:
+      collection: HarpyCoos
     Gasp:
       collection: MaleGasp
     DefaultDeathgasp:
@@ -99,6 +101,8 @@
       collection: Whistles
     Weh:
       collection: Weh
+    Coo:
+      collection: HarpyCoos
     Gasp:
       collection: FemaleGasp
     DefaultDeathgasp:
