@@ -1359,3 +1359,9 @@ Entries:
       message: Unique handheld power console for the CE.
   id: 186
   time: '2026-01-29T10:45:15.0000000+00:00'
+- author: lambdatiger
+  changes:
+    - type: Add
+      message: Added externals access to engi door remote.
+  id: 187
+  time: '2026-01-31T15:56:01.0000000+00:00'
