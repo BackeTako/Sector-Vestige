@@ -17,7 +17,7 @@
     - Vocal
   blacklist:
     components:
-    - SiliconEmotes
+    - BorgChassis
   chatTriggers:
   - yip
   - yips
@@ -33,7 +33,7 @@
     - Vocal
   blacklist:
     components:
-    - SiliconEmotes
+    - BorgChassis
   chatTriggers:
   - coo
   - coos
