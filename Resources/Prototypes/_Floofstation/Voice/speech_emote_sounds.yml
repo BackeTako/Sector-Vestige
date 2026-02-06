@@ -1,4 +1,10 @@
-﻿- type: emoteSounds
+# SPDX-FileCopyrightText: 2026 FloofStation contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 BackeTako <branne33@gmail.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: emoteSounds
   id: MaleReptilian
   params:
     variation: 0.125
