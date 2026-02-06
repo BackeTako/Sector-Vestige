@@ -106,6 +106,10 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: DeathGasp
+    Yip: # FloofStation
+      collection: Yip # FloofStation
+    Hiss: # FloofStation
+      collection: ReptilianHiss # FloofStation
 
 - type: emoteSounds
   id: FemaleReptilian
@@ -130,6 +134,10 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: FemaleDeathGasp
+    Yip: # FloofStation
+      collection: Yip # FloofStation
+    Hiss: # FloofStation
+      collection: ReptilianHiss # FloofStation
 
 - type: emoteSounds
   id: MaleSlime
