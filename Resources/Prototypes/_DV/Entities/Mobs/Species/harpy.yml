@@ -148,6 +148,7 @@
     - Snarl # LateStation
     - Howl # LateStation
     - Whine # LateStation
+    - Coo # FloofStation
     # End of modified code
   - type: Vocal
     sounds:

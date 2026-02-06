@@ -2,7 +2,7 @@
   id: Yip
   name: chat-emote-name-yip
   category: Vocal
-  chatMessages: [ floof-chat-emote-msg-yip ]
+  chatMessages: ["floof-chat-emote-msg-yip"]
   icon: Interface/Emotes/laugh.png
   available: false
   whitelist:
@@ -19,7 +19,7 @@
   id: Coo
   name: chat-emote-name-coo
   category: Vocal
-  chatMessages: [ floof-chat-emote-msg-coo ]
+  chatMessages: ["floof-chat-emote-msg-coo"]
   available: false
   whitelist:
     components:

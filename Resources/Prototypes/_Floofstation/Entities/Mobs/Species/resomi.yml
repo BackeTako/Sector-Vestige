@@ -58,7 +58,7 @@
   - type: Speech
     speechVerb: Parrot
     speechSounds: MaleAvali
-    allowedEmotes: ['Chirp']
+    allowedEmotes: ['Chirp', 'Coo']
   - type: Vocal
     sounds:
       Male: MaleAvaliEmote
