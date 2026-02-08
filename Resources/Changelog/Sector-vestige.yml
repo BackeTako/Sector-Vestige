@@ -1391,3 +1391,9 @@ Entries:
         and Resomi
   id: 190
   time: '2026-02-08T12:30:38.0000000+00:00'
+- author: NicoSGF64
+  changes:
+    - type: Add
+      message: Added Swaps' personal item.
+  id: 191
+  time: '2026-02-08T16:45:01.0000000+00:00'
