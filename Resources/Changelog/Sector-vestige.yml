@@ -1383,3 +1383,17 @@ Entries:
         easier to navigate for GMs!
   id: 189
   time: '2026-02-06T18:04:05.0000000+00:00'
+- author: BackeTako
+  changes:
+    - type: Add
+      message: >-
+        Added new "Yip" & "Hiss" emotes for Lizards and "Coo" emote for Harpy
+        and Resomi
+  id: 190
+  time: '2026-02-08T12:30:38.0000000+00:00'
+- author: NicoSGF64
+  changes:
+    - type: Add
+      message: Added Swaps' personal item.
+  id: 191
+  time: '2026-02-08T16:45:01.0000000+00:00'
