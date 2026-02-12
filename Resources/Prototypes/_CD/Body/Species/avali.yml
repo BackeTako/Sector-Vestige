@@ -89,7 +89,7 @@
     noRot: true
     drawdepth: Mobs
   - type: ScaleVisuals
-    scale: 1, 0.75
+    scale: 1, 1
 
 - type: entity
   parent:

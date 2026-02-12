@@ -184,6 +184,9 @@ namespace Content.Client.Lobby.UI
         // CD: Height
         private float _defaultHeight = 1f;
 
+        // SV: Cached species base scale from ScaleVisuals prototype (before height modifications)
+        private Vector2 _speciesBaseScale = Vector2.One;
+
         // CD: Record editor
         private readonly RecordEditorGui _recordsTab;
 
@@ -798,17 +801,15 @@ namespace Content.Client.Lobby.UI
 
             SpriteView.LoadPreview(Profile, JobOverride, ShowClothes.Pressed);
 
-            // Sector Vestige - Get the original base scale from the species (before any height modifications)
-            // This ensures we don't multiply an already-scaled value
-            var baseScale = Vector2.One;
-            if (_entManager.TryGetComponent<ScaleVisualsComponent>(SpriteView.PreviewDummy, out var scaleComp)
-                && scaleComp.OriginalScale.HasValue)
+            // Sector Vestige - Cache the species base scale from ScaleVisuals (before height overrides it)
+            _speciesBaseScale = Vector2.One;
+            if (_entManager.TryGetComponent<ScaleVisualsComponent>(SpriteView.PreviewDummy, out var scaleComp))
             {
-                baseScale = scaleComp.OriginalScale.Value;
+                _speciesBaseScale = scaleComp.Scale;
             }
 
-            // Sector Vestige - Scale both axes proportionally to preserve proportions
-            var scale = baseScale * Profile.Height;
+            // Sector Vestige - Scale using the species base proportions to preserve aspect ratio
+            var scale = _speciesBaseScale * Profile.Height;
             _entManager.System<SharedScaleVisualsSystem>().SetSpriteScale(SpriteView.PreviewDummy, scale);
 
             // Check and set the dirty flag to enable the save/reset buttons as appropriate.
@@ -878,17 +879,8 @@ namespace Content.Client.Lobby.UI
             if (!_entManager.EntityExists(SpriteView.PreviewDummy))
                 return;
 
-            // Sector Vestige - Get the original base scale from the species (before any height modifications)
-            // This ensures we don't multiply an already-scaled value
-            var baseScale = Vector2.One;
-            if (_entManager.TryGetComponent<ScaleVisualsComponent>(SpriteView.PreviewDummy, out var scaleComp)
-                && scaleComp.OriginalScale.HasValue)
-            {
-                baseScale = scaleComp.OriginalScale.Value;
-            }
-
-            // Sector Vestige - Scale both axes proportionally to preserve proportions
-            var scale = baseScale * Profile.Height;
+            // Sector Vestige - Scale using cached species base proportions to preserve aspect ratio
+            var scale = _speciesBaseScale * Profile.Height;
             _entManager.System<SharedScaleVisualsSystem>().SetSpriteScale(SpriteView.PreviewDummy, scale);
 
             // Check and set the dirty flag to enable the save/reset buttons as appropriate.

@@ -16,6 +16,8 @@ using Content.Shared.PDA;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
+using System.Numerics;
+using Content.Shared.Sprite;
 using Content.Shared.Station;
 using JetBrains.Annotations;
 using Robust.Shared.Configuration;
@@ -44,6 +46,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     [Dependency] private readonly PdaSystem _pdaSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
+    [Dependency] private readonly SharedScaleVisualsSystem _scaleVisuals = default!;
 
     /// <summary>
     /// Attempts to spawn a player character onto the given station.
@@ -143,6 +146,13 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             {
                 AddComp<DetailExaminableComponent>(entity.Value).Content = profile.FlavorText;
             }
+
+            // Sector Vestige - Apply profile height scaling, preserving species base proportions
+            var baseScale = Vector2.One;
+            if (TryComp<ScaleVisualsComponent>(entity.Value, out var scaleComp))
+                baseScale = scaleComp.Scale;
+
+            _scaleVisuals.SetSpriteScale(entity.Value, baseScale * profile.Height);
         }
 
         if (loadout != null)
