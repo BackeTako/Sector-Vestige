@@ -87,10 +87,9 @@
     species: Rodentia
   - type: Inventory
     speciesId: rodentia
-  - type: Sprite
-    scale: 1, 0.75
   - type: ScaleVisuals
     scale: 1, 0.75
+  - type: Sprite
     layers:
       - map: [ "enum.HumanoidVisualLayers.Chest" ]
       - map: [ "enum.HumanoidVisualLayers.Head" ]
