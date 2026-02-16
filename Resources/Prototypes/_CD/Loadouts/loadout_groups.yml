@@ -192,22 +192,13 @@
   - MedicalDoctorBackpack
   - MedicalDoctorSatchel
   - MedicalDoctorDuffel
-  - MedicalCarrybag
+#  - MedicalCarrybag
   - ViroBackpack
   - ViroSatchel
   - ViroDuffel
   - GeneBackpack
   - GeneSatchel
   - GeneDuffel
-
-- type: loadoutGroup
-  id: ParamedicGloves
-  name: loadout-group-medical-gloves
-  minLimit: 0
-  loadouts:
-  - LatexGloves
-  - NitrileGloves
-  - GlovesETUGauntlet
 
 - type: loadoutGroup
   id: ParamedicMask
