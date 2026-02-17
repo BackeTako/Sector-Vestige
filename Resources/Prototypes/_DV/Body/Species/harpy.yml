@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2026 Delta-V contributors
 # SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
-# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -35,11 +35,11 @@
       default: [ HarpyTailPhoenix ]
     enum.HumanoidVisualLayers.LArm:
       limit: 1
-      required: true
-      default: [ HarpyWingDefault ]
+      required: false
     enum.HumanoidVisualLayers.RArm:
       limit: 1
-      required: false
+      required: true
+      default: [ HarpyWingDefault ]
     enum.HumanoidVisualLayers.LHand:
       limit: 1
       required: false

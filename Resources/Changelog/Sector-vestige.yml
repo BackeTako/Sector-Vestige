@@ -1405,3 +1405,35 @@ Entries:
       message: Added AP .35 auto cartridges.
   id: 192
   time: '2026-02-09T17:54:11.0000000+00:00'
+- author: Mixmaster49
+  changes:
+    - type: Remove
+      message: Removed the asteroid event from the Vestige Extended scheduler
+  id: 193
+  time: '2026-02-14T13:28:52.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Fix
+      message: RCD and RPD now rotate properly.
+  id: 194
+  time: '2026-02-15T17:50:00.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Fix
+      message: Fixed harpy markings.
+  id: 195
+  time: '2026-02-16T17:23:47.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Fix
+      message: Fixed dog tags not showing up in the loadout selection.
+  id: 196
+  time: '2026-02-17T08:13:14.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Add
+      message: >-
+        Emergency medipen dispenser boxes are able to be purchased from cargo
+        for $3000.
+  id: 197
+  time: '2026-02-17T09:37:09.0000000+00:00'

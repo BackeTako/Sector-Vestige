@@ -1,4 +1,32 @@
-﻿using System.Linq;
+// SPDX-FileCopyrightText: 2026 Wizards Den contributors
+// SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+// SPDX-FileCopyrightText: 2020 DamianX <DamianX@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2020 Víctor Aguilera Puerto <6766154+Zumorica@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2021 Acruid <shatter66@gmail.com>
+// SPDX-FileCopyrightText: 2021 Moses <StrawberryMoses@gmail.com>
+// SPDX-FileCopyrightText: 2021 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
+// SPDX-FileCopyrightText: 2021 Visne <39844191+Visne@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2022 mirrorcult <lunarautomaton6@gmail.com>
+// SPDX-FileCopyrightText: 2022 wrexbe <81056464+wrexbe@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2023 Flipp Syder <76629141+vulppine@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2023 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2023 Morb <14136326+Morb0@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2023 csqrb <56765288+CaptainSqrBeard@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Errant <35878406+Errant-4@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 B_Kirill <153602297+B-Kirill@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+// SPDX-FileCopyrightText: 2025 Tayrtahn <tayrtahn@gmail.com>
+// SPDX-FileCopyrightText: 2025 beck <163376292+widgetbeck@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 beck-thompson <107373427+beck-thompson@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 pathetic meowmeow <uhhadd@gmail.com>
+// SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+//
+// SPDX-License-Identifier: MIT
+
+using System.Linq;
 using System.Numerics;
 using Content.Shared.Body;
 using Content.Shared.Humanoid.Markings;
@@ -33,11 +61,29 @@ public sealed partial class HumanoidCharacterAppearance : IEquatable<HumanoidCha
         Markings = markings;
     }
 
+    // SV - Markings fix start
     public HumanoidCharacterAppearance(HumanoidCharacterAppearance other) :
-        this(other.EyeColor, other.SkinColor, new(other.Markings))
+        this(other.EyeColor, other.SkinColor, DeepCopyMarkings(other.Markings))
     {
 
     }
+
+    private static Dictionary<ProtoId<OrganCategoryPrototype>, Dictionary<HumanoidVisualLayers, List<Marking>>> DeepCopyMarkings(
+        Dictionary<ProtoId<OrganCategoryPrototype>, Dictionary<HumanoidVisualLayers, List<Marking>>> markings)
+    {
+        var copy = new Dictionary<ProtoId<OrganCategoryPrototype>, Dictionary<HumanoidVisualLayers, List<Marking>>>(markings.Count);
+        foreach (var (organ, innerDict) in markings)
+        {
+            var innerCopy = new Dictionary<HumanoidVisualLayers, List<Marking>>(innerDict.Count);
+            foreach (var (layer, list) in innerDict)
+            {
+                innerCopy[layer] = new List<Marking>(list);
+            }
+            copy[organ] = innerCopy;
+        }
+        return copy;
+    }
+    // SV - Markings fix end
 
     public HumanoidCharacterAppearance WithEyeColor(Color newColor)
     {
@@ -141,7 +187,20 @@ public sealed partial class HumanoidCharacterAppearance : IEquatable<HumanoidCha
                     continue;
                 }
 
-                var actualMarkings = appearance.Markings.GetValueOrDefault(organ)?.ShallowClone() ?? [];
+                // SV - Markings fix start
+                var sourceMarkings = appearance.Markings.GetValueOrDefault(organ);
+                Dictionary<HumanoidVisualLayers, List<Marking>> actualMarkings;
+                if (sourceMarkings != null)
+                {
+                    actualMarkings = new(sourceMarkings.Count);
+                    foreach (var (layer, list) in sourceMarkings)
+                        actualMarkings[layer] = new List<Marking>(list);
+                }
+                else
+                {
+                    actualMarkings = [];
+                }
+                // SV - Markings fix end
 
                 markingManager.EnsureValidColors(actualMarkings);
                 markingManager.EnsureValidGroupAndSex(actualMarkings, organData.Value.Group, sex);
