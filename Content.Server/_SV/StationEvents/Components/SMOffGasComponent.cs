@@ -14,7 +14,7 @@ public sealed partial class SMOffGasComponent : Component
     /// The type of gas for the SM to off gas
     /// </summary>
     [DataField]
-    public Gas GasType;
+    public Gas AllowedGasTypes { get; set; } = new();
 
     /// <summary>
     /// How much of the gas will be produced
