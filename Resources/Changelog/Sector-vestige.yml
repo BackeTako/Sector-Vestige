@@ -1437,3 +1437,11 @@ Entries:
         for $3000.
   id: 197
   time: '2026-02-17T09:37:09.0000000+00:00'
+- author: NicoSGF64
+  changes:
+    - type: Fix
+      message: >-
+        CD-exclusive items can be printed once more from their corresponding
+        lathes.
+  id: 198
+  time: '2026-02-19T11:02:25.0000000+00:00'
