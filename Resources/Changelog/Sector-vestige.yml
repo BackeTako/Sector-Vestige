@@ -1451,3 +1451,11 @@ Entries:
       message: Personal item for Samantha Cartor
   id: 199
   time: '2026-02-21T11:55:26.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Tweak
+      message: Breaching charges are one handed.
+    - type: Tweak
+      message: The energy shotgun self-recharges again.
+  id: 200
+  time: '2026-02-23T09:40:51.0000000+00:00'
