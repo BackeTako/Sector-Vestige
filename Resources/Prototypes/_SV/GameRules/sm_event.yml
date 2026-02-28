@@ -1,5 +1,5 @@
 - type: entity
-  id: VestigeSMOffgasOxygenSmall
+  id: VestigeSMOffgas
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
@@ -8,6 +8,76 @@
     weight: 2
     duration: 60
   - type: SMOffGas
-    allowedGasType:
-      -Oxygen
-      -Nitrogen
+    allowedGases:
+    - gas: Nitrogen
+      spawnWeight: 8
+      gasAmount:
+        min: 400
+        max: 1100
+      molPerSecond:
+        min: 10
+        max: 50
+    - gas: Oxygen
+      spawnWeight: 4
+      gasAmount:
+        min: 400
+        max: 800
+      molPerSecond:
+        min: 5
+        max: 45
+    - gas: NitrousOxide
+      spawnWeight: 2
+      gasAmount:
+        min: 200
+        max: 500
+      molPerSecond:
+        min: 5
+        max: 25
+    - gas: Plasma
+      spawnWeight: 1
+      gasAmount:
+        min: 400
+        max: 500
+      molPerSecond:
+        min: 5
+        max: 45
+    - gas: CarbonDioxide
+      spawnWeight: 6
+      gasAmount:
+        min: 500
+        max: 950
+      molPerSecond:
+        min: 15
+        max: 55
+    - gas: WaterVapor
+      spawnWeight: 4
+      gasAmount:
+        min: 200
+        max: 800
+      molPerSecond:
+        min: 15
+        max: 45
+    - gas: Ammonia
+      spawnWeight: 4
+      gasAmount:
+        min: 200
+        max: 900
+      molPerSecond:
+        min: 5
+        max: 65
+    - gas: Frezon
+      spawnWeight: 1
+      gasAmount:
+        min: 100
+        max: 300
+      molPerSecond:
+        min: 2
+        max: 10
+    - gas: Tritium
+      spawnWeight: 1
+      gasAmount:
+        min: 100
+        max: 500
+      molPerSecond:
+        min: 5
+        max: 30
