@@ -21,7 +21,7 @@ public sealed partial class CCVars
     ///     (i.e. postround or lobby)
     /// </summary>
     public static readonly CVarDef<float> TipFrequencyOutOfRound =
-        CVarDef.Create("tips.out_of_game_frequency", 60f * 1.5f);
+        CVarDef.Create("tips.out_of_game_frequency", 60f * 60); /// SV Change: (60f * 1.5f) -> (60f * 60)
 
     /// <summary>
     ///     The number of seconds between each tip being displayed when the round is actively going
