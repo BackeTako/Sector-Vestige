@@ -8,7 +8,7 @@
 - type: entity
   parent: CombatKnife
   id: PersonalItemGilaKnife
-  name: Gila's Broken Knife
+  name: Gila's broken knife
   description: There is a name engraved on the hilt.
   suffix: PersonalItem
   components:
@@ -23,8 +23,7 @@
   - type: DamageOtherOnHit
     damage:
       types:
-        Slash:
-          1.0
+        Slash: 1.0
   - type: Item
     sprite: _SV/PersonalItems/Items/gilaknife.rsi
     storedSprite:
