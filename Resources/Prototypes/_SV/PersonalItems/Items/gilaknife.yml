@@ -1,0 +1,36 @@
+## Personal item for Gila Mendez
+- type: entity
+  parent: CombatKnife
+  id: PersonalItemGilaKnife
+  name: Gila's Broken Knife
+  description: There is a name engraved on the hilt.
+  suffix: PersonalItem
+  components:
+  - type: Sprite
+    sprite: _SV/PersonalItems/Items/gilaknife.rsi
+    state: icon
+  - type: MeleeWeapon
+    attackRate: 1.0
+    damage:
+      types:
+        Slash: 0.25
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash:
+          1.0
+  - type: Item
+    sprite: _SV/PersonalItems/Items/gilaknife.rsi
+    storedSprite:
+      state: storage
+      sprite: _SV/PersonalItems/Items/gilaknife.rsi
+
+- type: loadout
+  id: PersonalItemGilaKnife
+  storage:
+    back:
+      - PersonalItemGilaKnife
+  effects:
+  - !type:PersonalItemLoadoutEffect
+    character:
+    - Gila Mendez
