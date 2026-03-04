@@ -9,7 +9,7 @@
   parent: CombatKnife
   id: PersonalItemGilaKnife
   name: Gila's broken knife
-  description: There is a name engraved on the hilt.
+  description: An old worn-down knife. The blade has snapped from over-sharpening.
   suffix: PersonalItem
   components:
   - type: Sprite
@@ -29,6 +29,8 @@
     storedSprite:
       state: storage
       sprite: _SV/PersonalItems/Items/gilaknife.rsi
+  - type: DetailExaminable
+    content: There is a name engraved on the hilt.
 
 - type: loadout
   id: PersonalItemGilaKnife
