@@ -88,7 +88,7 @@
     size: Tiny
   - type: Damageable
   - type: TapeCassette
-    maxCapacity: 1200 # SV Change, Upped From Three Minutes To Twenty Minutes
+    maxCapacity: 180
     repairWhitelist:
       tags:
       - Screwdriver
