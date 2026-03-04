@@ -1489,3 +1489,9 @@ Entries:
       message: Dawn's plushie has a new owner.
   id: 205
   time: '2026-03-01T12:18:14.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Tweak
+      message: Cassettes now record for 20 minutes.
+  id: 206
+  time: '2026-03-04T10:14:35.0000000+00:00'
