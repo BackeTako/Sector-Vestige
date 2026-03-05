@@ -1359,3 +1359,169 @@ Entries:
       message: Unique handheld power console for the CE.
   id: 186
   time: '2026-01-29T10:45:15.0000000+00:00'
+- author: lambdatiger
+  changes:
+    - type: Add
+      message: Added externals access to engi door remote.
+  id: 187
+  time: '2026-01-31T15:56:01.0000000+00:00'
+- author: Zamshi8
+  changes:
+    - type: Tweak
+      message: light replacers now recycle lights
+  id: 188
+  time: '2026-01-31T16:04:27.0000000+00:00'
+- author: purpleskittleo
+  changes:
+    - type: Add
+      message: Added 12 different heartbeat SFX for GMs to play with.
+    - type: Add
+      message: Added "Monomania (Stinger Ver.)"
+    - type: Tweak
+      message: >-
+        Overhauled & reorganised the _SV audio folder. Things should be much
+        easier to navigate for GMs!
+  id: 189
+  time: '2026-02-06T18:04:05.0000000+00:00'
+- author: BackeTako
+  changes:
+    - type: Add
+      message: >-
+        Added new "Yip" & "Hiss" emotes for Lizards and "Coo" emote for Harpy
+        and Resomi
+  id: 190
+  time: '2026-02-08T12:30:38.0000000+00:00'
+- author: NicoSGF64
+  changes:
+    - type: Add
+      message: Added Swaps' personal item.
+  id: 191
+  time: '2026-02-08T16:45:01.0000000+00:00'
+- author: akirrer
+  changes:
+    - type: Add
+      message: Added R36-Violee, a Drozd alternative.
+    - type: Add
+      message: Added AP .35 auto cartridges.
+  id: 192
+  time: '2026-02-09T17:54:11.0000000+00:00'
+- author: Mixmaster49
+  changes:
+    - type: Remove
+      message: Removed the asteroid event from the Vestige Extended scheduler
+  id: 193
+  time: '2026-02-14T13:28:52.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Fix
+      message: RCD and RPD now rotate properly.
+  id: 194
+  time: '2026-02-15T17:50:00.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Fix
+      message: Fixed harpy markings.
+  id: 195
+  time: '2026-02-16T17:23:47.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Fix
+      message: Fixed dog tags not showing up in the loadout selection.
+  id: 196
+  time: '2026-02-17T08:13:14.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Add
+      message: >-
+        Emergency medipen dispenser boxes are able to be purchased from cargo
+        for $3000.
+  id: 197
+  time: '2026-02-17T09:37:09.0000000+00:00'
+- author: NicoSGF64
+  changes:
+    - type: Fix
+      message: >-
+        CD-exclusive items can be printed once more from their corresponding
+        lathes.
+  id: 198
+  time: '2026-02-19T11:02:25.0000000+00:00'
+- author: Zamshi8
+  changes:
+    - type: Add
+      message: Personal item for Samantha Cartor
+  id: 199
+  time: '2026-02-21T11:55:26.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Tweak
+      message: Breaching charges are one handed.
+    - type: Tweak
+      message: The energy shotgun self-recharges again.
+  id: 200
+  time: '2026-02-23T09:40:51.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Tweak
+      message: Straitjackets can now be printed at the Medical Fabricator.
+  id: 201
+  time: '2026-02-25T20:39:53.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Fix
+      message: The digiboard can once again be linked to telepads.
+  id: 202
+  time: '2026-02-27T09:08:30.0000000+00:00'
+- author: lambdatiger
+  changes:
+    - type: Add
+      message: Supermatter retrofit Packed station.
+  id: 203
+  time: '2026-03-01T11:15:20.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Add
+      message: Rejoice! Space dragon eyes && dragon wings return.
+  id: 204
+  time: '2026-03-01T12:16:00.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Tweak
+      message: Dawn's plushie has a new owner.
+  id: 205
+  time: '2026-03-01T12:18:14.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Tweak
+      message: Cassettes now record for 20 minutes.
+  id: 206
+  time: '2026-03-04T10:14:35.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Fix
+      message: Increased some marking amounts.
+  id: 207
+  time: '2026-03-04T10:16:20.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Tweak
+      message: Moved the Supermatter guidebook page to its proper place.
+  id: 208
+  time: '2026-03-04T10:29:44.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Tweak
+      message: Decreased how often tips show in the endround and lobby.
+  id: 209
+  time: '2026-03-04T15:01:08.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Add
+      message: Physical SOP guidebooks can now be purchased from Cargo.
+  id: 210
+  time: '2026-03-05T10:03:50.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Fix
+      message: Fixed Plasma lacking Senior roles.
+  id: 211
+  time: '2026-03-05T15:44:16.0000000+00:00'
