@@ -1519,3 +1519,9 @@ Entries:
       message: Physical SOP guidebooks can now be purchased from Cargo.
   id: 210
   time: '2026-03-05T10:03:50.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Fix
+      message: Fixed Plasma lacking Senior roles.
+  id: 211
+  time: '2026-03-05T15:44:16.0000000+00:00'
