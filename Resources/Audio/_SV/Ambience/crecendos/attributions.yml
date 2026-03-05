@@ -5,12 +5,8 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-- files: ["ambi_doublebass_crec1.ogg",
-          "ambi_lowdrone1_120s.ogg",
-          "ambi_lowdrone2_120s.ogg",
-          "ambi_pulsingdrone1_intensity1_120s.ogg",
-          "ambi_pulsingdrone1_intensity2_120s.ogg",
-          "ambi_pulsingdrone1_intensity3_120s.ogg"]
+- files: ["ambi_doublebass_crec_9s.ogg",
+          "ambi_stringorchestra_crec_42s.ogg"]
   license: "CC-BY-4.0"
   copyright: "Created by purpleskittleo"
   source: "https://www.youtube.com/@purpleskittleo"

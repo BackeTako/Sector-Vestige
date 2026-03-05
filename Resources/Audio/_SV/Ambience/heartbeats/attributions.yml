@@ -1,0 +1,13 @@
+# SPDX-FileCopyrightText: 2025 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2025 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+# SPDX-FileCopyrightText: 2025 purpleskittleo <thenewredgd@gmail.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- files: ["ambi_AYconversation_intensity1_35s.ogg",
+          "ambi_AYconversation_intensity2_35s.ogg",
+          "ambi_AYconversation_intensity3_43s.ogg",]
+  license: "CC-BY-4.0"
+  copyright: "Created by purpleskittleo"
+  source: "https://www.youtube.com/@purpleskittleo"
