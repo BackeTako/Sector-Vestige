@@ -30,16 +30,19 @@
   id: StationEngineerHardhatYellow
   equipment:
     head: ClothingHeadHatHardhatYellow
+  groupBy: "Hardhat"
 
 - type: loadout
   id: StationEngineerHardhatOrange
   equipment:
     head: ClothingHeadHatHardhatOrange
+  groupBy: "Hardhat"
 
 - type: loadout
   id: StationEngineerHardhatRed
   equipment:
     head: ClothingHeadHatHardhatRed
+  groupBy: "Hardhat"
 
 - type: loadout
   id: SeniorEngineerBeret
@@ -53,11 +56,13 @@
   id: StationEngineerJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitEngineering
+  groupBy: "jumpsuit"
 
 - type: loadout
   id: StationEngineerJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtEngineering
+  groupBy: "jumpsuit"
 
 - type: loadout
   id: StationEngineerHazardsuit

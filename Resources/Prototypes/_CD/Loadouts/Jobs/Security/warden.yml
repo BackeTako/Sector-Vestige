@@ -9,8 +9,10 @@
   id: WardenCasualsuit
   equipment:
     jumpsuit: ClothingUniformWardenCasual
+  groupBy: "casual" #Tag added by SV
 
 - type: loadout
   id: WardenCasualskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtWardenCasual
+  groupBy: "casual" #Tag added by SV

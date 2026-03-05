@@ -41,21 +41,25 @@
   id: SecurityJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitSec
+  groupBy: "jumpsuit" #Changed by SV
 
 - type: loadout
   id: SecurityJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtSec
+  groupBy: "jumpsuit" #Changed by SV
 
 - type: loadout
   id: SecurityJumpsuitGrey
   equipment:
     jumpsuit: ClothingUniformJumpsuitSecGrey
+  groupBy: "grey" #Changed by SV
 
 - type: loadout
   id: SecurityJumpskirtGrey
   equipment:
     jumpsuit: ClothingUniformJumpskirtSecGrey
+  groupBy: "grey" #Changed by SV
 
 - type: loadout
   id: TrooperUniform

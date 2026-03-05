@@ -20,21 +20,25 @@
   id: DetectiveJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitDetective
+  groupBy: "jumpsuit" #Changed by SV
 
 - type: loadout
   id: DetectiveJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtDetective
+  groupBy: "jumpsuit" #Changed by SV
 
 - type: loadout
   id: NoirJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitDetectiveGrey
+  groupBy: "noir" #Changed by SV
 
 - type: loadout
   id: NoirJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtDetectiveGrey
+  groupBy: "noir" #Changed by SV
 
 # OuterClothing
 - type: loadout

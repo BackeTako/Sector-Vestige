@@ -45,21 +45,25 @@
   id: ScientistJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitScientist
+  groupBy: "jumpsuit" #Changed by SV
 
 - type: loadout
   id: ScientistJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtScientist
+  groupBy: "jumpsuit" #Changed by SV
 
 - type: loadout
   id: RoboticistJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitRoboticist
+  groupBy: "roboticists" #Changed by SV
 
 - type: loadout
   id: RoboticistJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtRoboticist
+  groupBy: "roboticists" #Changed by SV
 
 # - type: loadout
 #   id: SeniorResearcherJumpsuit

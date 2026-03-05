@@ -3,11 +3,13 @@
   id: ChemistJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitChemistry
+  groupBy: "jumpsuit"
 
 - type: loadout
   id: ChemistJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtChemistry
+  groupBy: "jumpsuit"
 
 # Back
 - type: loadout

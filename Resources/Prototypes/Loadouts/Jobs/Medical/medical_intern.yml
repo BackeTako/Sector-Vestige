@@ -3,8 +3,10 @@
   id: WhiteJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorWhite
+  groupBy: "jumpsuit" #Changed by SV
 
 - type: loadout
   id: WhiteJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtColorWhite
+  groupBy: "jumpsuit" #Changed by SV

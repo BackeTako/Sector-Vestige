@@ -3,16 +3,19 @@
   id: AtmosphericTechnicianJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitAtmos
+  groupBy: "jumpsuit" #Changed by SV
 
 - type: loadout
   id: AtmosphericTechnicianJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtAtmos
+  groupBy: "jumpsuit" #Changed by SV
 
 - type: loadout
   id: AtmosphericTechnicianJumpsuitCasual
   equipment:
     jumpsuit: ClothingUniformJumpsuitAtmosCasual
+  groupBy: "casual" #Changed by SV
 
 # Back
 - type: loadout

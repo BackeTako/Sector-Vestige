@@ -13,21 +13,25 @@
   id: QuartermasterJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitQM
+  groupBy: "jumpsuit" #Changed by SV
 
 - type: loadout
   id: QuartermasterJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtQM
+  groupBy: "jumpsuit" #Changed by SV
 
 - type: loadout
   id: QuartermasterTurtleneck
   equipment:
     jumpsuit: ClothingUniformJumpsuitQMTurtleneck
+  groupBy: "turtleneck" #Changed by SV
 
 - type: loadout
   id: QuartermasterTurtleneckSkirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtQMTurtleneck
+  groupBy: "turtleneck" #Changed by SV
 
 - type: loadout
   id: QuartermasterFormalSuit

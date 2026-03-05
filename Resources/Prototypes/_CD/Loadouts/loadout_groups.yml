@@ -8,7 +8,8 @@
 # Command
 - type: loadoutGroup
   id: FormalShoes
-  name: loadout-group-formal-shoes
+  name: loadout-group-vestige-shoes #Tweaked by SV
+
   loadouts:
   - LeatherShoes
   - LaceupShoes
@@ -36,7 +37,7 @@
 
 - type: loadoutGroup
   id: PrivateInvestigatorShoes
-  name: loadout-group-private-investigator-shoes
+  name: loadout-group-vestige-shoes #Tweaked by SV
   loadouts:
   - Jackboots
   - BlackShoes
@@ -46,7 +47,7 @@
 
 - type: loadoutGroup
   id: PrivateInvestigatorGlasses
-  name: loadout-group-private-investigator-glasses
+  name: loadout-group-vestige-glasses #Tweaked by SV
   minLimit: 0
   loadouts:
   - Sunglasses
@@ -63,7 +64,7 @@
 # Cargo
 - type: loadoutGroup
   id: SalvageSpecialistJumpsuit
-  name: loadout-group-salvage-specialist-jumpsuit
+  name: loadout-group-vestige-jumpsuit #Tweaked by SV
   loadouts:
   - SalvageSpecialistJumpsuit
   - SalvageSpecialistJumpsuitOperator
@@ -71,7 +72,7 @@
 # Engineering
 - type: loadoutGroup
   id: SeniorEngineerJumpsuit
-  name: loadout-group-senior-engineer-jumpsuit
+  name: loadout-group-vestige-jumpsuit #Tweaked by SV
   loadouts:
   - SeniorEngineerJumpsuit
   - SeniorEngineerJumpskirt
@@ -85,7 +86,7 @@
 
 - type: loadoutGroup
   id: EngineeringEyewear
-  name: loadout-group-engineering-goggles
+  name: loadout-group-vestige-goggles #Tweaked by SV
   minLimit: 1
   loadouts:
   - ClothingEyesGlassesMeson
@@ -94,7 +95,7 @@
 # Science
 - type: loadoutGroup
   id: SeniorResearcherJumpsuit
-  name: loadout-group-senior-researcher-jumpsuit
+  name: loadout-group-vestige-jumpsuit #Tweaked by SV
   loadouts:
   - SeniorResearcherJumpsuit
   - SeniorResearcherJumpskirt
@@ -105,7 +106,7 @@
 
 - type: loadoutGroup
   id: SeniorResearcherOuterClothing
-  name: loadout-group-senior-researcher-outerclothing
+  name: loadout-group-vestige-outerclothing #Tweaked by SV
   minLimit: 0
   loadouts:
   - SeniorResearcherLabCoat
@@ -118,7 +119,7 @@
 # Security
 - type: loadoutGroup
   id: SeniorOfficerHead
-  name: loadout-group-security-head
+  name: loadout-group-vestige-head #Tweaked by SV
   minLimit: 0
   loadouts:
   - SecurityHelmet
@@ -129,7 +130,7 @@
 
 - type: loadoutGroup
   id: SeniorOfficerJumpsuit
-  name: loadout-group-senior-officer-jumpsuit
+  name: loadout-group-vestige-jumpsuit #Tweaked by SV
   loadouts:
   - SeniorOfficerJumpsuit
   - SeniorOfficerJumpskirt
@@ -143,7 +144,7 @@
 
 - type: loadoutGroup
   id: SecurityGlassesOrHud
-  name: loadout-group-security-glasses-or-hud
+  name: loadout-group-vestige-goggles #Tweaked by SV
   loadouts:
   - EyesGlassesSecurity
   - EyesHudSecurity
@@ -151,7 +152,7 @@
 # Medical
 - type: loadoutGroup
   id: SeniorPhysicianHead
-  name: loadout-group-senior-physician-head
+  name: loadout-group-vestige-head #Tweaked by SV
   minLimit: 0
   loadouts:
   - SeniorPhysicianBeret
@@ -163,7 +164,7 @@
 
 - type: loadoutGroup
   id: SeniorPhysicianJumpsuit
-  name: loadout-group-senior-physician-jumpsuit
+  name: loadout-group-vestige-jumpsuit #Tweaked by SV
   loadouts:
   - SeniorPhysicianJumpsuit
   - SeniorPhysicianJumpskirt
@@ -176,7 +177,7 @@
 
 - type: loadoutGroup
   id: SeniorPhysicianOuterClothing
-  name: loadout-group-senior-physician-outerclothing
+  name: loadout-group-vestige-outerclothing #Tweaked by SV
   minLimit: 0
   loadouts:
   - SeniorPhysicianLabCoat
@@ -187,7 +188,7 @@
 
 - type: loadoutGroup
   id: MedicalSpecializationBackpack
-  name: loadout-group-medical-doctor-backpack
+  name: loadout-group-vestige-backpack #Tweaked by SV
   loadouts:
   - MedicalDoctorBackpack
   - MedicalDoctorSatchel
@@ -202,7 +203,7 @@
 
 - type: loadoutGroup
   id: ParamedicMask
-  name: loadout-group-medical-mask
+  name: loadout-group-vestige-mask #Tweaked by SV
   minLimit: 0
   loadouts:
   - SterileMask
@@ -211,7 +212,7 @@
 # Wildcards
 - type: loadoutGroup
   id: PrisonerJumpsuit
-  name: loadout-group-prisoner-jumpsuit
+  name: loadout-group-vestige-jumpsuit #Tweaked by SV
   loadouts:
   - PrisonerJumpsuit
   - PrisonerJumpskirt

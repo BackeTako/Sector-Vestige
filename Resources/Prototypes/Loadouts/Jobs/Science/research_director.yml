@@ -38,11 +38,13 @@
   id: ResearchDirectorJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitResearchDirector
+  groupBy: "jumpsuit" #Changed by SV
 
 - type: loadout
   id: ResearchDirectorJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtResearchDirector
+  groupBy: "jumpsuit" #Changed by SV
 
 # OuterClothing
 - type: loadout

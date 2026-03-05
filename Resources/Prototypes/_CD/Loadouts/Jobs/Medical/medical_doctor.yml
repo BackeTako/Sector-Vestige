@@ -20,21 +20,25 @@
   id: ViroJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitVirology
+  groupBy: "viro"
 
 - type: loadout
   id: ViroJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtVirology
+  groupBy: "viro"
 
 - type: loadout
   id: GeneJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitGenetics
+  groupBy: "gene"
 
 - type: loadout
   id: GeneJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtGenetics
+  groupBy: "gene"
 
 # Back
 - type: loadout

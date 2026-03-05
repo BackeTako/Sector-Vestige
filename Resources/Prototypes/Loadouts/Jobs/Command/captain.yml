@@ -13,21 +13,25 @@
   id: CaptainJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitCaptain
+  groupBy: "jumpsuit" #Added by SV
 
 - type: loadout
   id: CaptainJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtCaptain
+  groupBy: "jumpsuit" #Added by SV
 
 - type: loadout
   id: CaptainFormalSuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitCapFormal
+  groupBy: "formal" #Added by SV
 
 - type: loadout
   id: CaptainFormalSkirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtCapFormalDress
+  groupBy: "formal" #Added by SV
 
 # Head
 - type: loadout
