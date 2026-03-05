@@ -1513,3 +1513,9 @@ Entries:
       message: Decreased how often tips show in the endround and lobby.
   id: 209
   time: '2026-03-04T15:01:08.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Add
+      message: Physical SOP guidebooks can now be purchased from Cargo.
+  id: 210
+  time: '2026-03-05T10:03:50.0000000+00:00'
