@@ -32,3 +32,4 @@ loadout-group-vestige-gloves = Gloves
 loadout-group-vestige-shoes = Shoes
 loadout-group-vestige-belt = Belts
 loadout-group-vestige-goggles = Eyewear
+loadout-group-vestige-glasses = Glasses
