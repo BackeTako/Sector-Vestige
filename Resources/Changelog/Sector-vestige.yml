@@ -1547,3 +1547,9 @@ Entries:
       message: Loadout categories no longer list the job title in their content
   id: 212
   time: '2026-03-06T09:18:15.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Fix
+      message: Cadets now have access to personal items.
+  id: 213
+  time: '2026-03-05T16:28:59.0000000+00:00'
