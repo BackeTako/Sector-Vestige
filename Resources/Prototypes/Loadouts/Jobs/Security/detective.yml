@@ -1,3 +1,13 @@
+# SPDX-FileCopyrightText: 2026 Wizards Den contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2024 Ghagliiarghii <68826635+Ghagliiarghii@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 LittleNorthStar <vorriasam@gmail.com>
+# SPDX-FileCopyrightText: 2024 Mr. 27 <45323883+Dutch-VanDerLinde@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2026 JuneSzalkowska <juneszalkowska@gmail.com>
+#
+# SPDX-License-Identifier: MIT
+
 # Head
 - type: loadout
   id: DetectiveFedora
@@ -20,21 +30,25 @@
   id: DetectiveJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitDetective
+  groupBy: "jumpsuit" #Changed by SV
 
 - type: loadout
   id: DetectiveJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtDetective
+  groupBy: "jumpsuit" #Changed by SV
 
 - type: loadout
   id: NoirJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitDetectiveGrey
+  groupBy: "noir" #Changed by SV
 
 - type: loadout
   id: NoirJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtDetectiveGrey
+  groupBy: "noir" #Changed by SV
 
 # OuterClothing
 - type: loadout
