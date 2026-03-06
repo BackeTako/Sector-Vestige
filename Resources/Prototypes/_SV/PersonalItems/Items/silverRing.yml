@@ -10,8 +10,9 @@
 - type: entity
   parent: SilverRing
   id: PersonalItemSilverRing
-  name: Silver Ring
+  name: silver ring
   description: A simple silver ring.
+  suffix: PersonalItem
 - type: loadout
   id: PersonalItemSilverRing
   storage:

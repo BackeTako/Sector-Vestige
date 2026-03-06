@@ -12,6 +12,7 @@
   id: PersonalItemPititiGorb
   name: Gorb
   description: A shiny pet rock with googly eyes attached
+  suffix: PersonalItem
   components:
   - type: Sprite
     sprite: _LateStation/PersonalItems/pititigorb.rsi

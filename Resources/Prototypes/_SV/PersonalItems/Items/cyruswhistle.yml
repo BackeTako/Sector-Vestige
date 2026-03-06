@@ -12,12 +12,13 @@
   id: PersonalItemCyrusWhistle
   name: faded whistle
   description: A vaguely familiar trench whistle with "For honor." inscribed on the underside.
+  suffix: PersonalItem
   components:
   - type: Sprite
-    sprite: _SV/PersonalItems/Items/CyrusWhistle.rsi
+    sprite: _SV/PersonalItems/Items/cyruswhistle.rsi
     state: cyrus-whistle
   - type: Clothing
-    sprite: _SV/PersonalItems/Items/CyrusWhistle.rsi
+    sprite: _SV/PersonalItems/Items/cyruswhistle.rsi
     equippedPrefix: cyrus-whistle
     slots: neck
   - type: Whistle

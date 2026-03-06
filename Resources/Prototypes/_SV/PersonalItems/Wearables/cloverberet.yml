@@ -10,6 +10,7 @@
   id: PersonalItemCloverBeret
   name: old delta beret
   description: An old worn beret, with a blue flower enamel pin.
+  suffix: PersonalItem
   components:
   - type: Sprite
     sprite: _SV/PersonalItems/Wearables/cloverberet.rsi

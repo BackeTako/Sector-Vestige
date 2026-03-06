@@ -10,15 +10,16 @@
 - type: entity
   parent: [ RingBase, SilverRingBase ]
   id: PersonalItemRanaRing
-  name: Silver Engagement Ring
+  name: silver engagement ring
   description: A simple silver ring. Engraved on the outside is "May we be blessed with countless sunrises and sunsets." On the inside is, "My blood is yours."
+  suffix: PersonalItem
   components:
   - type: Sprite
     layers:
     - state: ring
       color: "#e2e2e2"
   - type: Clothing
-    sprite: _SV/PersonalItems/Wearables/RanaRing.rsi
+    sprite: _SV/PersonalItems/Wearables/ranaring.rsi
 
 - type: loadout
   id: PersonalItemRanaRing

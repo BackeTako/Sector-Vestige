@@ -11,7 +11,7 @@
 - type: entity
   parent: Cane
   id: PersonalItemJamesCane
-  name: James' Cane
+  name: James' cane
   description: A plasteel cane.
   suffix: PersonalItem
   components:

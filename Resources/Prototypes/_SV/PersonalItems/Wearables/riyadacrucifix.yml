@@ -8,7 +8,7 @@
 - type: entity
   parent: ClothingNeckBase
   id: PersonalItemRiyadaCrucifix
-  name: Riyada's Crucifix
+  name: Riyada's crucifix
   description: A worn inverted silver crucifix rope necklace signifying a departure from the Christian faith. Small flecks of bronze are all that remain of the original plating.
   suffix: PersonalItem
   components:

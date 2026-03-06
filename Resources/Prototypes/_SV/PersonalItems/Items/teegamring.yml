@@ -11,8 +11,9 @@
 - type: entity
   parent: GoldRing
   id: PersonalItemTeegamRing
-  name: Gold Ring
+  name: gold ring
   description: A simple gold ring with the added inscription "This ring belongs to the best husband that the galaxy can offer, I love you Starlight."
+  suffix: PersonalItem
   components:
   - type: Sprite
     layers:
