@@ -179,6 +179,7 @@ namespace Content.Server.Preferences.Managers
                 profile.CharacterName,
                 profile.FlavorText,
                 species,
+                profile.CDProfile?.Height ?? 1.0f,
                 profile.Age,
                 sex,
                 gender,
