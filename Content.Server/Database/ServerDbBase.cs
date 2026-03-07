@@ -75,13 +75,11 @@ namespace Content.Server.Database
     {
         private readonly ISawmill _opsLog;
         public event Action<DatabaseNotification>? OnNotificationReceived;
-        private readonly ITaskManager _task;
         private readonly ISerializationManager _serialization;
 
         /// <param name="opsLog">Sawmill to trace log database operations to.</param>
-        public ServerDbBase(ISawmill opsLog, ITaskManager taskManager, ISerializationManager serialization)
+        public ServerDbBase(ISawmill opsLog, ISerializationManager serialization)
         {
-            _task = taskManager;
             _serialization = serialization;
             _opsLog = opsLog;
         }
