@@ -28,6 +28,7 @@
           types:
             Poison: 3 # this is added to the base damage of the meth.
             Asphyxiation: 2
+
       # Main effects
       - !type:MovementSpeedModifier
         walkSpeedModifier: 1.20
@@ -56,6 +57,7 @@
         effectProto: StatusEffectDrowsiness
         time: 10
         type: Remove
+
       # Side effects
       - !type:ResetNarcolepsy
         conditions:

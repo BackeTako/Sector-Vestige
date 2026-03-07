@@ -179,6 +179,7 @@ namespace Content.IntegrationTests.Tests
             "Vanquish", // LateStation Map by Lachri
             "Cluster", // Sector Vestige, remade by Rebound
             "Packed_SM", // Sector Vestige, edited by Lambda.Tiger
+            "Serpentcrest",
         };
 
         private static readonly ProtoId<EntityCategoryPrototype> DoNotMapCategory = "DoNotMap";

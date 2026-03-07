@@ -117,7 +117,7 @@
 - type: marking
   id: TattooEyeRight
   bodyPart: Eyes
-  groupWhitelist: [Human, Reptilian, Rodentia, Foxfolk]
+  groupWhitelist: [Human, Slime, Reptilian, Rodentia, Foxfolk]
   coloring:
     default:
       type:
@@ -130,7 +130,7 @@
 - type: marking
   id: TattooEyeLeft
   bodyPart: Eyes
-  groupWhitelist: [Human, Reptilian, Rodentia, Foxfolk]
+  groupWhitelist: [Human, Slime, Reptilian, Rodentia, Foxfolk]
   coloring:
     default:
       type:
