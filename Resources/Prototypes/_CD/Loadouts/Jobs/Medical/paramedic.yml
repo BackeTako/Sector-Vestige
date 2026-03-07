@@ -14,11 +14,13 @@
   id: ParamedicCasualsuit
   equipment:
     jumpsuit: ClothingUniformParamedicCasual
+  groupBy: "casual"
 
 - type: loadout
   id: ParamedicCasualskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtParamedicCasual
+  groupBy: "casual"
 
 - type: loadout
   id: GlovesETUGauntlet

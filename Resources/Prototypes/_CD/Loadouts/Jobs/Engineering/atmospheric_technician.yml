@@ -15,11 +15,14 @@
   id: AtmosphericTechnicianJumpsuitModern
   equipment:
     jumpsuit: ClothingUniformJumpsuitAtmosModern
+  groupBy: "modern" #Tag added by Sector-Vestige
+
 
 - type: loadout
   id: AtmosphericTechnicianJumpskirtModern
   equipment:
     jumpsuit: ClothingUniformJumpskirtAtmosModern
+  groupBy: "modern" #Tag added by Sector-Vestige
 
 # OuterClothing
 - type: loadout

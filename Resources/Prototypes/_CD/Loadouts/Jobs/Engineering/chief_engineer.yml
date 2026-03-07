@@ -10,11 +10,13 @@
   id: ChiefEngineerJumpsuitModern
   equipment:
     jumpsuit: ClothingUniformJumpsuitChiefEngineerModern
+  groupBy: "modern" #Tag added by Sector-Vestige
 
 - type: loadout
   id: ChiefEngineerJumpskirtModern
   equipment:
     jumpsuit: ClothingUniformJumpskirtChiefEngineerModern
+  groupBy: "modern" #Tag added by Sector-Vestige
 
 - type: loadout
   id: ChiefEngineerJumpsuitFormal

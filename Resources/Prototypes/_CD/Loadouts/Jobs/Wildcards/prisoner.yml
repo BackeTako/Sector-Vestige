@@ -19,11 +19,13 @@
   id: PrisonerJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitPrisoner
+  groupBy: "jumpsuit" #Tag added by Sector-Vestige
 
 - type: loadout
   id: PrisonerJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtPrisoner
+  groupBy: "jumpsuit" #Tag added by Sector-Vestige
 
 - type: loadout
   id: Emag

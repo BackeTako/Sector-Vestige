@@ -1,4 +1,13 @@
-﻿using Robust.Shared.Configuration;
+// SPDX-FileCopyrightText: 2026 Wizards Den contributors
+// SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+// SPDX-FileCopyrightText: 2024 Simon <63975668+Simyon264@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2026 OnyxTheBrave <131422822+OnyxTheBrave@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2026 qu4drivium <aaronholiver@outlook.com>
+// SPDX-FileCopyrightText: 2026 riv <234791249+qu4drivium@users.noreply.github.com>
+//
+// SPDX-License-Identifier: MIT
+
+using Robust.Shared.Configuration;
 
 namespace Content.Shared.CCVar;
 
@@ -21,7 +30,7 @@ public sealed partial class CCVars
     ///     (i.e. postround or lobby)
     /// </summary>
     public static readonly CVarDef<float> TipFrequencyOutOfRound =
-        CVarDef.Create("tips.out_of_game_frequency", 60f * 1.5f);
+        CVarDef.Create("tips.out_of_game_frequency", 60f * 30f); /// SV Change: (60f * 1.5f) -> (60f * 30f)
 
     /// <summary>
     ///     The number of seconds between each tip being displayed when the round is actively going

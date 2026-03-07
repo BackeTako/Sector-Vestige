@@ -16,11 +16,13 @@
   id: SeniorPhysicianJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitSeniorPhysician
+  groupBy: "senior" #tag added by SV
 
 - type: loadout
   id: SeniorPhysicianJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtSeniorPhysician
+  groupBy: "senior" #tag added by SV
 
 - type: loadout
   id: SeniorPhysicianFormalsuit

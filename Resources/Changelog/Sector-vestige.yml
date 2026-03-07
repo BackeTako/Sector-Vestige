@@ -1489,3 +1489,79 @@ Entries:
       message: Dawn's plushie has a new owner.
   id: 205
   time: '2026-03-01T12:18:14.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Tweak
+      message: Cassettes now record for 20 minutes.
+  id: 206
+  time: '2026-03-04T10:14:35.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Fix
+      message: Increased some marking amounts.
+  id: 207
+  time: '2026-03-04T10:16:20.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Tweak
+      message: Moved the Supermatter guidebook page to its proper place.
+  id: 208
+  time: '2026-03-04T10:29:44.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Tweak
+      message: Decreased how often tips show in the endround and lobby.
+  id: 209
+  time: '2026-03-04T15:01:08.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Add
+      message: Physical SOP guidebooks can now be purchased from Cargo.
+  id: 210
+  time: '2026-03-05T10:03:50.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Fix
+      message: Fixed Plasma lacking Senior roles.
+  id: 211
+  time: '2026-03-05T15:44:16.0000000+00:00'
+- author: JuneSzalkowska
+  changes:
+    - type: Add
+      message: Added Captain's beret
+    - type: Add
+      message: Added CD Mechanic Jumpsuits to Senior and Station Engineer loadouts
+    - type: Tweak
+      message: >-
+        Hidden PDAs for jobs that cannot select a different one (i.e not a
+        scientist)
+    - type: Tweak
+      message: Uniforms are now grouped by outfit type
+    - type: Tweak
+      message: Plushies are now grouped together
+    - type: Fix
+      message: Restored Roboticist PDA
+    - type: Fix
+      message: Restored CD Engineering Uniforms
+    - type: Remove
+      message: Loadout categories no longer list the job title in their content
+  id: 212
+  time: '2026-03-06T09:18:15.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Fix
+      message: Cadets now have access to personal items.
+  id: 213
+  time: '2026-03-05T16:28:59.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Tweak
+      message: Felinids can now mrow, miao, miaou, and a few more.
+  id: 214
+  time: '2026-03-05T16:31:10.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Tweak
+      message: Slightly altered the ahelp text.
+  id: 215
+  time: '2026-03-06T10:02:21.0000000+00:00'
