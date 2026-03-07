@@ -16,6 +16,7 @@ using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Shared.Traits;
 using Content.Server._CD.Records;
+using Content.Shared._CD.Records;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
@@ -147,6 +148,11 @@ namespace Content.Server.Preferences.Managers
 
             var loadouts = new Dictionary<string, RoleLoadout>();
 
+            // CD: get character records or create default records
+            var cdRecords = profile.CDProfile?.CharacterRecords != null
+                ? RecordsSerialization.Deserialize(profile.CDProfile.CharacterRecords, profile.CDProfile.CharacterRecordEntries)
+                : PlayerProvidedCharacterRecords.DefaultRecords();
+
             foreach (var role in profile.Loadouts)
             {
                 var loadout = new RoleLoadout(role.RoleName)
@@ -169,8 +175,6 @@ namespace Content.Server.Preferences.Managers
                 loadouts[role.RoleName] = loadout;
             }
 
-            var CDCharacterRecords = profile.CDProfile;
-
             return new HumanoidCharacterProfile(
                 profile.CharacterName,
                 profile.FlavorText,
@@ -190,7 +194,7 @@ namespace Content.Server.Preferences.Managers
                 antags.ToHashSet(),
                 traits.ToHashSet(),
                 loadouts,
-                CDCharacterRecords
+                cdRecords
             );
         }
 
