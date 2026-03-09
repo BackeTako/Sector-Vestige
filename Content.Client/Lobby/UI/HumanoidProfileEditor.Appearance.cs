@@ -189,6 +189,7 @@ public sealed partial class HumanoidProfileEditor
         RefreshLoadouts();
         UpdateSexControls(); // update sex for new species
         UpdateSpeciesGuidebookIcon();
+        UpdateSkinColor(); // Sector Vestige - Update height range/default when species changes
         ReloadPreview();
     }
 

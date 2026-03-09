@@ -2,6 +2,7 @@ using System.Linq;
 using System.Numerics;
 using Content.Client.Lobby.UI.Loadouts;
 using Content.Client.Lobby.UI.Roles;
+using Content.Client.Stylesheets; //SV: Role grouping
 using Content.Shared.Clothing;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
@@ -10,6 +11,9 @@ using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility; //SV: Role grouping
+
+using Content.Shared._SV.Roles; //SV: Role grouping
 
 namespace Content.Client.Lobby.UI;
 
@@ -302,59 +306,102 @@ public sealed partial class HumanoidProfileEditor
             ("humanoid-profile-editor-antag-preference-yes-button", 0),
             ("humanoid-profile-editor-antag-preference-no-button", 1)
         };
+        // SV - Begin: Group antags by category
+        var antags = _prototypeManager.EnumeratePrototypes<AntagPrototype>()
+            .Where(a => a.SetPreference && a.VisiblePreference)
+            .OrderBy(a => Loc.GetString(a.Name))
+            .ToList();
 
-        foreach (var antag in _prototypeManager.EnumeratePrototypes<AntagPrototype>().OrderBy(a => Loc.GetString(a.Name)))
+        Dictionary<string, List<string>> antagGroups = new();
+        List<string> defaultAntags = new();
+        antagGroups.Add(AntagCategoryPrototype.Default, defaultAntags);
+
+        foreach (var antag in antags)
         {
-            if (!antag.SetPreference)
+            if (antag.Category == null)
+            {
+                defaultAntags.Add(antag.ID);
+                continue;
+            }
+
+            if (!_prototypeManager.HasIndex(antag.Category))
                 continue;
 
-            var antagContainer = new BoxContainer()
-            {
-                Orientation = LayoutOrientation.Horizontal,
-            };
+            var group = antagGroups.GetOrNew(antag.Category);
+            group.Add(antag.ID);
+        }
 
-            var selector = new RequirementsSelector()
-            {
-                Margin = new Thickness(3f, 3f, 3f, 0f),
-            };
-            selector.OnOpenGuidebook += OnOpenGuidebook;
+        // Create UI view from model with category headers
+        foreach (var (categoryId, categoryAntags) in antagGroups)
+        {
+            // Skip empty categories
+            if (categoryAntags.Count == 0)
+                continue;
 
-            var title = Loc.GetString(antag.Name);
-            var description = Loc.GetString(antag.Objective);
-            selector.Setup(items, title, 250, description, guides: antag.Guides);
-            selector.Select(Profile?.AntagPreferences.Contains(antag.ID) == true ? 0 : 1);
-
-            if (!_requirements.IsAllowed(
-                    antag,
-                    (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter,
-                    out var reason))
+            // Add category label (except for Default)
+            if (categoryId != AntagCategoryPrototype.Default)
             {
-                selector.LockRequirements(reason);
-                Profile = Profile?.WithAntagPreference(antag.ID, false);
-                SetDirty();
-            }
-            else
-            {
-                selector.UnlockRequirements();
+                var category = _prototypeManager.Index<AntagCategoryPrototype>(categoryId);
+                AntagList.AddChild(new Label
+                {
+                    Text = Loc.GetString(category.Name),
+                    Margin = new Thickness(0, 10, 0, 0),
+                    StyleClasses = { StyleClass.LabelHeading },
+                });
             }
 
-            selector.OnSelected += preference =>
+            foreach (var antagId in categoryAntags)
             {
-                Profile = Profile?.WithAntagPreference(antag.ID, preference == 0);
-                SetDirty();
-            };
+                var antag = _prototypeManager.Index<AntagPrototype>(antagId);
+                // SV changes end
+                var antagContainer = new BoxContainer()
+                {
+                    Orientation = LayoutOrientation.Horizontal,
+                };
 
-            antagContainer.AddChild(selector);
+                var selector = new RequirementsSelector()
+                {
+                    Margin = new Thickness(3f, 3f, 3f, 0f),
+                };
+                selector.OnOpenGuidebook += OnOpenGuidebook;
 
-            antagContainer.AddChild(new Button()
-            {
-                Disabled = true,
-                Text = Loc.GetString("loadout-window"),
-                HorizontalAlignment = HAlignment.Right,
-                Margin = new Thickness(3f, 0f, 0f, 0f),
-            });
+                var title = Loc.GetString(antag.Name);
+                var description = Loc.GetString(antag.Objective);
+                selector.Setup(items, title, 250, description, guides: antag.Guides);
+                selector.Select(Profile?.AntagPreferences.Contains(antag.ID) == true ? 0 : 1);
 
-            AntagList.AddChild(antagContainer);
+                if (!_requirements.IsAllowed(
+                        antag,
+                        (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter,
+                        out var reason))
+                {
+                    selector.LockRequirements(reason);
+                    Profile = Profile?.WithAntagPreference(antag.ID, false);
+                    SetDirty();
+                }
+                else
+                {
+                    selector.UnlockRequirements();
+                }
+
+                selector.OnSelected += preference =>
+                {
+                    Profile = Profile?.WithAntagPreference(antag.ID, preference == 0);
+                    SetDirty();
+                };
+
+                antagContainer.AddChild(selector);
+
+                antagContainer.AddChild(new Button()
+                {
+                    Disabled = true,
+                    Text = Loc.GetString("loadout-window"),
+                    HorizontalAlignment = HAlignment.Right,
+                    Margin = new Thickness(3f, 0f, 0f, 0f),
+                });
+
+                AntagList.AddChild(antagContainer);
+            }// SV - End: Group antags by category
         }
     }
 }
