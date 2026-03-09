@@ -1,3 +1,4 @@
+using Content.Client._CD.Records.UI; // SV: Add CD's Record GUI Back to the Humanoid Profile Editor
 using Content.Client.Guidebook;
 using Content.Client.Lobby.UI;
 using Content.Client.Players.PlayTimeTracking;
@@ -30,6 +31,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     [Dependency] private readonly IStateManager _stateManager = default!;
     [Dependency] private readonly JobRequirementsManager _requirements = default!;
     [Dependency] private readonly MarkingManager _markings = default!;
+    [UISystemDependency] private readonly RecordEditorGui _recordsTab = default!; // SV: Add CD's record GUI to the Humanoid Profile Editor
     [UISystemDependency] private readonly GuidebookSystem _guide = default!;
 
     private CharacterSetupGui? _characterSetup;
@@ -262,7 +264,8 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
             _prototypeManager,
             _resourceCache,
             _requirements,
-            _markings);
+            _markings,
+            _recordsTab); // SV: Add CD's record GUI to the Humanoid Profile Editor
 
         _profileEditor.OnOpenGuidebook += _guide.OpenHelp;
 

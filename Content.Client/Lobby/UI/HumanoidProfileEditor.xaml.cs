@@ -1,3 +1,4 @@
+using Content.Client._CD.Records.UI;
 using Content.Client.Humanoid;
 using Content.Client.Message;
 using Content.Client.Players.PlayTimeTracking;
@@ -20,6 +21,9 @@ using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Direction = Robust.Shared.Maths.Direction;
 
+using Content.Client._CD.Records.UI;
+using Content.Shared._CD.Records;
+
 namespace Content.Client.Lobby.UI
 {
     [GenerateTypedNameReferences]
@@ -35,6 +39,7 @@ namespace Content.Client.Lobby.UI
         private readonly MarkingManager _markingManager;
         private readonly JobRequirementsManager _requirements;
         private readonly LobbyUIController _controller;
+        private readonly RecordEditorGui _recordsTab; //CD: Records Tab
 
         private readonly SpriteSystem _sprite;
 
@@ -87,7 +92,8 @@ namespace Content.Client.Lobby.UI
             IPrototypeManager prototypeManager,
             IResourceManager resManager,
             JobRequirementsManager requirements,
-            MarkingManager markings)
+            MarkingManager markings, // CD: Records Tab
+            RecordEditorGui recordsTab) // CD: Records Tab
         {
             RobustXamlLoader.Load(this);
             _sawmill = logManager.GetSawmill("profile.editor");
@@ -97,6 +103,7 @@ namespace Content.Client.Lobby.UI
             _playerManager = playerManager;
             _prototypeManager = prototypeManager;
             _markingManager = markings;
+            _recordsTab = recordsTab; //CD: Records Tab
             _preferencesManager = preferencesManager;
             _resManager = resManager;
             _requirements = requirements;
@@ -286,6 +293,14 @@ namespace Content.Client.Lobby.UI
 
             #endregion Markings
 
+            #region CosmaticRecords
+
+            _recordsTab = new RecordEditorGui(UpdateProfileRecords);
+            TabContainer.AddChild(_recordsTab);
+            TabContainer.SetTabTitle(TabContainer.ChildCount - 1, Loc.GetString("humanoid-profile-editor-cd-records-tab"));
+
+            #endregion CosmaticRecords
+
             RefreshFlavorText();
 
             #region Dummy
@@ -376,6 +391,8 @@ namespace Content.Client.Lobby.UI
             UpdateEyePickers();
             UpdateSaveButton();
             UpdateMarkings();
+
+            _recordsTab.Update(profile); // CD: Records Tab
 
             RefreshAntags();
             RefreshJobs();
