@@ -29,48 +29,56 @@
   storage:
     back:
     - PlushieVox
+  groupBy: "plushie" #Tag added by Sector-Vestige
 
 - type: loadout
   id: PlushieArachind
   storage:
     back:
     - PlushieArachind
+  groupBy: "plushie" #Tag added by Sector-Vestige
 
 - type: loadout
   id: PlushieDiona
   storage:
     back:
     - PlushieDiona
+  groupBy: "plushie" #Tag added by Sector-Vestige
 
 - type: loadout
   id: PlushieHuman
   storage:
     back:
     - PlushieHuman
+  groupBy: "plushie" #Tag added by Sector-Vestige
 
 - type: loadout
   id: PlushieMoth
   storage:
     back:
     - PlushieMoth
+  groupBy: "plushie" #Tag added by Sector-Vestige
 
 - type: loadout
   id: PlushieSharkBlue
   storage:
     back:
     - PlushieSharkBlue
+  groupBy: "plushie" #Tag added by Sector-Vestige
 
 - type: loadout
   id: PlushieSharkPink
   storage:
     back:
     - PlushieSharkPink
+  groupBy: "plushie" #Tag added by Sector-Vestige
 
 - type: loadout
   id: PlushieSharkGrey
   storage:
     back:
     - PlushieSharkGrey
+  groupBy: "plushie" #Tag added by Sector-Vestige
 
 - type: loadout
   id: MedCrutchesForearm

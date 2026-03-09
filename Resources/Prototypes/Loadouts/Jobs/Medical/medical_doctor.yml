@@ -1,3 +1,53 @@
+# SPDX-FileCopyrightText: 2026 Wizards Den contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2024 BuildTools <unconfigured@null.spigotmc.org>
+# SPDX-FileCopyrightText: 2024 Hanz <41141796+Hanzdegloker@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 Mr. 27 <45323883+Dutch-VanDerLinde@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 Verm <32827189+Vermidia@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Eirenex <41762755+EirenexTheDragon@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Errant <35878406+Errant-4@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Phooooooooooooooooooooooooooooooosphate <184853112+Phooooooooooooooooooooooooooooooosphate@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+# SPDX-FileCopyrightText: 2025 bruhmogus <104110869+bruhmogus@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 jajsha <corbinbinouche7@gmail.com>
+# SPDX-FileCopyrightText: 2025 youtissoum <51883137+youtissoum@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2026 JuneSzalkowska <juneszalkowska@gmail.com>
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+#
+# SPDX-License-Identifier: MIT
+
+# # Senior Time (CD: Disabled timers)
+# - type: loadoutEffectGroup
+#   id: SeniorPhysician
+#   effects:
+#   - !type:JobRequirementLoadoutEffect
+#     requirement:
+#       !type:RoleTimeRequirement
+#       role: JobChemist
+#       time: 21600 #6 hrs
+#   - !type:JobRequirementLoadoutEffect
+#     requirement:
+#       !type:RoleTimeRequirement
+#       role: JobMedicalDoctor
+#       time: 21600 #6 hrs
+#   - !type:JobRequirementLoadoutEffect
+#     requirement:
+#       !type:DepartmentTimeRequirement
+#       department: Medical
+#       time: 216000 # 60 hrs
+
+# Other Timers
+
+- type: loadoutEffectGroup
+  id: MedicalHeadMirrorTimer
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobMedicalDoctor
+      time: 30h
+
 # Head
 
 # - type: loadout
@@ -7,14 +57,6 @@
 #     proto: SeniorPhysician
 #   equipment:
 #     head: ClothingHeadHatBeretSeniorPhysician
-
-- type: loadout
-  id: MedicalHeadMirror
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: MedicalJourneymanTimer
-  equipment:
-    head: ClothingHeadMirror
 
 - type: loadout
   id: MedicalBeret
@@ -46,11 +88,13 @@
   id: MedicalDoctorJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitMedicalDoctor
+  groupBy: "jumpsuit"
 
 - type: loadout
   id: MedicalDoctorJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtMedicalDoctor
+  groupBy: "jumpsuit"
 
 # - type: loadout
 #   id: SeniorPhysicianJumpsuit
@@ -72,16 +116,19 @@
   id: MedicalBlueScrubs
   equipment:
     jumpsuit: UniformScrubsColorBlue
+  groupBy: "scrubs"
 
 - type: loadout
   id: MedicalGreenScrubs
   equipment:
     jumpsuit: UniformScrubsColorGreen
+  groupBy: "scrubs"
 
 - type: loadout
   id: MedicalPurpleScrubs
   equipment:
     jumpsuit: UniformScrubsColorPurple
+  groupBy: "scrubs"
 
 # Back
 - type: loadout

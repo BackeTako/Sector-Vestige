@@ -55,71 +55,72 @@
 # Senior Courier
 - type: loadoutGroup
   id: SeniorCourierHead
-  name: loadout-group-senior-courier-head
+  name: loadout-group-vestige-head
   minLimit: 0
   loadouts:
-  - SeniorCourierHead
+  - CargoTechnicianHead
 
 - type: loadoutGroup
   id: SeniorCourierJumpsuit
-  name: loadout-group-senior-courier-jumpsuit
+  name: loadout-group-vestige-jumpsuit
   loadouts:
-  - SeniorCourierPants
-  - SeniorCourierJumpsuitLight
-  - SeniorCourierJumpskirtLight
-  - SeniorCourierJumpsuitDark
-  - SeniorCourierJumpskirtDark
-  - SeniorCourierOveralls
+  - CargoTechnicianPants # CD
+  - CargoTechnicianJumpsuitLight # CD
+  - CargoTechnicianJumpskirtLight # CD
+  - CargoTechnicianJumpsuitDark # CD
+  - CargoTechnicianJumpskirtDark # CD
+  - CargoTechnicianOveralls # CD
 
 - type: loadoutGroup
   id: SeniorCourierBackpack
-  name: loadout-group-senior-courier-backpack
+  name: loadout-group-vestige-backpack
   loadouts:
-  - SeniorCourierBackpack
-  - SeniorCourierSatchel
-  - SeniorCourierDuffel
+  - CargoTechnicianBackpack
+  - CargoTechnicianSatchel
+  - CargoTechnicianDuffel
 
 - type: loadoutGroup
   id: SeniorCourierOuterClothing
-  name: loadout-group-senior-courier-outerclothing
+  name: loadout-group-vestige-outerclothing
   minLimit: 0
   loadouts:
-  - SeniorCourierWintercoat
-  - SeniorCourierCargoBomber
+  - CargoTechnicianWintercoat
+  - CargoBomber # CD
 
 - type: loadoutGroup
   id: SeniorCourierShoes
-  name: loadout-group-senior-courier-shoes
+  name: loadout-group-vestige-shoes
   minLimit: 0
   loadouts:
-  - SeniorCourierBootsSteel
-  - SeniorCourierWinterBoots
+  - BlackShoes
+  - CargoWinterBoots
+  - SteelWorkboots # CD
 
 # Magistrate
 - type: loadoutGroup
   id: MagistrateHead
-  name: loadout-group-magistrate-head
+  name: loadout-group-vestige-head
   minLimit: 0
   loadouts:
   - MagistrateHeadBowler
 
 - type: loadoutGroup
   id: MagistrateGloves
-  name: loadout-group-magistrate-gloves
+  name: loadout-group-vestige-gloves
   minLimit: 0
   loadouts:
   - MagistrateGlovesBlack
 
 - type: loadoutGroup
   id: MagistrateOuterClothing
-  name: loadout-group-magistrate-outerclothing
+  name: loadout-group-vestige-outerclothing
   loadouts:
   - MagistrateOuterJudgeRobes
   - MagistrateOuterWintercoat
 
 - type: loadoutGroup
   id: MagistrateNeck
-  name: loadout-group-magistrate-neck
+  name: loadout-group-vestige-neck
   minLimit: 0
   loadouts:
   - MagistrateNeckBadge

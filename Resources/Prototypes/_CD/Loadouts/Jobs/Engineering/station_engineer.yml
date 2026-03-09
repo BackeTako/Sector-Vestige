@@ -10,6 +10,7 @@
   id: StationEngineerCasualsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitEngineeringCasual
+  groupBy: "casual" #Tag added by Sector-Vestige
 
 - type: loadout
   id: StationEngineerPants
@@ -20,31 +21,37 @@
   id: StationEngineerJumpsuitModern
   equipment:
     jumpsuit: ClothingUniformJumpsuitEngineeringModern
+  groupBy: "modern" #Tag added by Sector-Vestige
 
 - type: loadout
   id: StationEngineerHazardsuitModern
   equipment:
     jumpsuit: ClothingUniformJumpsuitEngineeringHazardModern
+  groupBy: "hazard" #Tag added by Sector-Vestige
 
 - type: loadout
   id: StationEngineerJumpskirtModern
   equipment:
     jumpsuit: ClothingUniformJumpskirtEngineeringModern
+  groupBy: "modern" #Tag added by Sector-Vestige
 
 - type: loadout
   id: StationEngineerJumpsuitEVA
   equipment:
     jumpsuit: ClothingUniformJumpsuitEngineeringEVA
+  groupBy: "eva" #Tag added by Sector-Vestige
 
 - type: loadout
   id: StationEngineerJumpsuitMechanic
   equipment:
     jumpsuit: ClothingUniformJumpsuitEngineeringMechanic
+  groupBy: "mechanic" #Tag added by Sector-Vestige
 
 - type: loadout
   id: StationEngineerJumpskirtMechanic
   equipment:
     jumpsuit: ClothingUniformJumpskirtEngineeringMechanic
+  groupBy: "mechanic" #Tag added by Sector-Vestige
 
 # OuterClothing
 - type: loadout
