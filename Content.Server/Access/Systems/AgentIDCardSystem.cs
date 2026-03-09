@@ -55,7 +55,7 @@ namespace Content.Server.Access.Systems
         [Dependency] private readonly ChameleonClothingSystem _chameleon = default!;
         [Dependency] private readonly ChameleonControllerSystem _chamController = default!;
         [Dependency] private readonly SharedNanoChatSystem _nanoChat = default!; // CD
-        [Dependency] private readonly LockSystem _lock = default!;
+//        [Dependency] private readonly LockSystem _lock = default!; //CD Nanochat creating unused field resulting in a CS0414
         [Dependency] private readonly SharedJobStatusSystem _jobStatus = default!;
 
         public override void Initialize()
