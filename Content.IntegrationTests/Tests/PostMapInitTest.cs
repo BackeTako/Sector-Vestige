@@ -71,10 +71,10 @@ using Content.Server.GameTicking;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Spawners.Components;
-using Content.Server.Station.Components;
+//using Content.Server.Station.Components; //SV: redundant using causing CS0105
 using Content.Shared.CCVar;
 using Content.Shared.Maps;
-using Content.Shared.Roles;
+//using Content.Shared.Roles; //SV: redundant using causing CS0105
 using Content.Shared.Station.Components;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
@@ -86,13 +86,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Map.Events;
 using Robust.Shared.Prototypes;
-using Content.Shared.Station.Components;
-using Robust.Shared.EntitySerialization;
-using Robust.Shared.EntitySerialization.Systems;
-using Robust.Shared.IoC;
 using Robust.Shared.Utility;
-using YamlDotNet.RepresentationModel;
-using Robust.Shared.Map.Events;
 
 namespace Content.IntegrationTests.Tests
 {
