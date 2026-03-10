@@ -5,9 +5,8 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-- files: ["ambi_tenseconversation_intensity1_2m0s.ogg",
-          "ambi_tenseconversation_intensity2_2m0s.ogg",
-          "ambi_tenseconversation_intensity3_2m0s.ogg"]
+- files: ["ambi_uncomfortablewonder_intensity1_1m22s.ogg",
+          "ambi_uncomfortablewonder_intensity2_1m22s.ogg"]
   license: "CC-BY-4.0"
   copyright: "Created by purpleskittleo"
   source: "https://www.youtube.com/@purpleskittleo"

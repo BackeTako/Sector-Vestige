@@ -5,9 +5,12 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-- files: ["ambi_AYconversation_intensity1_35s.ogg",
-          "ambi_AYconversation_intensity2_35s.ogg",
-          "ambi_AYconversation_intensity3_43s.ogg",]
+- files: ["ambi_heartbeat_30bpm_2m0s.ogg",
+          "ambi_heartbeat_60bpm_2m0s.ogg",
+          "ambi_heartbeat_90bpm_2m0s.ogg",
+          "ambi_heartbeat_130bpm_2m0s.ogg",
+          "ambi_heartbeat_160bpm_2m0s.ogg",
+          "ambi_heartbeat_190bpm_2m0s.ogg",]
   license: "CC-BY-4.0"
   copyright: "Created by purpleskittleo"
   source: "https://www.youtube.com/@purpleskittleo"
