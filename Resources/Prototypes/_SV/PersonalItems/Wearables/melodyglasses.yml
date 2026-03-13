@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
 # SPDX-FileCopyrightText: 2025 TheNarwhalrus <luca.patel.05@gmail.com>
 # SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2026 BackeTako <branne33@gmail.com>
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -10,6 +11,7 @@
   id: PersonalItemMelodyGlasses
   name: cracked sunglasses
   description: A pair of black sunglasses with multiple large fracures running across the left lens. What looks like dried blood coats the lower edge of the left frame. These no longer protect against bright flashes.
+  suffix: PersonalItem
   components:
   - type: Sprite
     sprite: _SV/PersonalItems/Wearables/melodyglasses.rsi

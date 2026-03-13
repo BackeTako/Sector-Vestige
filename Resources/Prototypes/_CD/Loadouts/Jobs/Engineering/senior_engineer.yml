@@ -10,18 +10,22 @@
   id: SeniorEngineerJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitSeniorEngineer
+  groupBy: "senior" #Tag added by Sector-Vestige
 
 - type: loadout
   id: SeniorEngineerJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtSeniorEngineer
+  groupBy: "senior" #Tag added by Sector-Vestige
 
 - type: loadout
   id: SeniorEngineerJumpsuitModern
   equipment:
     jumpsuit: ClothingUniformJumpsuitSeniorEngineerModern
+  groupBy: "modern" #Tag added by Sector-Vestige
 
 - type: loadout
   id: SeniorEngineerJumpskirtModern
   equipment:
     jumpsuit: ClothingUniformJumpskirtSeniorEngineerModern
+  groupBy: "modern" #Tag added by Sector-Vestige
