@@ -15,7 +15,7 @@ namespace Content.Shared._DV.Harpy;
 
 public sealed class HarpyVisualsSystem : EntitySystem
 {
-    [Dependency] private readonly TagSystem _tagSystem = default!;
+//    [Dependency] private readonly TagSystem _tagSystem = default!; //SV: Unused causing errors
     [Dependency] private readonly SharedHideableHumanoidLayersSystem _hideableHumanoidLayers = default!;
 
     //    [ValidatePrototypeId<TagPrototype>] // Frontier

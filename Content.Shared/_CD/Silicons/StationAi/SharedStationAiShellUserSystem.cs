@@ -26,7 +26,7 @@ public abstract class SharedStationAiShellUserSystem : EntitySystem
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedStationAiSystem _stationAiSystem = default!;
     [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
+//    [Dependency] private readonly MetaDataSystem _metaData = default!; //SV: Unused causing errors
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly SharedTransformSystem _xforms = default!;
     [Dependency] protected readonly SharedUserInterfaceSystem UserInterface = default!;

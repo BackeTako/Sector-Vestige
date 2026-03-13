@@ -1,3 +1,5 @@
+## Role Loadouts
+
 - type: roleLoadout
   id: JobChiefMedicalOfficer
   groups:
@@ -9,6 +11,7 @@
   - ChiefMedicalOfficerOuterClothing
   - ChiefMedicalOfficerNeck
   - ChiefMedicalOfficerShoes
+  - Glasses
   - SurvivalMedical
   - Trinkets
 #  - ChiefMedicalOfficerJobTrinkets
@@ -26,6 +29,7 @@
   - MedicalDoctorOuterClothing
   - MedicalShoes
   - MedicalDoctorPDA
+  - Glasses
   - SurvivalMedical
   - Trinkets
 #  - MedicalDoctorJobTrinkets
@@ -38,6 +42,7 @@
   - GroupTankHarness
   - MedicalInternJumpsuit
   - MedicalBackpack
+  - Glasses
   - SurvivalMedical
   - Trinkets
 #  - MedicalInternJobTrinkets
@@ -53,6 +58,7 @@
   - ChemistBackpack
   - ChemistOuterClothing
   - MedicalShoes
+  - Glasses
   - SurvivalMedical
   - Trinkets
 #  - ChemistJobTrinkets
@@ -66,11 +72,13 @@
   - ParamedicHead
   # CD: ETU Gear
   - ParamedicMask
+  - MedicalMask
   - ParamedicJumpsuit
   # CD: ETU Gear
   - MedicalBackpack
   - ParamedicOuterClothing
   - ParamedicShoes
+  - Glasses
   - SurvivalMedical
   - Trinkets
 #  - ParamedicJobTrinkets

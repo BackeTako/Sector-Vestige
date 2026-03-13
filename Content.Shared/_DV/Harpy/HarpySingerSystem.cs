@@ -9,7 +9,7 @@ using Content.Shared.Actions;
 
 namespace Content.Shared._DV.Harpy
 {
-    public class HarpySingerSystem : EntitySystem
+    public sealed class HarpySingerSystem : EntitySystem //SV: Seal Harpy singing class
     {
         [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
 

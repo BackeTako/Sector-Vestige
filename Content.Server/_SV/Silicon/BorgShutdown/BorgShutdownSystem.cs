@@ -23,7 +23,6 @@ public sealed class BorgShutdownSystem : EntitySystem
 {
     [Dependency] private readonly BatterySystem _battery = default!;
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     public override void Initialize()

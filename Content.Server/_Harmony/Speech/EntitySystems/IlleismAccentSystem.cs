@@ -49,7 +49,7 @@ public sealed class IlleismAccentSystem : EntitySystem
     private static readonly Regex RegexIllLower = new(@"\bi'll\b", RegexOptions.IgnoreCase);
 
 
-    [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
+//    [Dependency] private readonly ReplacementAccentSystem _replacement = default!; //SV: unused value causing CS0414
 
     public override void Initialize()
     {
