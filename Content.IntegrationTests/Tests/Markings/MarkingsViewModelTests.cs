@@ -50,6 +50,8 @@ public sealed class MarkingsViewModelTests
     public ProtoId<MarkingPrototype> MothChestFan = "MothChestFan";
     public ProtoId<MarkingPrototype> LizardHornsCurled = "LizardHornsCurled";
     public ProtoId<MarkingPrototype> MothAntennasDefault = "MothAntennasDefault";
+    public ProtoId<MarkingPrototype> MothChestFirewatch = "MothChestFirewatch";
+    public ProtoId<MarkingPrototype> MothChestGothic =  "MothChestGothic";
 
     public TestPair Pair = default!;
     public RobustIntegrationTest.ClientIntegrationInstance Client => Pair.Client;
@@ -92,13 +94,23 @@ public sealed class MarkingsViewModelTests
         Assert.That(Model.SelectedMarkings(Torso, HumanoidVisualLayers.Chest)!, Has.Count.EqualTo(2));
         Assert.That(Model.SelectedMarkings(Torso, HumanoidVisualLayers.Chest)![1].MarkingId, Is.EqualTo(MothChestDeathhead));
 
-        Assert.That(Model.TrySelectMarking(Torso, HumanoidVisualLayers.Chest, MothChestFan), Is.False);
-        Assert.That(Model.TrySelectMarking(Head, HumanoidVisualLayers.HeadTop, LizardHornsCurled), Is.False);
-
-        Model.EnforceLimits = false;
+        //SV - Begin: Unit test modification to reflect our higher marking limit
         Assert.That(Model.TrySelectMarking(Torso, HumanoidVisualLayers.Chest, MothChestFan), Is.True);
         Assert.That(Model.SelectedMarkings(Torso, HumanoidVisualLayers.Chest)!, Has.Count.EqualTo(3));
         Assert.That(Model.SelectedMarkings(Torso, HumanoidVisualLayers.Chest)![2].MarkingId, Is.EqualTo(MothChestFan));
+
+        Assert.That(Model.TrySelectMarking(Torso, HumanoidVisualLayers.Chest, MothChestFirewatch), Is.True);
+        Assert.That(Model.SelectedMarkings(Torso, HumanoidVisualLayers.Chest)!, Has.Count.EqualTo(4));
+        Assert.That(Model.SelectedMarkings(Torso, HumanoidVisualLayers.Chest)![3].MarkingId, Is.EqualTo(MothChestFirewatch));
+
+        Assert.That(Model.TrySelectMarking(Torso, HumanoidVisualLayers.Chest, MothChestGothic), Is.False);
+        Assert.That(Model.TrySelectMarking(Head, HumanoidVisualLayers.HeadTop, LizardHornsCurled), Is.False);
+
+        Model.EnforceLimits = false;
+        Assert.That(Model.TrySelectMarking(Torso, HumanoidVisualLayers.Chest, MothChestGothic), Is.True);
+        Assert.That(Model.SelectedMarkings(Torso, HumanoidVisualLayers.Chest)!, Has.Count.EqualTo(5));
+        Assert.That(Model.SelectedMarkings(Torso, HumanoidVisualLayers.Chest)![4].MarkingId, Is.EqualTo(MothChestGothic));
+        //SV - End: Unit test modification to reflect our higher marking limit
     }
 
     [MarkingTest]
