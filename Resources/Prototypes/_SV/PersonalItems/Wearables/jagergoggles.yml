@@ -1,0 +1,24 @@
+- type: entity
+  parent: ClothingEyesGlasses
+  id: PersonalItemJagerGoggles
+  name: worn ballistics goggles
+  description: A pair of worn ballistics goggles that have served their time. It is covered in dirt and soot from operations years prior.
+  suffix: PersonalItem
+  components:
+  - type: Sprite
+    sprite: _SV/PersonalItems/Wearables/jagergoggles.rsi
+  - type: Clothing
+    sprite: _SV/PersonalItems/Wearables/jagergoggles.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: loadout
+  id: PersonalItemJagerGoggles
+  storage:
+    back:
+    - PersonalItemJagerGoggles
+  effects:
+  - !type:PersonalItemLoadoutEffect
+     character:
+      - Jager Grendel
