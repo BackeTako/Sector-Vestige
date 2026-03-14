@@ -21,11 +21,13 @@
   id: SecurityCasualsuit
   equipment:
     jumpsuit: ClothingUniformSecurtyCasual
+  groupBy: "casual" #Tag added by SV
 
 - type: loadout
   id: SecurityCasualskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtSecurtyCasual
+  groupBy: "casual" #Tag added by SV
 
 - type: loadout
   id: SecurityPlateCarrier

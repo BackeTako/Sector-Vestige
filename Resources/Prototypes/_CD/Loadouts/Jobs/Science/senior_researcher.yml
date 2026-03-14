@@ -10,11 +10,13 @@
   id: SeniorResearcherJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitSeniorResearcher
+  groupBy: "senior" #Tag added by SV
 
 - type: loadout
   id: SeniorResearcherJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtSeniorResearcher
+  groupBy: "senior" #Tag added by SV
 
 # OuterClothing
 - type: loadout

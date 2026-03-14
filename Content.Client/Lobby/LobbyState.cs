@@ -80,7 +80,6 @@ namespace Content.Client.Lobby
         private ClientGameTicker _gameTicker = default!;
         private ContentAudioSystem _contentAudioSystem = default!;
         private ReadyManifestSystem _readyManifest = default!; // Moffstation - Ready manifest
-        private bool _updatingReadyButton; // Sector Vestige - Flag to prevent recursive ready button updates
 
         protected override Type? LinkedScreenType { get; } = typeof(LobbyGui);
         public LobbyGui? Lobby;
@@ -170,13 +169,7 @@ namespace Content.Client.Lobby
 
         private void OnReadyToggled(BaseButton.ButtonToggledEventArgs args)
         {
-            // Sector Vestige - Begin - Prevent recursive updates from programmatic state changes
-            if (_updatingReadyButton)
-                return;
-
-            // Sector Vestige - Update button text immediately when toggled
             Lobby!.ReadyButton.Text = Loc.GetString(args.Pressed ? "lobby-state-player-status-ready" : "lobby-state-player-status-not-ready");
-            // Sector Vestige - End
             SetReady(args.Pressed);
         }
 

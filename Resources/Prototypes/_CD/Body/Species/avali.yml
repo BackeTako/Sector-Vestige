@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
 # SPDX-FileCopyrightText: 2025 MoonlightHollow <muszynskinicholas8@gmail.com>
 # SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2026 qu4drivium <aaronholiver@outlook.com>
 #
 # SPDX-License-Identifier: MIT
 
@@ -16,7 +17,7 @@
       limit: 0
       required: false
     enum.HumanoidVisualLayers.Chest:
-      limit: 1
+      limit: 2 #SV 1 -> 2
       required: false
     enum.HumanoidVisualLayers.Snout:
       limit: 1

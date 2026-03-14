@@ -1,5 +1,5 @@
-// SPDX-FileCopyrightText: 2025 Wizards Den contributors
-// SPDX-FileCopyrightText: 2025 Sector Vestige contributors (modifications)
+// SPDX-FileCopyrightText: 2026 Wizards Den contributors
+// SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
 // SPDX-FileCopyrightText: 2021 20kdc <asdd2808@gmail.com>
 // SPDX-FileCopyrightText: 2021 Acruid <shatter66@gmail.com>
 // SPDX-FileCopyrightText: 2021 Javier Guardia Fernández <DrSmugleaf@users.noreply.github.com>
@@ -25,24 +25,28 @@
 // SPDX-FileCopyrightText: 2024 Errant <35878406+Errant-4@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2024 FluffMe <dex.stb@gmail.com>
 // SPDX-FileCopyrightText: 2024 Golinth <amh2023@gmail.com>
-// SPDX-FileCopyrightText: 2024 IProduceWidgets <107586145+IProduceWidgets@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2024 Jacob Scott <scott@wearejacob.com>
 // SPDX-FileCopyrightText: 2024 Kelderan <66748890+KeldWolf@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2024 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2024 Rainfey <rainfey0+github@gmail.com>
-// SPDX-FileCopyrightText: 2024 SlamBamActionman <83650252+SlamBamActionman@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2024 Southbridge <7013162+southbridge-fur@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2024 TytosB <54259736+TytosB@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Anzuneth <malachigene@gmail.com>
+// SPDX-FileCopyrightText: 2025 ArtisticRoomba <145879011+ArtisticRoomba@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Deerstop <edainturner@gmail.com>
 // SPDX-FileCopyrightText: 2025 ElectroJr <leonsfriedrich@gmail.com>
+// SPDX-FileCopyrightText: 2025 IProduceWidgets <107586145+IProduceWidgets@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Killerqu00 <killerqueen1777@gmail.com>
 // SPDX-FileCopyrightText: 2025 KravinDes <cib20@humboldt.edu>
 // SPDX-FileCopyrightText: 2025 Lachri <lachri.lachryphage@gmail.com>
 // SPDX-FileCopyrightText: 2025 Lachryphage <lachri.lachryphage@gmail.com>
 // SPDX-FileCopyrightText: 2025 Lachryphage <stuart.e.clough@gmail.com>
 // SPDX-FileCopyrightText: 2025 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
+// SPDX-FileCopyrightText: 2025 Pok <113675512+Pok27@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
 // SPDX-FileCopyrightText: 2025 Rellu225 <1blackrilfe1@gmail.com>
+// SPDX-FileCopyrightText: 2025 SlamBamActionman <83650252+SlamBamActionman@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Spanky <scott@wearejacob.com>
 // SPDX-FileCopyrightText: 2025 Spessmann <156740760+Spessmann@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Tayrtahn <tayrtahn@gmail.com>
@@ -53,7 +57,7 @@
 // SPDX-FileCopyrightText: 2025 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 qu4drivium <aaronholiver@outlook.com>
 // SPDX-FileCopyrightText: 2025 tanuko <signar2005@gmail.com>
-// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+// SPDX-FileCopyrightText: 2026 lambdatiger <spam.stnuocca.sl@gmail.com>
 //
 // SPDX-License-Identifier: MIT
 
@@ -67,10 +71,10 @@ using Content.Server.GameTicking;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Spawners.Components;
-using Content.Server.Station.Components;
+//using Content.Server.Station.Components; //SV: redundant using causing CS0105
 using Content.Shared.CCVar;
 using Content.Shared.Maps;
-using Content.Shared.Roles;
+//using Content.Shared.Roles; //SV: redundant using causing CS0105
 using Content.Shared.Station.Components;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
@@ -82,13 +86,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Map.Events;
 using Robust.Shared.Prototypes;
-using Content.Shared.Station.Components;
-using Robust.Shared.EntitySerialization;
-using Robust.Shared.EntitySerialization.Systems;
-using Robust.Shared.IoC;
 using Robust.Shared.Utility;
-using YamlDotNet.RepresentationModel;
-using Robust.Shared.Map.Events;
 
 namespace Content.IntegrationTests.Tests
 {
@@ -174,6 +172,8 @@ namespace Content.IntegrationTests.Tests
             // "Exo", // Vestige: Derotated Map
             "Vanquish", // LateStation Map by Lachri
             "Cluster", // Sector Vestige, remade by Rebound
+            "Packed_SM", // Sector Vestige, edited by Lambda.Tiger
+            "Serpentcrest",
         };
 
         private static readonly ProtoId<EntityCategoryPrototype> DoNotMapCategory = "DoNotMap";

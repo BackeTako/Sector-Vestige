@@ -14,11 +14,13 @@
   id: WardenJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitWarden
+  groupBy: "jumpsuit" #Changed by SV
 
 - type: loadout
   id: WardenJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtWarden
+  groupBy: "jumpsuit" #Changed by SV
 
 # OuterClothing
 - type: loadout

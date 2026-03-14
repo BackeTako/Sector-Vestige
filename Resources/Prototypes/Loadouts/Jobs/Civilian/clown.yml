@@ -1,3 +1,12 @@
+# SPDX-FileCopyrightText: 2026 Wizards Den contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2024 Mr. 27 <45323883+Dutch-VanDerLinde@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 lzk <124214523+lzk228@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2026 JuneSzalkowska <juneszalkowska@gmail.com>
+#
+# SPDX-License-Identifier: MIT
+
 # Head
 - type: loadout
   id: JesterHat
@@ -14,21 +23,25 @@
   id: ClownSuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitClown
+  groupBy: "jumpsuit" #Tag added by Sector-Vestige
 
 - type: loadout
   id: ClownSkirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtClown
+  groupBy: "jumpsuit" #Tag added by Sector-Vestige
 
 - type: loadout
   id: JesterSuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitJester
+  groupBy: "jester" #Tag added by Sector-Vestige
 
 - type: loadout
   id: JesterAltSuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitJesterAlt
+  groupBy: "jester" #Tag added by Sector-Vestige
 
 # Back
 - type: loadout

@@ -10,11 +10,14 @@
   id: DetectiveJumpsuitCasual
   equipment:
     jumpsuit: ClothingUniformDetectiveCasual
+  groupBy: "casual" #Tag added by SV
+
 
 - type: loadout
   id: DetectiveJumpskirtCasual
   equipment:
     jumpsuit: ClothingUniformJumpskirtDetectiveCasual
+  groupBy: "casual" #Tag added by SV
 
 # OuterClothing
 - type: loadout

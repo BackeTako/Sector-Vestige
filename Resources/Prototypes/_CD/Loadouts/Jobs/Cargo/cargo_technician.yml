@@ -14,21 +14,25 @@
   id: CargoTechnicianJumpsuitLight
   equipment:
     jumpsuit: ClothingUniformJumpsuitCargoLight
+  groupBy: "light" #Tag added by SV
 
 - type: loadout
   id: CargoTechnicianJumpskirtLight
   equipment:
     jumpsuit: ClothingUniformJumpskirtCargoLight
+  groupBy: "light" #Tag added by SV
 
 - type: loadout
   id: CargoTechnicianJumpsuitDark
   equipment:
     jumpsuit: ClothingUniformJumpsuitCargoDark
+  groupBy: "dark" #Tag added by SV
 
 - type: loadout
   id: CargoTechnicianJumpskirtDark
   equipment:
     jumpsuit: ClothingUniformJumpskirtCargoDark
+  groupBy: "dark" #Tag added by SV
 
 - type: loadout
   id: CargoTechnicianOveralls

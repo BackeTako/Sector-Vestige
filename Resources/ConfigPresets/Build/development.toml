@@ -3,6 +3,7 @@
 lobbyenabled = true
 # Dev map for faster loading & convenience
 map = "Dev"
+role_whitelist = false
 role_timers = false
 admin_job_tracking = true
 role_loadout_timers = false
@@ -45,3 +46,5 @@ new_player_threshold = 120
 random_characters = false
 random_species_weights = ""
 ssd_sleep_time = 3600
+flavor_text = true
+flavor_text_length = 1024
