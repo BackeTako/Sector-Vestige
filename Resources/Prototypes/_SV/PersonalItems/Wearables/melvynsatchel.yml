@@ -1,0 +1,27 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# Player: thelassofphobia - Character: Melvyn Summers
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: PersonalItemMelvynSatchel
+  name: decorated EMT satchel
+  description: A navy blue satchel with a faded medical cross sticker. There's an authentic wehbubu and a small vampire-bat ornament attached to it via jump rings. This... Is this is seriously my paramedic? Lord Hex, save me.
+  suffix: PersonalItem
+  components:
+  - type: Sprite
+    sprite: _SV/PersonalItems/Wearables/melvynsatchel.rsi
+  - type: Clothing
+    sprite: _SV/PersonalItems/Wearables/melvynsatchel.rsi
+
+- type: loadout
+  id: PersonalItemMelvynSatchel
+  inhand:
+    - PersonalItemMelvynSatchel
+  effects:
+  - !type:PersonalItemLoadoutEffect
+     character:
+      - Melvyn Summers
