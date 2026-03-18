@@ -66,7 +66,7 @@ public sealed class MapModificationsTests
         await server.WaitAssertion(() =>
         {
             mapModificationSystem.ApplyMapModification(
-                prototypeManager.Index<MapModificationPrototype>("TestAddition"),
+                prototypeManager.Index<MapModificationPrototype>($"TestAddition"), //SV: Interpolate string to fix RA0033
                 testMap.Grid);
 
             var entities = entityManager.GetEntities();
@@ -114,7 +114,7 @@ public sealed class MapModificationsTests
             entityManager.Spawn("TestEntityToRemove", new MapCoordinates(0, 0, testMap.MapId));
 
             mapModificationSystem.ApplyMapModification(
-                prototypeManager.Index<MapModificationPrototype>("TestRemoval"),
+                prototypeManager.Index<MapModificationPrototype>($"TestRemoval"), //SV: Interpolate string to fix RA0033
                 testMap.Grid);
 
             var entities = entityManager.GetEntities();
@@ -149,7 +149,7 @@ public sealed class MapModificationsTests
             entityManager.Spawn("TestEntityToRemove", new MapCoordinates(0.5f, 0, testMap.MapId));
 
             mapModificationSystem.ApplyMapModification(
-                prototypeManager.Index<MapModificationPrototype>("TestReplacement"),
+                prototypeManager.Index<MapModificationPrototype>($"TestReplacement"), //SV: Interpolate string to fix RA0033
                 testMap.Grid);
 
             var entities = entityManager.GetEntities();

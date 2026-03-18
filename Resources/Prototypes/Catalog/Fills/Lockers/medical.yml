@@ -44,25 +44,8 @@
   table: !type:AllSelector
     children:
     - id: ClothingEyesHudMedical
-    - !type:GroupSelector
-      children:
-      - id: ClothingHeadHatSurgcapGreen
-        weight: 0.1
-      - id: ClothingHeadHatSurgcapPurple
-        weight: 0.05
-      - id: ClothingHeadHatSurgcapBlue
-        weight: 0.90
-    - !type:GroupSelector
-      children:
-      - id: UniformScrubsColorBlue
-        weight: 0.5
-      - id: UniformScrubsColorGreen
-        weight: 0.1
-      - id: UniformScrubsColorPurple
-        weight: 0.05
-    - id: ClothingMaskSterile
-    - id: JetInjector
     - id: ClothingBeltMedicalFilled
+    - id: JetInjector
     - id: HandheldHealthAnalyzer
     - id: ChemistryBottleLaughter # Widely recognized as the best medicine :o)
       prob: 0.01
@@ -135,15 +118,11 @@
   table: !type:AllSelector
     children:
     - id: ClothingEyesHudMedical
-    - id: ClothingHandsGlovesLatex
-    - id: ClothingHeadsetMedical
-    - id: ClothingMaskSterile
-    - id: HandheldGPSBasic
-    - id: MedkitFilled
-      prob: 0.3
-    - id: JetInjector
     - id: ClothingOuterHardsuitVoidParamed
     - id: ClothingBeltMedicalEMTFilled
+    - id: JetInjector
+    - id: MedkitFilled
+      prob: 0.3
     - id: HandheldHealthAnalyzer
     - id: BoxBodyBag
     - !type:GroupSelector

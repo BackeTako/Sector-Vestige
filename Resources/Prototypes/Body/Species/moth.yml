@@ -1,7 +1,6 @@
 - type: markingsGroup
   parent: Undergarments
   id: Moth
-  onlyGroupWhitelisted: true
   limits:
     enum.HumanoidVisualLayers.Hair:
       limit: 1
@@ -10,15 +9,17 @@
       limit: 0
       required: false
     enum.HumanoidVisualLayers.Tail:
-      limit: 1
+      limit: 2
       required: true
+      onlyGroupWhitelisted: true
       default: [ MothWingsDefault ]
     enum.HumanoidVisualLayers.Chest:
-      limit: 4 #SV 2 -> 4
+      limit: 4
       required: false
     enum.HumanoidVisualLayers.HeadTop:
       limit: 1
       required: true
+      onlyGroupWhitelisted: true
       default: [ MothAntennasDefault ]
     enum.HumanoidVisualLayers.Snout:
       limit: 1
@@ -145,7 +146,7 @@
     accent: zombieMoth
   - type: Speech
     speechVerb: Moth
-    allowedEmotes: ['Chitter', 'Squeak']
+    allowedEmotes: ['Chitter', 'Squeak', 'Flap']
   - type: TypingIndicator
     proto: moth
   - type: Bloodstream
@@ -166,6 +167,8 @@
       Male: UnisexMoth
       Female: UnisexMoth
       Unsexed: UnisexMoth
+  - type: BodyEmotes
+    soundsId: MothBodyEmotes
   - type: MovementSpeedModifier
     baseWeightlessAcceleration: 1.5 # Move around more easily in space.
     baseWeightlessFriction: 1

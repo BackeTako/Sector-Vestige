@@ -166,7 +166,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
 
         _joints.ClearJoints(args.Buckle.Owner);
 
-        _tagSystem.AddTag(uid, "DoorBumpOpener");
+        _tagSystem.AddTag(uid, $"DoorBumpOpener"); //SV: string interpolation to fix error RA0033
 
         return;
     }
@@ -189,7 +189,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         // Entity is no longer riding
         RemComp<RiderComponent>(args.Buckle.Owner);
         RemComp<RelayInputMoverComponent>(args.Buckle.Owner);
-        _tagSystem.RemoveTag(uid, "DoorBumpOpener");
+        _tagSystem.RemoveTag(uid, $"DoorBumpOpener"); //SV: string interpolation to fix error RA0033
 
         Appearance.SetData(uid, VehicleVisuals.HideRider, false);
         // Reset component
@@ -218,7 +218,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     private void OnEntInserted(EntityUid uid, VehicleComponent component, EntInsertedIntoContainerMessage args)
     {
         if (args.Container.ID != KeySlot ||
-            !_tagSystem.HasTag(args.Entity, "VehicleKey"))
+            !_tagSystem.HasTag(args.Entity, $"VehicleKey")) //SV: string interpolation to fix error RA0033
             return;
 
         // Enable vehicle

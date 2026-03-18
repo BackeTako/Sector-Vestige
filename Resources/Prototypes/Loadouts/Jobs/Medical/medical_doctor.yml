@@ -39,14 +39,13 @@
 
 # Other Timers
 
-- type: loadoutEffectGroup
-  id: MedicalHeadMirrorTimer
+- type: loadout
+  id: MedicalHeadMirror
   effects:
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:RoleTimeRequirement
-      role: JobMedicalDoctor
-      time: 30h
+  - !type:GroupLoadoutEffect
+    proto: MedicalJourneymanTimer
+  equipment:
+    head: ClothingHeadMirror
 
 # Head
 
@@ -57,14 +56,6 @@
 #     proto: SeniorPhysician
 #   equipment:
 #     head: ClothingHeadHatBeretSeniorPhysician
-
-- type: loadout
-  id: MedicalHeadMirror
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: MedicalJourneymanTimer
-  equipment:
-    head: ClothingHeadMirror
 
 - type: loadout
   id: MedicalBeret

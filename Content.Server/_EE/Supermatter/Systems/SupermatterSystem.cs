@@ -64,12 +64,12 @@ public sealed partial class SupermatterSystem : EntitySystem
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly DoAfterSystem _doAfter = default!;
+//    [Dependency] private readonly DoAfterSystem _doAfter = default!; //SV: unused field causing CS0414
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
     [Dependency] private readonly ExamineSystem _examine = default!;
     [Dependency] private readonly ExplosionSystem _explosion = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly GravityWellSystem _gravityWell = default!;
+//    [Dependency] private readonly GravityWellSystem _gravityWell = default!; //SV: unused field causing CS0414
     [Dependency] private readonly IonStormSystem _ionStorm = default!;
     [Dependency] private readonly LightningSystem _lightning = default!;
     [Dependency] private readonly GhostSystem _ghost = default!; // Used in Processing partial

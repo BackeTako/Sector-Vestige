@@ -13,7 +13,7 @@ namespace Content.Shared._SV.JobWhitelist;
 /// Defines a group of jobs that can be whitelisted together.
 /// For example, a "trusted" group might include all head roles.
 /// </summary>
-[Prototype("jobWhitelistGroup")]
+[Prototype]
 public sealed partial class JobWhitelistGroupPrototype : IPrototype
 {
     [IdDataField]
