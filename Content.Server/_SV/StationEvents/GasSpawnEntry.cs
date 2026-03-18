@@ -22,12 +22,14 @@ public sealed partial class GasSpawnEntryPrototype : IPrototype
 /// Dictates a list of gases that the supermatter off gas event can spawn, along with their probabilities and amount of gas emissions.
 /// <example>
 /// <code>
-/// - type: SMOffGas
-///     gases:
-///       - gas: Nitrogen
-///         spawnWeight: 2
-///         gasAmount: 500
-///
+///    - gas: Nitrogen
+///      spawnWeight: 8
+///      gasAmount:
+///        min: 400
+///        max: 1100
+///      molPerSecond:
+///       min: 10
+///       max: 50
 /// </code>
 /// </example>
 /// </summary>
