@@ -9,6 +9,7 @@
     duration: 60
   - type: SMOffGas
     allowedGases:
+    #Nitrogen
     - gas: Nitrogen
       spawnWeight: 8
       gasAmount:
@@ -17,6 +18,7 @@
       molPerSecond:
         min: 10
         max: 50
+    #Oxygen
     - gas: Oxygen
       spawnWeight: 4
       gasAmount:
@@ -25,6 +27,7 @@
       molPerSecond:
         min: 5
         max: 45
+    #Nitrous
     - gas: NitrousOxide
       spawnWeight: 2
       gasAmount:
@@ -33,6 +36,7 @@
       molPerSecond:
         min: 5
         max: 25
+    #Plasma
     - gas: Plasma
       spawnWeight: 1
       gasAmount:
@@ -41,6 +45,7 @@
       molPerSecond:
         min: 5
         max: 45
+    #Carbon Dioxide
     - gas: CarbonDioxide
       spawnWeight: 6
       gasAmount:
@@ -49,6 +54,7 @@
       molPerSecond:
         min: 15
         max: 55
+    #Steam (fight me)
     - gas: WaterVapor
       spawnWeight: 4
       gasAmount:
@@ -57,6 +63,7 @@
       molPerSecond:
         min: 15
         max: 45
+    #Ammonia
     - gas: Ammonia
       spawnWeight: 4
       gasAmount:
@@ -65,19 +72,21 @@
       molPerSecond:
         min: 5
         max: 65
+    #Frezon
     - gas: Frezon
       spawnWeight: 1
       gasAmount:
         min: 100
-        max: 300
+        max: 350
       molPerSecond:
         min: 2
         max: 10
+    #Tritium
     - gas: Tritium
       spawnWeight: 1
       gasAmount:
         min: 100
-        max: 500
+        max: 800
       molPerSecond:
         min: 5
         max: 30
