@@ -2,33 +2,28 @@ using Content.Server._EE.Supermatter.Systems;
 using Content.Server._SV.StationEvents.Components;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Chat.Systems;
 using Content.Server.GameTicking.Rules;
-using Content.Server.Station.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Shared._EE.Supermatter.Components;
+using Content.Shared.Atmos;
 using Content.Shared.Database;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Station.Components;
-using Robust.Shared.Map;
-using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Robust.Shared.Utility;
 
 namespace Content.Server._SV.StationEvents.Events;
 
 /// <summary>
 /// This handles...
 /// </summary>
-public sealed class SMOffGasSystem : GameRuleSystem<SMOffGasComponent>
+public sealed class SMOffGasRule : GameRuleSystem<SMOffGasComponent>
 {
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
     [Dependency] private readonly SupermatterSystem _superMatter = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
     private const float LeakCooldown = .25f;
@@ -55,10 +50,8 @@ public sealed class SMOffGasSystem : GameRuleSystem<SMOffGasComponent>
         //End the event if there is no supermatters available
         if (possibleTargets.Count <= 0)
         {
-            Log.Debug($"Terminating event {uid} as no supermatter found");
-            _adminLogger.Add(LogType.EventStopped,
-                LogImpact.Low,
-                $"Terminating event {uid} as no valid supermatter was found");
+            Log.Debug($"Terminating event {uid} as no valid supermatter found");
+            _adminLogger.Add(LogType.EventStopped, LogImpact.Low, $"Terminating event {uid} as no valid supermatter was found");
             ForceEndSelf(uid, gameRule);
             return;
         }
@@ -67,15 +60,34 @@ public sealed class SMOffGasSystem : GameRuleSystem<SMOffGasComponent>
 
         component.TargetTile = _transform.GetGridOrMapTilePosition(component.Supermatter);
         component.StationUid = chosenStation.Value;
-
-        Log.Debug($"Selected supermatter for event {ToPrettyString(uid)} is {ToPrettyString(component.Supermatter)}");
-
-        foreach (var gasCollection in component.AllowedGases)
-        {
-            Log.Debug($"General list: {gasCollection.Gas}, {gasCollection.Amount}, {gasCollection.Weight}");
-        }
+        component.TargetGrid = _transform.GetGrid(component.Supermatter);
 
         SelectGas(component);
+        CheckForValidity(uid, component, gameRule);
+
+        if (!_entityManager.TryGetComponent<SupermatterComponent>(component.Supermatter, out var supermatter))
+            return;
+        if (gameRule.Running)
+            _superMatter.SendSupermatterAnnouncement(component.Supermatter, supermatter, Loc.GetString("sv-supermatter-event-added"));
+    }
+
+    private void CheckForValidity(EntityUid uid, SMOffGasComponent component, GameRuleComponent gameRule)
+    {
+        if (component.TargetGrid == null ||
+            component.TargetTile == default ||
+            Deleted(component.StationUid) ||
+            !_atmosphere.IsSimulatedGrid(component.TargetGrid.Value))
+        {
+            Log.Debug($"SM offgas event {uid} canceled as the location is invalid. Target tile is:  {component.TargetTile}, on grid: {component.TargetGrid} for station ID: {component.StationUid}");
+            ForceEndSelf(uid, gameRule);
+            if (component.TargetGrid == null)
+            {
+                Log.Debug("Target grid is null");
+                return;
+            }
+            if (!_atmosphere.IsSimulatedGrid(component.TargetGrid.Value))
+                Log.Debug("Target grid is not simulated with atmos");
+        }
     }
 
     protected override void Started(EntityUid uid, SMOffGasComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
@@ -90,7 +102,6 @@ public sealed class SMOffGasSystem : GameRuleSystem<SMOffGasComponent>
         //build time when the event will end
         if (gameRule.Delay is {} startAfter)
             stationEvent.EndTime = _timing.CurTime + TimeSpan.FromSeconds(component.GasAmount / component.GasRate + startAfter.Next(RobustRandom));
-        Log.Debug($"Event will end at {stationEvent.EndTime}. Current time is {_timing.CurTime}");
     }
 
     protected override void ActiveTick(EntityUid uid, SMOffGasComponent component, GameRuleComponent gameRule, float frameTime)
@@ -103,35 +114,11 @@ public sealed class SMOffGasSystem : GameRuleSystem<SMOffGasComponent>
             return;
         component.TimeTillNextLeak += LeakCooldown;
 
-        Log.Debug($"Attempting to leak at {component.TargetTile}");
-
-        var targetGrid = _transform.GetGrid(component.Supermatter);
-
         //if by somehow the grid or tile is invalid, or if the atmosphere simulation is disabled, end the event
-        if (targetGrid == null ||
-            component.TargetTile == default ||
-            Deleted(component.StationUid) ||
-            !_atmosphere.IsSimulatedGrid(targetGrid.Value))
-        {
-            Log.Debug($"SM offgas event {uid} canceled as the location is invalid. Target tile is:  {component.TargetTile}, on grid: {targetGrid} for station ID: {component.StationUid}");
-            ForceEndSelf(uid, gameRule);
-
-            if (component.TargetTile == default)
-                Log.Debug("Target tile a default value");
-            if (Deleted(component.StationUid))
-                Log.Debug("Target station is deleted (Good job on that)");
-            if (targetGrid == null)
-            {
-                Log.Debug("Target grid is null");
-                return;
-            }
-            if (!_atmosphere.IsSimulatedGrid(targetGrid.Value))
-                Log.Debug("Target grid is not simulated with atmos");
-            return;
-        }
+        CheckForValidity(uid, component, gameRule);
 
         //stolen from GasLeakRule :)
-        var environment = _atmosphere.GetTileMixture(targetGrid, null, component.TargetTile);
+        var environment = _atmosphere.GetTileMixture(component.TargetGrid, null, component.TargetTile);
         environment?.AdjustMoles(component.SelectedGas, LeakCooldown * component.GasRate);
     }
 
@@ -139,12 +126,10 @@ public sealed class SMOffGasSystem : GameRuleSystem<SMOffGasComponent>
     {
         base.Ended(uid, component, gameRule, args);
 
-        Log.Debug($"SM offgas event {uid} ended as expected");
-
         if (!_entityManager.TryGetComponent<SupermatterComponent>(component.Supermatter, out var supermatter))
             return;
 
-        _superMatter.SendSupermatterAnnouncement(component.Supermatter, supermatter, Loc.GetString("sv-sm-off-gas-event-end"));
+        _superMatter.SendSupermatterAnnouncement(component.Supermatter, supermatter, Loc.GetString("sv-supermatter-event-ended"));
     }
 
     private void SelectGas(SMOffGasComponent component)
@@ -156,11 +141,6 @@ public sealed class SMOffGasSystem : GameRuleSystem<SMOffGasComponent>
             {
                 weightedGasList.Add(gasCollection);
             }
-        }
-
-        foreach (var gasCollection in weightedGasList)
-        {
-            Log.Debug($"Weighted list: {gasCollection.Gas}, {gasCollection.Amount}, {gasCollection.Weight}");
         }
 
         var selectedGas = RobustRandom.Pick(weightedGasList);
@@ -175,28 +155,40 @@ public sealed class SMOffGasSystem : GameRuleSystem<SMOffGasComponent>
 
     private void BuildAnouncement(SMOffGasComponent component)
     {
-        var amountAnnouncment = component.GasAmount switch
+        var amountAnnouncement = component.GasAmount switch
         {
-            <= 250 => Loc.GetString("off-gas-event-amount-small"),
-            <= 500 => Loc.GetString("off-gas-event-amount-medium"),
-            <= 750 => Loc.GetString("off-gas-event-amount-large"),
-            <= 1000 => Loc.GetString("off-gas-event-amount-excessive"),
-            _ => Loc.GetString("off-gas-event-amount-unknown"),
+            <= 250 => Loc.GetString("sv-off-gas-event-amount-small"),
+            <= 500 => Loc.GetString("sv-off-gas-event-amount-medium"),
+            <= 750 => Loc.GetString("sv-off-gas-event-amount-large"),
+            <= 1000 => Loc.GetString("sv-off-gas-event-amount-excessive"),
+            _ => Loc.GetString("sv-off-gas-event-unknown"),
         };
 
-        var rateAnnouncment = component.GasAmount switch
+        var rateAnnouncement = component.GasAmount switch
         {
-            <= 10 => Loc.GetString("off-gas-event-rate-small"),
-            <= 20 => Loc.GetString("off-gas-event-rate-medium"),
-            <= 30 => Loc.GetString("off-gas-event-rate-large"),
-            <= 50 => Loc.GetString("off-gas-event-rate-excessive"),
-            _ => Loc.GetString("off-gas-event-rate-unknown"),
+            <= 10 => Loc.GetString("sv-off-gas-event-rate-small"),
+            <= 20 => Loc.GetString("sv-off-gas-event-rate-medium"),
+            <= 30 => Loc.GetString("sv-off-gas-event-rate-large"),
+            <= 50 => Loc.GetString("sv-off-gas-event-rate-excessive"),
+            _ => Loc.GetString("sv-off-gas-event-unknown"),
+        };
+
+        var gasAnnouncement = component.SelectedGas switch
+        {
+            Gas.Ammonia => Loc.GetString("gases-ammonia"),
+            Gas.CarbonDioxide => Loc.GetString("gases-co2"),
+            Gas.Frezon => Loc.GetString("gases-frezon"),
+            Gas.Nitrogen => Loc.GetString("gases-nitrogen"),
+            Gas.NitrousOxide => Loc.GetString("gases-n2o"),
+            Gas.Oxygen => Loc.GetString("gases-oxygen"),
+            Gas.WaterVapor => Loc.GetString("gases-water-vapor"),
+            Gas.Plasma => Loc.GetString("gases-plasma"),
+            Gas.Tritium => Loc.GetString("gases-tritium"),
+            _ => Loc.GetString("sv-off-gas-event-unknown"),
         };
 
         //Build the announcement for the SM to say over engineering comms
-        var builtAnouncement = Loc.GetString("off-gas-event-announcement", ("amount", amountAnnouncment), ("rate", rateAnnouncment));
-
-        Log.Debug($"built anouncement: {builtAnouncement}");
+        var builtAnouncement = Loc.GetString("sv-off-gas-event-announcement", ("amount", amountAnnouncement), ("rate", rateAnnouncement), ("gas", gasAnnouncement));
 
         if (!_entityManager.TryGetComponent<SupermatterComponent>(component.Supermatter, out var supermatter))
             return;

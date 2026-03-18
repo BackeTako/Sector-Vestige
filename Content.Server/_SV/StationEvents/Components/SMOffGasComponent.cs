@@ -9,7 +9,7 @@ namespace Content.Server._SV.StationEvents.Components;
 /// <summary>
 /// This is used for...
 /// </summary>
-[RegisterComponent, Access(typeof(SMOffGasSystem)), AutoGenerateComponentPause]
+[RegisterComponent, Access(typeof(SMOffGasRule)), AutoGenerateComponentPause]
 public sealed partial class SMOffGasComponent : Component
 {
     /// <summary>
@@ -77,4 +77,10 @@ public sealed partial class SMOffGasComponent : Component
     /// </summary>
     [DataField]
     public EntityUid Supermatter;
+
+    /// <summary>
+    /// The target grid for the event
+    /// </summary>
+    [DataField]
+    public EntityUid? TargetGrid;
 }
