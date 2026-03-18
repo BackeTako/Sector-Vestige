@@ -164,13 +164,12 @@ public sealed class SMOffGasRule : GameRuleSystem<SMOffGasComponent>
             _ => Loc.GetString("sv-off-gas-event-unknown"),
         };
 
-        var rateAnnouncement = component.GasAmount switch
+        var rateAnnouncement = component.GasRate switch
         {
-            <= 10 => Loc.GetString("sv-off-gas-event-rate-small"),
-            <= 20 => Loc.GetString("sv-off-gas-event-rate-medium"),
-            <= 30 => Loc.GetString("sv-off-gas-event-rate-large"),
-            <= 50 => Loc.GetString("sv-off-gas-event-rate-excessive"),
-            _ => Loc.GetString("sv-off-gas-event-unknown"),
+            <= 15 => Loc.GetString("sv-off-gas-event-rate-small"),
+            <= 25 => Loc.GetString("sv-off-gas-event-rate-medium"),
+            <= 35 => Loc.GetString("sv-off-gas-event-rate-large"),
+            > 35 => Loc.GetString("sv-off-gas-event-rate-excessive"),
         };
 
         var gasAnnouncement = component.SelectedGas switch
