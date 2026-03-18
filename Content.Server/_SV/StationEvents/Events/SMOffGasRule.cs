@@ -71,25 +71,6 @@ public sealed class SMOffGasRule : GameRuleSystem<SMOffGasComponent>
             _superMatter.SendSupermatterAnnouncement(component.Supermatter, supermatter, Loc.GetString("sv-supermatter-event-added"));
     }
 
-    private void CheckForValidity(EntityUid uid, SMOffGasComponent component, GameRuleComponent gameRule)
-    {
-        if (component.TargetGrid == null ||
-            component.TargetTile == default ||
-            Deleted(component.StationUid) ||
-            !_atmosphere.IsSimulatedGrid(component.TargetGrid.Value))
-        {
-            Log.Debug($"SM offgas event {uid} canceled as the location is invalid. Target tile is:  {component.TargetTile}, on grid: {component.TargetGrid} for station ID: {component.StationUid}");
-            ForceEndSelf(uid, gameRule);
-            if (component.TargetGrid == null)
-            {
-                Log.Debug("Target grid is null");
-                return;
-            }
-            if (!_atmosphere.IsSimulatedGrid(component.TargetGrid.Value))
-                Log.Debug("Target grid is not simulated with atmos");
-        }
-    }
-
     protected override void Started(EntityUid uid, SMOffGasComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         base.Started(uid, component, gameRule, args);
@@ -193,5 +174,24 @@ public sealed class SMOffGasRule : GameRuleSystem<SMOffGasComponent>
             return;
 
         _superMatter.SendSupermatterAnnouncement(component.Supermatter, supermatter, builtAnouncement);
+    }
+
+    private void CheckForValidity(EntityUid uid, SMOffGasComponent component, GameRuleComponent gameRule)
+    {
+        if (component.TargetGrid == null ||
+            component.TargetTile == default ||
+            Deleted(component.StationUid) ||
+            !_atmosphere.IsSimulatedGrid(component.TargetGrid.Value))
+        {
+            Log.Debug($"SM offgas event {uid} canceled as the location is invalid. Target tile is:  {component.TargetTile}, on grid: {component.TargetGrid} for station ID: {component.StationUid}");
+            ForceEndSelf(uid, gameRule);
+            if (component.TargetGrid == null)
+            {
+                Log.Debug("Target grid is null");
+                return;
+            }
+            if (!_atmosphere.IsSimulatedGrid(component.TargetGrid.Value))
+                Log.Debug("Target grid is not simulated with atmos");
+        }
     }
 }
