@@ -43,22 +43,10 @@ public sealed partial class SMOffGasComponent : Component
     public int GasRate;
 
     /// <summary>
-    /// At what point will the SM stop producing gas
-    /// </summary>
-    [DataField]
-    public TimeSpan TimeTillEnd;
-
-    /// <summary>
     /// What temperature the gas should be coming out of the crystal
     /// </summary>
     [DataField]
     public float GasTemp = 293.15f;
-
-    /// <summary>
-    /// What announcement should play from the sm crystal when the event starts?
-    /// </summary>
-    [DataField]
-    public LocId Announcement = "sm-offgas-begin-unspecified";
 
     /// <summary>
     /// Where is the gas going to be spawned?
