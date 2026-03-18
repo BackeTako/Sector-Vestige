@@ -87,6 +87,7 @@
     - id: SpiderSpawn
     - id: VentClog
     - id: SynthStorm # CD: Unique event for synths
+    - id: SVSMOffGas # SV: Supermatter off gas event
 
 - type: entityTable
   id: BasicAntagEventsTable
