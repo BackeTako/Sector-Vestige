@@ -1,3 +1,9 @@
+// SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+// SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+// SPDX-FileCopyrightText: 2026 OnyxTheBrave <131422822+OnyxTheBrave@users.noreply.github.com>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using Content.Server._SV.StationEvents.Events;
 using Content.Shared._EE.Supermatter.Components;
 using Content.Shared.Atmos;
