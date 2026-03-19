@@ -1585,3 +1585,9 @@ Entries:
       message: Added new lobby music.
   id: 218
   time: '2026-03-18T08:11:35.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Add
+      message: Supermatter off gas event. The supermatter can now emit gases randomly.
+  id: 219
+  time: '2026-03-19T15:06:49.0000000+00:00'
