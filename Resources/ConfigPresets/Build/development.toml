@@ -48,3 +48,12 @@ random_species_weights = ""
 ssd_sleep_time = 3600
 flavor_text = true
 flavor_text_length = 1024
+
+[database]
+# Change to postgres if needed
+engine = "sqlite"
+pg_host = "localhost"
+pg_port = 5432
+pg_database = "ss14"
+pg_username = "postgres"
+pg_password = "postgres"
