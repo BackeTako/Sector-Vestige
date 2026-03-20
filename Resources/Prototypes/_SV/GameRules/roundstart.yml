@@ -20,11 +20,7 @@
     children:
       - !type:NestedSelector
         tableId: BasicCalmEventsTable
-#      - !type:NestedSelector
-#        tableId: BasicAntagEventsTable
       - !type:NestedSelector
         tableId: CargoGiftsTable
       - !type:NestedSelector
         tableId: CalmPestEventsTable
-      - !type:NestedSelector
-        tableId: VestigeHostilePestEventsTable

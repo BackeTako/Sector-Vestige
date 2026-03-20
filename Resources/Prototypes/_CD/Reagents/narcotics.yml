@@ -107,13 +107,15 @@
       - !type:SatiateThirst
         factor: 0.75
       - !type:HealthChange
-        conditions:
-        - !type:TotalDamageCondition
-          min: 65
         damage:
-          groups:
-            Burn: -0.4
-            Brute: -0.4
+          types:
+            Heat: -0.1
+            Shock: -0.1
+            Cold: -0.1
+            Caustic: -0.1
+            Blunt: -0.14
+            Slash: -0.13
+            Piercing: -0.13
 
 # Organic
 
