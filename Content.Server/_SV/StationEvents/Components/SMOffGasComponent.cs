@@ -15,7 +15,7 @@ namespace Content.Server._SV.StationEvents.Components;
 /// <summary>
 /// This is used for...
 /// </summary>
-[RegisterComponent, Access(typeof(SMOffGasRule)), AutoGenerateComponentPause]
+[RegisterComponent, Access(typeof(SMOffGasRule))]
 public sealed partial class SMOffGasComponent : Component
 {
     /// <summary>
