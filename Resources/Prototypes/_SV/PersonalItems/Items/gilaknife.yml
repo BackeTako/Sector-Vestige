@@ -1,0 +1,43 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 BackeTako <branne33@gmail.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+## Personal item for Gila Mendez
+- type: entity
+  parent: CombatKnife
+  id: PersonalItemGilaKnife
+  name: Gila's broken knife
+  description: An old worn-down knife. The blade has snapped from over-sharpening.
+  suffix: PersonalItem
+  components:
+  - type: Sprite
+    sprite: _SV/PersonalItems/Items/gilaknife.rsi
+    state: icon
+  - type: MeleeWeapon
+    attackRate: 1.0
+    damage:
+      types:
+        Slash: 0.25
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 1.0
+  - type: Item
+    sprite: _SV/PersonalItems/Items/gilaknife.rsi
+    storedSprite:
+      state: storage
+      sprite: _SV/PersonalItems/Items/gilaknife.rsi
+  - type: DetailExaminable
+    content: There is a name engraved on the hilt.
+
+- type: loadout
+  id: PersonalItemGilaKnife
+  storage:
+    back:
+      - PersonalItemGilaKnife
+  effects:
+  - !type:PersonalItemLoadoutEffect
+    character:
+    - Gila Mendez
