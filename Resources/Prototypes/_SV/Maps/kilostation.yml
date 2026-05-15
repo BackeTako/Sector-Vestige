@@ -29,7 +29,7 @@
   minPlayers: 25
   maxPlayers: 40
   stations:
-    Cluster:
+    KiloStation:
       stationProto: StandardNanotrasenStation
       components:
       - type: StationNameSetup
