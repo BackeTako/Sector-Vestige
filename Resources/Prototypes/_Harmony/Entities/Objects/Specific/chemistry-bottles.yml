@@ -12,13 +12,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-bicaridine
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Bicaridine
-          Quantity: 30
+  - type: Solution
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: Bicaridine
+        Quantity: 30
 
 - type: entity
   id: DermalineChemistryBottleHarmony
@@ -27,10 +26,9 @@
   components:
   - type: Label
     currentLabel: reagent-name-dermaline
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Dermaline
-          Quantity: 30
+  - type: Solution
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: Dermaline
+        Quantity: 30

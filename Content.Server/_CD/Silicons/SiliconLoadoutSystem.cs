@@ -22,11 +22,11 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._CD.Silicons;
 
-public sealed class SiliconLoadoutSystem : EntitySystem
+public sealed partial class SiliconLoadoutSystem : EntitySystem
 {
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly SiliconLawSystem _laws = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private SiliconLawSystem _laws = default!;
 
     private ProtoId<LoadoutGroupPrototype> CyborgBrainLoadoutPrototype => "CyborgBrain";
     private ProtoId<LoadoutGroupPrototype> StationAiLawsetLoadoutPrototype => "StationAiLawset"; // SV

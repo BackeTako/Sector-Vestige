@@ -236,6 +236,7 @@
     accessDeniedSound: null # SV: Suppress access denied sound when hovering over locked borg
   - type: LockedWiresPanel
   - type: Damageable
+  - type: Injurable
     damageContainer: Silicon
   - type: Destructible
     thresholds:

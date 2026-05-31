@@ -22,7 +22,6 @@
   startingGear: SVMagistrateGear
   icon: "JobIconSVMagistrate"
   supervisors: job-supervisors-centcom
-  canBeAntag: false
   accessGroups:
   - AllAccess
   access:

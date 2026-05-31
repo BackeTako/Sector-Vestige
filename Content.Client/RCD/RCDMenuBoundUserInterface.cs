@@ -24,7 +24,7 @@ using Robust.Shared.Utility;
 namespace Content.Client.RCD;
 
 [UsedImplicitly]
-public sealed class RCDMenuBoundUserInterface : BoundUserInterface
+public sealed partial class RCDMenuBoundUserInterface : BoundUserInterface
 {
     private const string TopLevelActionCategory = "Main";
 
@@ -42,8 +42,8 @@ public sealed class RCDMenuBoundUserInterface : BoundUserInterface
             ["Pumps"] = ("rcd-component-pumps", new SpriteSpecifier.Texture(new  ResPath("/Textures/_SV/Interface/Radial/RPD/pumps_and_valves.png"))), //Sector Vestige: Added RPD
         };
 
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private ISharedPlayerManager _playerManager = default!;
 
     private SimpleRadialMenu? _menu;
 

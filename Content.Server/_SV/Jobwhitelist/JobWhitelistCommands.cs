@@ -17,13 +17,13 @@ using Robust.Shared.Prototypes;
 namespace Content.Server._SV.Jobwhitelist;
 
 [AdminCommand(AdminFlags.Ban)]
-public sealed class JobWhitelistAddGroupCommand : LocalizedCommands
+public sealed partial class JobWhitelistAddGroupCommand : LocalizedCommands
 {
-    [Dependency] private readonly IServerDbManager _db = default!;
-    [Dependency] private readonly JobWhitelistManager _jobWhitelist = default!;
-    [Dependency] private readonly IPlayerLocator _playerLocator = default!;
-    [Dependency] private readonly IPlayerManager _players = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private IServerDbManager _db = default!;
+    [Dependency] private JobWhitelistManager _jobWhitelist = default!;
+    [Dependency] private IPlayerLocator _playerLocator = default!;
+    [Dependency] private IPlayerManager _players = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
 
     public override string Command => "jobwhitelistaddgroup";
 
@@ -87,13 +87,13 @@ public sealed class JobWhitelistAddGroupCommand : LocalizedCommands
 }
 
 [AdminCommand(AdminFlags.Ban)]
-public sealed class JobWhitelistRemoveGroupCommand : LocalizedCommands
+public sealed partial class JobWhitelistRemoveGroupCommand : LocalizedCommands
 {
-    [Dependency] private readonly IServerDbManager _db = default!;
-    [Dependency] private readonly JobWhitelistManager _jobWhitelist = default!;
-    [Dependency] private readonly IPlayerLocator _playerLocator = default!;
-    [Dependency] private readonly IPlayerManager _players = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private IServerDbManager _db = default!;
+    [Dependency] private JobWhitelistManager _jobWhitelist = default!;
+    [Dependency] private IPlayerLocator _playerLocator = default!;
+    [Dependency] private IPlayerManager _players = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
 
     public override string Command => "jobwhitelistremovegroup";
 

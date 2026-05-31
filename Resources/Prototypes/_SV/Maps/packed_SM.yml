@@ -21,6 +21,7 @@
 # SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
 # SPDX-FileCopyrightText: 2025 Spanky <scott@wearejacob.com>
 # SPDX-FileCopyrightText: 2025 ToxicSonicFan04 <167356917+ToxicSonicFan04@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2026 lambdatiger <11843718+lambdatiger@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2026 lambdatiger <spam.stnuocca.sl@gmail.com>
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
@@ -32,7 +33,7 @@
   minPlayers: 5
   maxPlayers: 25 #CD change
   stations:
-    Packed:
+    Packed_SM:
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup

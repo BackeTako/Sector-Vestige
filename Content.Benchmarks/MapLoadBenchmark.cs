@@ -19,6 +19,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
@@ -48,7 +49,7 @@ public class MapLoadBenchmark
         ProgramShared.PathOffset = "../../../../";
         PoolManager.Startup();
 
-        _pair = PoolManager.GetServerClient().GetAwaiter().GetResult();
+        _pair = PoolManager.GetServerClient(testContext: new ExternalTestContext("Benchmark", StreamWriter.Null)).GetAwaiter().GetResult();
         var server = _pair.Server;
 
         Paths = server.ResolveDependency<IPrototypeManager>()

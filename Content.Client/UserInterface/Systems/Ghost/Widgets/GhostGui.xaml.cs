@@ -25,9 +25,9 @@ public sealed partial class GhostGui : UIWidget
     public event Action? GhostRolesPressed;
 
     // AXOLOTL: Respawn button
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
+    [Dependency] private ISharedPlayerManager _playerManager = default!;
 
     private TimeSpan? _axolotlTimeOfDeath;
     private float _axolotlMinTimeToRespawn;

@@ -16,9 +16,9 @@ using Content.Shared.Storage;
 
 namespace Content.Server.CD.Storage.EntitySystems;
 
-public sealed class MouthStorageSystem : SharedMouthStorageSystem
+public sealed partial class MouthStorageSystem : SharedMouthStorageSystem
 {
-    [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
+    [Dependency] private ReplacementAccentSystem _replacement = default!;
     public override void Initialize()
     {
         base.Initialize();

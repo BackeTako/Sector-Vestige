@@ -13,11 +13,11 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Power.EntitySystems;
 
-public sealed class ElectricalOverloadSystem : EntitySystem
+public sealed partial class ElectricalOverloadSystem : EntitySystem
 {
-    [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
+    [Dependency] private ExplosionSystem _explosionSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ChatSystem _chatSystem = default!;
 
     public override void Initialize()
     {

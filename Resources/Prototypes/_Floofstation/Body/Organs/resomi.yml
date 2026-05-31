@@ -17,18 +17,36 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
+- type: entity
+  parent: SolutionStomach
+  id: SolutionResomiStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: stomach
+    solution:
+      maxVol: 50
+
+- type: entity
+  parent: SolutionFood
+  id: SolutionResomiStomachFood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: UncookedAnimalProteins
+        Quantity: 5
+
 - type: entity # Goobstation - resomi stomach
   id: OrganResomiStomach
   parent: OrganAnimalStomach
   categories: [ HideSpawnMenu ]
   components:
   - type: Stomach
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 50
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionResomiStomach
+    - SolutionResomiStomachFood

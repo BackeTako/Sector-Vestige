@@ -87,6 +87,8 @@
   - type: Item
     size: Tiny
   - type: Damageable
+  - type: Injurable
+    damageContainer: Inorganic
   - type: TapeCassette
     maxCapacity: 1200 # SV Change, Upped From Three Minutes To Twenty Minutes
     repairWhitelist:

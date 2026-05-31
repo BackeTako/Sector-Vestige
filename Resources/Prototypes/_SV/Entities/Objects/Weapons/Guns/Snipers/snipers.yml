@@ -1,0 +1,74 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 akirrer <220388269+akirrer@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  name: SCR-g2 'Suggestion'
+  parent: [BaseWeaponSubMachineGun, BaseSyndicateContraband]
+  id: WeaponSniperSCRSuggestion
+  description: A new-generation Syndicate sniper rifle. You don't know much about it, but given that it feeds from .338 PMS, it certainly packs a punch. There's a small Pommersk Eagle logo near the trigger.
+  suffix: Admin
+  components:
+  - type: Sprite
+    sprite: _SV/Objects/Weapons/Guns/Snipers/Suggestion.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _SV/Objects/Weapons/Guns/Snipers/Suggestion.rsi
+    slots:
+    - Back
+    - suitStorage
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: CursorOffsetRequiresWield
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.3
+    sprintModifier: 0.3 # slightly lighter than Hristov
+  - type: EyeCursorOffset
+    maxOffset: 24 # slightly more than 1 whole screen
+    pvsIncrease: 1.5
+  - type: Gun
+    minAngle: 0
+    maxAngle: 120
+    angleIncrease: 38
+    angleDecay: 18 # if you wish to hit, gotta to wait a moment!
+    fireRate: 0.22
+    projectileSpeed: 55
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: ChamberMagazineAmmoProvider
+    autoCycle: false
+    canRack: false
+    autoEject: false
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePMSSuggestion
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineSuggestion
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgePMS
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance

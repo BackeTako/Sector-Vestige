@@ -169,8 +169,9 @@
       Male: MaleFoxfolk
       Female: FemaleFoxfolk
       Unsexed: MaleFoxfolk
-  - type: Damageable
+  - type: Injurable
     damageContainer: Biological
+  - type: Damageable
     damageModifierSet: Foxfolk
   - type: MeleeWeapon
     hidden: true

@@ -41,7 +41,6 @@
 # SPDX-FileCopyrightText: 2025 Alfred Baumann <93665570+CheesePlated@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 ArtisticRoomba <145879011+ArtisticRoomba@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 Crude Oil <124208219+CroilBird@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Emisse <99158783+Emisse@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 Justin Pfeifler <jrpl101998@gmail.com>
 # SPDX-FileCopyrightText: 2025 Nox <nebulousnox38@gmail.com>
 # SPDX-FileCopyrightText: 2025 PJB3005 <pieterjan.briers+git@gmail.com>
@@ -57,7 +56,11 @@
 # SPDX-FileCopyrightText: 2025 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 opl <4833621+opl@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 opl- <opl-@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2026 Emisse <99158783+Emisse@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2026 OnyxTheBrave <131422822+OnyxTheBrave@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2026 Rachel Lowe <60523642+11BelowStudio@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2026 lambdatiger <11843718+lambdatiger@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2026 lambdatiger <spam.stnuocca.sl@gmail.com>
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
@@ -397,7 +400,7 @@ entities:
     - type: Fixtures
       fixtures: {}
     - type: BecomesStation
-      id: Packed
+      id: Packed_SM
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
         path: /Audio/Effects/alert.ogg

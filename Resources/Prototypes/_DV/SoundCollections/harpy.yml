@@ -198,7 +198,7 @@
 - type: soundCollection
   id: HarpyRevs
   files:
-    - /Audio/Weapons/chainsawwield.ogg
+    - /Audio/Weapons/chainsaw_rev.ogg
     # - /Audio/Machines/blender.ogg # Frontier: grating
     # - /Audio/Machines/juicer.ogg # Frontier: grating
     # - /Audio/Machines/reclaimer_startup.ogg # Frontier: grating

@@ -11,9 +11,9 @@ using Content.Shared.Mobs;
 
 namespace Content.Shared._Umbra.Examine;
 
-public abstract class SharedSetExamineSystem : EntitySystem
+public abstract partial class SharedSetExamineSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
 
     public override void Initialize()
     {

@@ -1,3 +1,12 @@
+// SPDX-FileCopyrightText: 2026 Wizards Den contributors
+// SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+// SPDX-FileCopyrightText: 2024 beck-thompson <107373427+beck-thompson@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+// SPDX-FileCopyrightText: 2025 lzk <124214523+lzk228@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2026 Nico64 <74880554+NicoSGF64@users.noreply.github.com>
+//
+// SPDX-License-Identifier: MIT
+
 using Robust.Shared.Serialization;
 using Content.Shared.Inventory;
 using Robust.Shared.Prototypes;
@@ -13,10 +22,12 @@ namespace Content.Shared.Chat.TypingIndicator;
 public sealed class TypingChangedEvent : EntityEventArgs
 {
     public readonly TypingIndicatorState State;
+    public readonly ProtoId<TypingIndicatorPrototype>? OverrideIndicator; // DeltaV
 
-    public TypingChangedEvent(TypingIndicatorState state)
+    public TypingChangedEvent(TypingIndicatorState state, ProtoId<TypingIndicatorPrototype>? proto = null) // DeltaV
     {
         State = state;
+        OverrideIndicator = proto; // DeltaV
     }
 }
 

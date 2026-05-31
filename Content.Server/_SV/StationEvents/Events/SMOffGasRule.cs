@@ -23,14 +23,14 @@ namespace Content.Server._SV.StationEvents.Events;
 /// <summary>
 /// This handles...
 /// </summary>
-public sealed class SMOffGasRule : GameRuleSystem<SMOffGasComponent>
+public sealed partial class SMOffGasRule : GameRuleSystem<SMOffGasComponent>
 {
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-    [Dependency] private readonly SupermatterSystem _superMatter = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
+    [Dependency] private SupermatterSystem _superMatter = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     private const float LeakCooldown = .25f;
 

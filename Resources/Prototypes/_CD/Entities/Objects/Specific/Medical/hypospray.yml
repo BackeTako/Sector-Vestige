@@ -20,13 +20,13 @@
   - type: Item
     sprite: _CD/Objects/Specific/Medical/medipen.rsi
     size: Small
-  - type: SolutionContainerManager
-    solutions:
-      pen:
-        maxVol: 5
-        reagents:
-        - ReagentId: Dynamoxine
-          Quantity: 5
+  - type: Solution
+    id: pen
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: Dynamoxine
+        Quantity: 5
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false

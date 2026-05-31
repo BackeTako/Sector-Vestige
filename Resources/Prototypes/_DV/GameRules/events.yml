@@ -8,6 +8,26 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
+- type: antagSpecifier
+  id: SyndicateListener
+  spawnerPrototype: SpawnPointGhostSyndicateListener
+  pickPlayer: false
+  startingGear: SyndicateListenerGear
+  roleLoadout:
+  - RoleSurvivalStandard
+  components:
+  - type: RandomMetadata
+    nameSegments:
+    - NamesDeathCommando
+  - type: AutoImplant
+    implants:
+    - DeathAcidifierImplant
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  mindRoles:
+  - MindRolePostOperator
+
 - type: entityTable
   id: BasicAntagEventsTableDeltaV
   table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
@@ -35,24 +55,8 @@
   - type: AntagLoadProfileRule
   - type: AntagSelection
     agentName: listening-post-round-end-agent-name
-    definitions:
-    - spawnerPrototype: SpawnPointGhostSyndicateListener
-      min: 2
-      max: 2
-      pickPlayer: false
-      startingGear: SyndicateListenerGear
-      roleLoadout:
-      - RoleSurvivalStandard
-      components:
-      - type: RandomMetadata
-        nameSegments:
-        - NamesDeathCommando
-      - type: AutoImplant
-        implants:
-        - DeathAcidifierImplant
-      - type: NpcFactionMember
-        factions:
-        - Syndicate
-      mindRoles:
-      - MindRolePostOperator
+    antags:
+    - !type:FixedAntagCount
+      proto: SyndicateListener
+      count: 2
 

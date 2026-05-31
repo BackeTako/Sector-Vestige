@@ -6,7 +6,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.Ghost;
 
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedGhostSystem))]
-[AutoGenerateComponentState(true), AutoGenerateComponentPause]
+[AutoGenerateComponentState(true)]
 public sealed partial class GhostComponent : Component
 {
     // Actions
@@ -42,7 +42,15 @@ public sealed partial class GhostComponent : Component
 
     // End actions
 
-    [ViewVariables(VVAccess.ReadWrite), DataField, AutoPausedField, AutoNetworkedField]
+    /// <summary>
+    /// Time at which the player died and created this ghost.
+    /// Used to determine votekick eligibility.
+    /// </summary>
+    /// <remarks>
+    /// May not reflect actual time of death if this entity has been paused,
+    /// but will give an accurate length of time <i>since</i> death.
+    /// </remarks>
+    [DataField, AutoNetworkedField]
     public TimeSpan TimeOfDeath = TimeSpan.Zero;
 
     [DataField("booRadius"), ViewVariables(VVAccess.ReadWrite)]

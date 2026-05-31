@@ -11,9 +11,9 @@ using Content.Shared._SV.EyeTracker;
 namespace Content.Server._SV.EyeTracker;
 
 [Access(typeof(EyeTrackerComponent))]
-public sealed class ServerEyeTrackerSystem : EntitySystem
+public sealed partial class ServerEyeTrackerSystem : EntitySystem
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
     public override void Initialize()
     {
         SubscribeAllEvent<GetNetworkedEyeRotationEvent>(SetServerEyeRotation);

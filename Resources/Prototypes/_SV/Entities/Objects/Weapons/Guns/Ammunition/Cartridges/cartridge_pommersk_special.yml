@@ -1,0 +1,83 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 akirrer <220388269+akirrer@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: [ BaseCartridge, BaseMajorContraband ]
+  id: CartridgePenetratingPMS
+  name: cartridge (.338 PMSP)
+  description: A high-power cartridge used by high-precision rifles. The cartridge has etched credentials to contact Pommersk Eagle for business inquiries.
+  components:
+  - type: Tag
+    tags:
+    - CartridgePMS
+  - type: CartridgeAmmo
+    proto: BulletPenetratingPMS
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/large_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#403f3e"
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 300
+
+- type: entity
+  parent: [ BaseCartridge, BaseMajorContraband ]
+  id: CartridgeBasePMS
+  name: cartridge (.338 Pommersk Eagle Special)
+  description: A high-power cartridge used by high-precision rifles. The cartridge has etched credentials to contact Pommersk Eagle for business inquiries.
+  components:
+  - type: Tag
+    tags:
+    - CartridgePMS
+  - type: CartridgeAmmo
+    proto: BulletBasePMS
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/large_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 200
+
+- type: entity
+  parent: [ BaseCartridge, BaseMajorContraband ]
+  id: CartridgeSedativePMS
+  name: cartridge (.338 PMSS)
+  description: A high-power cartridge used by high-precision rifles. This special cartridge features an injector to fill the target with a substance of choice. Also features caseless technology.
+  components:
+  - type: Tag
+    tags:
+    - CartridgePMS
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/large_casing.rsi
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#1ed5fa"
+  - type: CartridgeAmmo
+    proto: BulletSedativePMS
+    deleteOnSpawn: true
+  - type: ChemicalAmmo
+  - type: Solution
+    id: ammo
+    solution:
+      reagents:
+      - ReagentId: Nocturine
+        Quantity: 8 # 1 shot = not-so-long sleep
+  - type: SolutionTransfer
+    maxTransferAmount: 8
+  - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 800

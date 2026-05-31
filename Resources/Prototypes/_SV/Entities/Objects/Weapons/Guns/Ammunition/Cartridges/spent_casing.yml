@@ -1,0 +1,85 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 OnyxTheBrave <131422822+OnyxTheBrave@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: BaseCartridgeMagnum
+  id: CartridgeMagnumSpent
+  name: cartridge (.45 magnum)
+  suffix: spent
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base-spent
+      map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: SpentAmmoVisuals
+  - type: CartridgeAmmo
+    proto: BulletMagnum
+    spent: true
+  - type: Tag
+    tags:
+    - CartridgeMagnum
+    - Trash # surely theres a way to automatically add this...
+
+- type: entity
+  parent: BaseCartridgeLightRifle
+  id: CartridgeLightRifleSpent
+  name: cartridge (.30 rifle)
+  suffix: spent
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base-spent
+      map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: SpentAmmoVisuals
+  - type: CartridgeAmmo
+    proto: BulletLightRifle
+    spent: true
+  - type: Tag
+    tags:
+    - CartridgeLightRifle
+    - Trash # surely theres a way to automatically add this...
+
+- type: entity
+  parent: BaseCartridgeRifle
+  id: CartridgeRifleSpent
+  name: cartridge (.20 rifle)
+  suffix: spent
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base-spent
+      map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: SpentAmmoVisuals
+  - type: CartridgeAmmo
+    proto: BulletRifle
+    spent: true
+  - type: Tag
+    tags:
+    - CartridgeRifle
+    - Trash # Can't you tell I'm copy and pasting the same thing?
+
+- type: entity
+  parent: BaseShellShotgun
+  id: ShellShotgunSpent
+  name: shell (.50)
+  suffix: spent
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+    - state: base-spent
+      map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: SpentAmmoVisuals
+  - type: CartridgeAmmo
+    proto: PelletShotgunSpread
+    spent: true
+  - type: Tag
+    tags:
+    - ShellShotgun
+    - Trash # CTRL-C CTRL-V

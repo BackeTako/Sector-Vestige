@@ -20,9 +20,9 @@ using Robust.Shared.Random;
 
 namespace Content.Server.StationEvents.Events;
 
-public sealed class LoadFarGridRule : StationEventSystem<LoadFarGridRuleComponent>
+public sealed partial class LoadFarGridRule : StationEventSystem<LoadFarGridRuleComponent>
 {
-    [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
+    [Dependency] private MapLoaderSystem _mapLoader = default!;
 
     protected override void Added(EntityUid uid, LoadFarGridRuleComponent comp, GameRuleComponent rule, GameRuleAddedEvent args)
     {

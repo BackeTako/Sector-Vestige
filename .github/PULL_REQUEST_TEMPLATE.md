@@ -16,6 +16,11 @@ Why was this change made?
 - Performance improvements? Describe the impact.
 -->
 
+## Test plan
+<!--
+Describe how you tested the pull request, and how someone reviewing this PR can test it themselves.
+-->
+
 ## Media
 <!--
 Include screenshots or videos if this PR adds or changes anything visual.

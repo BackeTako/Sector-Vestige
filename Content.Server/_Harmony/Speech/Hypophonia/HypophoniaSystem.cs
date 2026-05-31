@@ -17,9 +17,9 @@ using Content.Shared._Harmony.Speech.Hypophonia;
 
 namespace Content.Server._Harmony.Speech.Hypophonia
 {
-    public sealed class HypophoniaSystem : EntitySystem
+    public sealed partial class HypophoniaSystem : EntitySystem
     {
-        [Dependency] private readonly PopupSystem _popupSystem = default!;
+        [Dependency] private PopupSystem _popupSystem = default!;
         public override void Initialize()
         {
             base.Initialize();

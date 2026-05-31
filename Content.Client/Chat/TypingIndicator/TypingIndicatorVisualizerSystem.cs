@@ -1,14 +1,30 @@
-﻿using Content.Shared.Chat.TypingIndicator;
+// SPDX-FileCopyrightText: 2026 Wizards Den contributors
+// SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+// SPDX-FileCopyrightText: 2022 Alex Evgrashin <aevgrashin@yandex.ru>
+// SPDX-FileCopyrightText: 2023 Morb <14136326+Morb0@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2023 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2023 Visne <39844191+Visne@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 beck-thompson <107373427+beck-thompson@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
+// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+// SPDX-FileCopyrightText: 2025 Tayrtahn <tayrtahn@gmail.com>
+// SPDX-FileCopyrightText: 2025 lzk <124214523+lzk228@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 mq <113324899+mqole@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2026 Nico64 <74880554+NicoSGF64@users.noreply.github.com>
+//
+// SPDX-License-Identifier: MIT
+
+using Content.Shared.Chat.TypingIndicator;
 using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;
 using Content.Shared.Inventory;
 
 namespace Content.Client.Chat.TypingIndicator;
 
-public sealed class TypingIndicatorVisualizerSystem : VisualizerSystem<TypingIndicatorComponent>
+public sealed partial class TypingIndicatorVisualizerSystem : VisualizerSystem<TypingIndicatorComponent>
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private InventorySystem _inventory = default!;
 
     protected override void OnAppearanceChange(EntityUid uid, TypingIndicatorComponent component, ref AppearanceChangeEvent args)
     {
@@ -26,6 +42,13 @@ public sealed class TypingIndicatorVisualizerSystem : VisualizerSystem<TypingInd
 
         if (overrideIndicator != null)
             currentTypingIndicator = overrideIndicator.Value;
+
+        // Begin DeltaV Additions - AAC TypingIndicator Override
+        if (component.TypingIndicatorOverridePrototype != null)
+        {
+            currentTypingIndicator = component.TypingIndicatorOverridePrototype.Value;
+        }
+        // End DeltaV Additions
 
         if (!_prototypeManager.Resolve(currentTypingIndicator, out var proto))
         {

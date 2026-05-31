@@ -17,12 +17,11 @@
   - type: Produce
     seedId: mindleaf
   - type: Edible
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: MindleafSap
-          Quantity: 8
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: MindleafSap
+        Quantity: 8
 
 - type: entity
   name: dried mindleaf leaves
@@ -33,12 +32,12 @@
   - type: Stack
     stackType: LeavesMindleafDried
     count: 1
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Breakout # Drying turns the sap into a coarse powder
-          Quantity: 4
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Breakout # Drying turns the sap into a coarse powder
+        Quantity: 4
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/tobacco.rsi
     state: dried

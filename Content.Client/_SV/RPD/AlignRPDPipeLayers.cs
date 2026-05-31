@@ -35,16 +35,16 @@ using static Robust.Client.Placement.PlacementManager;
 
 namespace Content.Client._SV.RPD;
 
-public sealed class AlignRPDPipeLayers : SnapgridCenter
+public sealed partial class AlignRPDPipeLayers : SnapgridCenter
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IPrototypeManager _protoManager = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly IEyeManager _eyeManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IStateManager _stateManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IPrototypeManager _protoManager = default!;
+    [Dependency] private IMapManager _mapManager = default!;
+    [Dependency] private IEyeManager _eyeManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IStateManager _stateManager = default!;
 
-    [Dependency] private readonly IEntityNetworkManager _entityNetworkManager = default!;
+    [Dependency] private IEntityNetworkManager _entityNetworkManager = default!;
 
     private readonly SharedMapSystem _mapSystem;
     private readonly SharedTransformSystem _transformSystem;

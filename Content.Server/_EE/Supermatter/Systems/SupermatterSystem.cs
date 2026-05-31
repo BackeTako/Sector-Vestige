@@ -46,6 +46,7 @@ using Content.Shared.Interaction.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
+using Content.Shared.Radiation.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -63,33 +64,34 @@ namespace Content.Server._EE.Supermatter.Systems;
 
 public sealed partial class SupermatterSystem : EntitySystem
 {
-    [Dependency] private readonly AppearanceSystem _appearance = default!;
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private AppearanceSystem _appearance = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
+    [Dependency] private ChatSystem _chat = default!;
 //    [Dependency] private readonly DoAfterSystem _doAfter = default!; //SV: unused field causing CS0414
-    [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
-    [Dependency] private readonly ExamineSystem _examine = default!;
-    [Dependency] private readonly ExplosionSystem _explosion = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private EntityLookupSystem _entityLookup = default!;
+    [Dependency] private ExamineSystem _examine = default!;
+    [Dependency] private ExplosionSystem _explosion = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
 //    [Dependency] private readonly GravityWellSystem _gravityWell = default!; //SV: unused field causing CS0414
-    [Dependency] private readonly IonStormSystem _ionStorm = default!;
-    [Dependency] private readonly LightningSystem _lightning = default!;
-    [Dependency] private readonly GhostSystem _ghost = default!; // Used in Processing partial
-    [Dependency] private readonly ParacusiaSystem _paracusia = default!;
-    [Dependency] private readonly PointLightSystem _light = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly RadioSystem _radio = default!;
-    [Dependency] private readonly SharedAmbientSoundSystem _ambient = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedDeviceLinkSystem _link = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly IAdminLogManager _adminLog = default!;
-    [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IonStormSystem _ionStorm = default!;
+    [Dependency] private LightningSystem _lightning = default!;
+    [Dependency] private GhostSystem _ghost = default!; // Used in Processing partial
+    [Dependency] private ParacusiaSystem _paracusia = default!;
+    [Dependency] private PointLightSystem _light = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private RadioSystem _radio = default!;
+    [Dependency] private SharedRadiationSystem _radiation = default!;
+    [Dependency] private SharedAmbientSoundSystem _ambient = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedDeviceLinkSystem _link = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private IAdminLogManager _adminLog = default!;
+    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {

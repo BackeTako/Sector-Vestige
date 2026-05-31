@@ -19,11 +19,11 @@ namespace Content.Server._SV.Silicon.BorgShutdown;
 /// <summary>
 /// SV: System that handles borg shutdown/wakeup functionality.
 /// </summary>
-public sealed class BorgShutdownSystem : EntitySystem
+public sealed partial class BorgShutdownSystem : EntitySystem
 {
-    [Dependency] private readonly BatterySystem _battery = default!;
-    [Dependency] private readonly PowerCellSystem _powerCell = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private BatterySystem _battery = default!;
+    [Dependency] private PowerCellSystem _powerCell = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {

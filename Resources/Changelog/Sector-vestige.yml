@@ -1759,3 +1759,83 @@ Entries:
       message: Copperhead the Syndicate Spycraft(The salv destroyer 9000)
   id: 240
   time: '2026-05-09T17:10:33.0000000+00:00'
+- author: Boaz1111
+  changes:
+    - type: Add
+      message: Ports the sofas and benches from CD.
+  id: 241
+  time: '2026-05-13T06:42:47.0000000+00:00'
+- author: NicoSGF64
+  changes:
+    - type: Add
+      message: >-
+        Ported chat indicators for talking on radio, talking on LOOC, emoting,
+        whispering and writing on paper from Delta-V
+  id: 242
+  time: '2026-05-16T15:48:02.0000000+00:00'
+- author: Blackern5000
+  changes:
+    - type: Fix
+      message: Fixed certain gauze arm markings incorrectly using the "Overlay" layer
+  id: 243
+  time: '2026-05-16T15:51:00.0000000+00:00'
+- author: lambdatiger
+  changes:
+    - type: Tweak
+      message: Changed Packed_SM internal station ID.
+  id: 244
+  time: '2026-05-16T15:51:52.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Fix
+      message: Fixed the electropack.
+  id: 245
+  time: '2026-05-18T15:50:54.0000000+00:00'
+- author: akirrer
+  changes:
+    - type: Add
+      message: Added a new Syndicate sniper rifle.
+    - type: Add
+      message: Added a new caliber, .338 lapua.
+    - type: Tweak
+      message: Tweaked large ammo casing sprites to accept colored tips.
+  id: 246
+  time: '2026-05-18T16:37:44.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Tweak
+      message: various spent casings can be spawned in the spawn menu.
+  id: 247
+  time: '2026-05-24T10:36:52.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Tweak
+      message: Shuttles should dock normally again
+  id: 248
+  time: '2026-05-24T11:38:48.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Add
+      message: Added a faction verb menu for the GM's.
+  id: 249
+  time: '2026-05-25T14:24:58.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Add
+      message: >-
+        You can now dump ores in to the ore processor with your ore-bag using
+        left click.
+  id: 250
+  time: '2026-05-25T14:25:44.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Tweak
+      message: Torches now last longer, but emit less light.
+  id: 251
+  time: '2026-05-26T08:48:11.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Add
+      message: Added a broken APC entity.
+  id: 252
+  time: '2026-05-29T15:29:42.0000000+00:00'

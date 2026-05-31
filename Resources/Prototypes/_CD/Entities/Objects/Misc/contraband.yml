@@ -18,10 +18,10 @@
   - type: Sprite
     sprite: _CD/Objects/Misc/Contraband/drug_packets.rsi
     state: brown_icon
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
+  - type: Solution
+    id: drink
+    solution:
+      maxVol: 30
   - type: Spillable
     solution: drink
   - type: DrawableSolution

@@ -1,0 +1,111 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 akirrer <220388269+akirrer@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  abstract: true
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: BaseMagazinePMSSuggestion
+  name: SCR-g2 magazine (.338 Pommersk Eagle Special)
+  components:
+  - type: Tag
+    tags:
+    - MagazineSuggestion
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+      - CartridgePMS
+    capacity: 5
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _SV/Objects/Weapons/Guns/Ammunition/Magazine/Sniper/suggestion.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazinePMSSuggestion
+  id: MagazinePMSSuggestion
+  name: SCR-g2 magazine (.338 Pommersk Eagle Special)
+  description: 5-round magazine for the SCR-g2 chambered in deadly .338 PMS.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeBasePMS
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
+  parent: BaseMagazinePMSSuggestion
+  id: MagazinePenetratingPMSSuggestion
+  name: SCR-g2 magazine (.338 PMSP)
+  description: 5-round magazine for the SCR-g2 chambered in deadly .338 PMS.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePenetratingPMS
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#403f3e"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
+  parent: BaseMagazinePMSSuggestion
+  id: MagazineSedativePMSSuggestion
+  name: SCR-g2 magazine (.338 PMSS)
+  description: 5-round magazine for the SCR-g2 chambered in deadly .338 PMS.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeSedativePMS
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#1ed5fa"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag

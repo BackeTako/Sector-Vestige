@@ -43,8 +43,8 @@
 # SPDX-FileCopyrightText: 2025 imatsoup <93290208+imatsoup@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 āda <ss.adasts@gmail.com>
-# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2026 Zamshi8 <235235723+Zamshi8@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
 #
 # SPDX-License-Identifier: MIT
 
@@ -419,17 +419,6 @@
   - type: Clothing
     stripDelay: 10
     equipDelay: 5 # to avoid accidentally falling into the trap associated with SelfUnremovableClothing
-  - type: SuitSensor #SV Added tracking for the electropack - Start
-    randomMode: false
-    controlsLocked: true
-    mode: SensorCords
-  - type: DeviceNetwork
-    deviceNetId: Wireless
-    transmitFrequencyId: SuitSensor
-    savableAddress: false #SV Added tracking for the electropack - End
-  - type: WirelessNetworkConnection
-    range: 1200
-  - type: StationLimitedNetwork
   - type: SelfUnremovableClothing
   - type: ShockOnTrigger
     targetContainer: true

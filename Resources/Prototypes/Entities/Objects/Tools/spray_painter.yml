@@ -108,14 +108,14 @@
       - metallic # lead
       - plastic
       - horrible # lead
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 30
-        reagents:
-        - ReagentId: Lead # Lead based paint
-          Quantity: 0.5
-        - ReagentId: Cryptobiolin
-          Quantity: 20
-        - ReagentId: THC
-          Quantity: 5 # SV addition (end)
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: Lead # Lead based paint
+        Quantity: 0.5
+      - ReagentId: Cryptobiolin
+        Quantity: 20
+      - ReagentId: THC
+        Quantity: 5 # SV addition (end)

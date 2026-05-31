@@ -14,13 +14,12 @@
   id: DrinkAviationGlass
   suffix: aviation
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: AviationCocktail
-          Quantity: 30
+  - type: Solution
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: AviationCocktail
+        Quantity: 30
   - type: Icon
     sprite: _Harmony/Objects/Consumable/Drinks/aviationcocktail.rsi
     state: icon
@@ -30,13 +29,12 @@
   id: DrinkSunsetSodaGlass
   suffix: sunset soda
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: SunsetSoda
-          Quantity: 30
+  - type: Solution
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: SunsetSoda
+        Quantity: 30
   - type: Icon
     sprite: _Harmony/Objects/Consumable/Drinks/sunset-soda.rsi
     state: icon
@@ -46,13 +44,12 @@
   id: DrinkStarsetSarsaparillaGlass
   suffix: starset sarsaparilla
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: StarsetSarsaparilla
-          Quantity: 30
+  - type: Solution
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: StarsetSarsaparilla
+        Quantity: 30
   - type: Icon
     sprite: _Harmony/Objects/Consumable/Drinks/starset-sarsaparilla.rsi
     state: icon
@@ -62,13 +59,12 @@
   id: DrinkThirstTrapGlass
   suffix: Thirst Trap
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: ThirstTrap
-          Quantity: 30
+  - type: Solution
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: ThirstTrap
+        Quantity: 30
   - type: Icon
     sprite: _Harmony/Objects/Consumable/Drinks/thirst-trap.rsi
     state: icon

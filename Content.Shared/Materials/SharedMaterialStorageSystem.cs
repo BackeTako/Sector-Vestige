@@ -1,7 +1,23 @@
+// SPDX-FileCopyrightText: 2026 Wizards Den contributors
+// SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2023 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2023 deltanedas <39013340+deltanedas@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
+// SPDX-FileCopyrightText: 2024 Plykiya <58439124+Plykiya@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Zylofan <80375291+Zylofan@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Winkarst <74284083+Winkarst-cpu@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+//
+// SPDX-License-Identifier: MIT
+
 using System.Linq;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Stacks;
+using Content.Shared.Storage.Components; // SV changes - Dump ore bags into material storage (issue #245)
 using Content.Shared.Whitelist;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
@@ -15,12 +31,12 @@ namespace Content.Shared.Materials;
 /// This handles storing materials and modifying their amounts
 /// <see cref="MaterialStorageComponent"/>
 /// </summary>
-public abstract class SharedMaterialStorageSystem : EntitySystem
+public abstract partial class SharedMaterialStorageSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
 
     /// <summary>
     /// Default volume for a sheet if the material's entity prototype has no material composition.
@@ -35,6 +51,10 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
         SubscribeLocalEvent<MaterialStorageComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<MaterialStorageComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<MaterialStorageComponent, TechnologyDatabaseModifiedEvent>(OnDatabaseModified);
+        // SV changes start - Dump ore bags into material storage (issue #245)
+        SubscribeLocalEvent<MaterialStorageComponent, GetDumpableVerbEvent>(OnGetDumpableVerb);
+        SubscribeLocalEvent<MaterialStorageComponent, DumpEvent>(OnDump);
+        // SV changes end
     }
 
     public override void Update(float frameTime)
@@ -404,6 +424,39 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
             return;
         args.Handled = TryInsertMaterialEntity(args.User, args.Used, uid, component);
     }
+
+    // SV changes start - Dump ore bags into material storage (issue #245)
+    /// <summary>
+    /// Advertises the machine as a valid dump target (e.g. emptying an ore bag onto it)
+    /// so the dumpable system will route the bag's contents through here.
+    /// </summary>
+    private void OnGetDumpableVerb(Entity<MaterialStorageComponent> ent, ref GetDumpableVerbEvent args)
+    {
+        if (!ent.Comp.InsertOnInteract)
+            return;
+        args.Verb = Loc.GetString("dump-material-storage-verb-name", ("unit", ent.Owner));
+    }
+
+    /// <summary>
+    /// Handles a storage container (such as an ore bag) being dumped onto the machine,
+    /// inserting every contained entity that qualifies as a material.
+    /// </summary>
+    private void OnDump(Entity<MaterialStorageComponent> ent, ref DumpEvent args)
+    {
+        if (args.Handled || !ent.Comp.InsertOnInteract)
+            return;
+
+        foreach (var entity in args.DumpQueue)
+        {
+            if (TryInsertMaterialEntity(args.User, entity, ent, ent.Comp))
+                args.PlaySound = true;
+        }
+
+        // Mark handled even if nothing fit, so the dumpable system doesn't fall back to
+        // scattering the bag's contents on the floor.
+        args.Handled = true;
+    }
+    // SV changes end
 
     private void OnDatabaseModified(Entity<MaterialStorageComponent> ent, ref TechnologyDatabaseModifiedEvent args)
     {

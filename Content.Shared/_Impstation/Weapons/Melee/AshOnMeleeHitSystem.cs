@@ -14,10 +14,10 @@ using Robust.Shared.Audio.Systems;
 
 namespace Content.Shared._Impstation.Weapons.Melee;
 
-public sealed class AshOnMeleeHitSystem : EntitySystem
+public sealed partial class AshOnMeleeHitSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {

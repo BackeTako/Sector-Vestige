@@ -129,8 +129,9 @@
       Male: MaleAvali
       Female: FemaleAvali
       Unsexed: MaleAvali
-  - type: Damageable
+  - type: Injurable
     damageContainer: Biological
+  - type: Damageable
     damageModifierSet: Avali
   - type: DamageVisuals
     damageOverlayGroups:

@@ -613,6 +613,7 @@
   loadouts:
   - JesterHat
   - JesterAltHat
+  - ClownMitre
 
 - type: loadoutGroup
   id: ClownJumpsuit
@@ -1422,6 +1423,7 @@
   - DetectiveCoat
   - DetectiveCoatGrey
   - ForensicJacket # CD
+  - SecurityOfficerWintercoat
 
 - type: loadoutGroup
   id: DetectiveJobTrinkets

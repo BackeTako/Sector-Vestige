@@ -11,13 +11,12 @@
   components:
   - type: Label
     currentLabel: stubantazine
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Stubantazine
-          Quantity: 30
+  - type: Solution
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: Stubantazine
+        Quantity: 30
 
 - type: entity
   id: ChemistryBottleSoretizone
@@ -26,10 +25,9 @@
   components:
   - type: Label
     currentLabel: soretizone
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Soretizone
-          Quantity: 30
+  - type: Solution
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: Soretizone
+        Quantity: 30

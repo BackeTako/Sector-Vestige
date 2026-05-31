@@ -63,7 +63,6 @@
   startingGear: ChiefEngineerGear
   icon: "JobIconChiefEngineer"
   supervisors: job-supervisors-captain
-  canBeAntag: false
   access:
   - Maintenance
   - Engineering

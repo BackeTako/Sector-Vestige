@@ -1,0 +1,58 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 akirrer <220388269+akirrer@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  id: BulletPenetratingPMS
+  name: bullet (.338 Pommersk Marksman Special)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 30
+        Structural: 210 # good for basic walls and reinforced windows, struggles with rest
+    ignoreResistances: true
+    penetrationThreshold: 360
+    penetrationDamageTypeRequirement:
+    - Structural
+  - type: StaminaDamageOnCollide
+    damage: 60
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  id: BulletBasePMS
+  name: bullet (.338 Pommersk Marksman Special)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 66
+        Structural: 45
+    penetrationThreshold: 120 # pierces grilles and regular windows
+    penetrationDamageTypeRequirement:
+    - Structural
+  - type: StaminaDamageOnCollide
+    damage: 25
+
+- type: entity
+  parent: BaseBulletPractice
+  id: BulletSedativePMS
+  categories: [ HideSpawnMenu ]
+  name: bullet (.338 Pommersk Marksman Special)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 4
+  - type: Solution
+    id: ammo
+    solution:
+      maxVol: 8
+  - type: SolutionInjectOnProjectileHit
+    transferAmount: 8
+    solution: ammo

@@ -13,13 +13,13 @@ using Robust.Shared.Player;
 namespace Content.Client._SV.EyeTracker;
 [Access(typeof(EyeTrackerComponent))]
 
-public sealed class EyeTrackerSystem : EntitySystem
+public sealed partial class EyeTrackerSystem : EntitySystem
 {
 
-    [Dependency] private readonly IEyeManager _eyeManager = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
-    [Dependency] private readonly IEntityNetworkManager _entityNetworkManager = default!;
+    [Dependency] private IEyeManager _eyeManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private ISharedPlayerManager _playerManager = default!;
+    [Dependency] private IEntityNetworkManager _entityNetworkManager = default!;
 
     public override void Initialize()
     {
