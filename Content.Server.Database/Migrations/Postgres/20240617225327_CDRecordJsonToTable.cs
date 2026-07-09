@@ -48,29 +48,32 @@ namespace Content.Server.Database.Migrations.Postgres
             // See the comment in the SQLite version.
             // This is not exactly the same because Postgres and SQLite have different syntax for JSON access.
             // WHY IS THERE NOT A STANDARD WAY OF DOING THIS!!!
-            migrationBuilder.Sql($"""
+            // NOTE: the CDModel.DbRecordEntryType enum was removed when the CD records system was ripped;
+            // we keep the historical values inline so this migration still compiles. Originally:
+            //   Medical = 0, Security = 1, Employment = 2, Admin = 3.
+            migrationBuilder.Sql("""
                 INSERT INTO cd_character_record_entries (title, involved, description, type, cdprofile_id)
                     SELECT
                         jsonb_array_elements.value ->> 'Title', jsonb_array_elements.value ->> 'Involved', jsonb_array_elements.value ->> 'Description',
-                        {(int)CDModel.DbRecordEntryType.Medical}, cdprofile_id
+                        0, cdprofile_id
                     FROM
                         cdprofile, jsonb_array_elements(character_records -> 'MedicalEntries');
                 """);
 
-            migrationBuilder.Sql($"""
+            migrationBuilder.Sql("""
                 INSERT INTO cd_character_record_entries (title, involved, description, type, cdprofile_id)
                     SELECT
                         jsonb_array_elements.value ->> 'Title', jsonb_array_elements.value ->> 'Involved', jsonb_array_elements.value ->> 'Description',
-                        {(int)CDModel.DbRecordEntryType.Security}, cdprofile_id
+                        1, cdprofile_id
                     FROM
                         cdprofile, jsonb_array_elements(character_records -> 'SecurityEntries')
                 """);
 
-            migrationBuilder.Sql($"""
+            migrationBuilder.Sql("""
                 INSERT INTO cd_character_record_entries (title, involved, description, type, cdprofile_id)
                     SELECT
                         jsonb_array_elements.value ->> 'Title', jsonb_array_elements.value ->> 'Involved', jsonb_array_elements.value ->> 'Description',
-                        {(int)CDModel.DbRecordEntryType.Employment}, cdprofile_id
+                        2, cdprofile_id
                     FROM
                         cdprofile, jsonb_array_elements(character_records -> 'EmploymentEntries')
                 """);

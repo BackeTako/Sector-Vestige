@@ -484,4 +484,9 @@ public enum LogType
     /// Events related to players connecting/disconnecting.
     /// </summary>
     Connection = 104,
+
+    /// <summary>
+    /// SV: Events relating to character documents (creation, edits, deletion, restore, purge).
+    /// </summary>
+    CharacterDocument = 105,
 }

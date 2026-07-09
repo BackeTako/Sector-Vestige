@@ -3,10 +3,12 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using Content.Server.Administration.Logs;
 using Content.Server.Database;
 using Content.Server.Database.Migrations.Sqlite;
 using Content.Shared.Body;
 using Content.Shared.CCVar;
+using Content.Shared.Database;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
@@ -15,8 +17,6 @@ using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Shared.Traits;
-using Content.Server._CD.Records;
-using Content.Shared._CD.Records;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
@@ -44,6 +44,7 @@ namespace Content.Server.Preferences.Managers
         [Dependency] private IPrototypeManager _prototypeManager = default!;
         [Dependency] private MarkingManager _marking = default!;
         [Dependency] private ISerializationManager _serialization = default!;
+        [Dependency] private IAdminLogManager _adminLogger = default!;
 
         // Cache player prefs on the server so we don't need as much async hell related to them.
         private readonly Dictionary<NetUserId, PlayerPrefData> _cachedPlayerPrefs =
@@ -148,10 +149,44 @@ namespace Content.Server.Preferences.Managers
 
             var loadouts = new Dictionary<string, RoleLoadout>();
 
-            // CD: get character records or create default records
-            var cdRecords = profile.CDProfile?.CharacterRecords != null
-                ? RecordsSerialization.Deserialize(profile.CDProfile.CharacterRecords, profile.CDProfile.CharacterRecordEntries)
-                : PlayerProvidedCharacterRecords.DefaultRecords();
+            // SV: hydrate the lobby-visible SV documents from the persistent store.
+            List<Content.Shared._SV.CharacterDocuments.CharacterDocument>? svDocs = null;
+            if (profile.SVProfile?.CharacterDocuments is { Count: > 0 } svRows)
+            {
+                svDocs = svRows
+                    // Binned (soft-deleted) docs are invisible to the owning player — they only
+                    // surface to Central Command consoles and admins until the retention sweep.
+                    .Where(d => d.DeletedAt == null)
+                    .Select(d => new Content.Shared._SV.CharacterDocuments.CharacterDocument
+                    {
+                        DocID = d.DocID,
+                        DocType = d.DocType,
+                        DocTitle = d.DocTitle,
+                        DocAuthor = d.DocAuthor,
+                        DocLastEditedBy = d.DocLastEditedBy,
+                        DocDateLastEdited = d.DocDateLastEdited,
+                        DocContent = d.DocContent,
+                        DocStamps = Content.Server._SV.CharacterDocuments.CharacterDocumentDeserializer.DeserializeStamps(d.DocStamps),
+                    })
+                    .ToList();
+            }
+
+            // SV: hydrate the lobby-visible General flavour block from the persistent JSON.
+            Content.Shared._SV.CharacterDocuments.CharacterDocumentGeneral? svGeneral = null;
+            if (profile.SVProfile?.CharacterDocumentGeneral != null)
+            {
+                try
+                {
+                    svGeneral = profile.SVProfile.CharacterDocumentGeneral
+                        .Deserialize<Content.Shared._SV.CharacterDocuments.CharacterDocumentGeneral>();
+                    svGeneral?.EnsureValid();
+                }
+                catch
+                {
+                    // Corrupt blob — fall back to defaults rather than blocking login.
+                    svGeneral = null;
+                }
+            }
 
             foreach (var role in profile.Loadouts)
             {
@@ -179,7 +214,7 @@ namespace Content.Server.Preferences.Managers
                 profile.CharacterName,
                 profile.FlavorText,
                 species,
-                profile.CDProfile?.Height ?? 1.0f,
+                profile.Height,
                 profile.Age,
                 sex,
                 gender,
@@ -195,8 +230,8 @@ namespace Content.Server.Preferences.Managers
                 antags.ToHashSet(),
                 traits.ToHashSet(),
                 loadouts,
-                cdRecords
-            );
+                svDocs, // SV: hydrated from SVProfile.CharacterDocuments
+                svGeneral); // SV: hydrated from SVProfile JSON column
         }
 
         private async void HandleSelectCharacterMessage(MsgSelectCharacter message)
@@ -258,6 +293,12 @@ namespace Content.Server.Preferences.Managers
 
             profile.EnsureValid(session, _dependencies);
 
+            // SV: high-alert admin log for any character document removed via the preferences
+            // / character editor. Compares the slot's previously-saved docs against the incoming
+            // ones and logs any that disappeared.
+            if (curPrefs.Characters.TryGetValue(slot, out var previousProfile))
+                LogRemovedSVDocuments(session, previousProfile, profile);
+
             var profiles = new Dictionary<int, HumanoidCharacterProfile>(curPrefs.Characters)
             {
                 [slot] = profile
@@ -267,6 +308,28 @@ namespace Content.Server.Preferences.Managers
 
             if (ShouldStorePrefs(session.Channel.AuthType))
                 await _db.SaveCharacterSlotAsync(userId, profile, slot);
+        }
+
+        /// <summary>
+        ///     SV: Emits a high-alert admin log for each character document a player removed via the
+        ///     in-lobby preferences / character editor. A document counts as removed when its DocID
+        ///     was present in the previously-saved profile but is absent from the incoming one.
+        /// </summary>
+        private void LogRemovedSVDocuments(ICommonSession session, HumanoidCharacterProfile oldProfile, HumanoidCharacterProfile newProfile)
+        {
+            var oldDocs = oldProfile.SVCharacterDocuments;
+            if (oldDocs is not { Count: > 0 })
+                return;
+
+            var newDocs = newProfile.SVCharacterDocuments;
+            foreach (var doc in oldDocs)
+            {
+                if (newDocs != null && newDocs.Any(d => d.DocID == doc.DocID))
+                    continue;
+
+                _adminLogger.Add(LogType.CharacterDocument, LogImpact.High,
+                    $"{session:player} deleted character document '{doc.DocTitle}' (#{doc.DocID}) of character '{newProfile.Name}' via the preferences editor");
+            }
         }
 
         public async Task SetConstructionFavorites(NetUserId userId, List<ProtoId<ConstructionPrototype>> favorites)
@@ -422,6 +485,30 @@ namespace Content.Server.Preferences.Managers
             };
             _netManager.ServerSendMessage(msg, session.Channel);
         }
+
+        /// <summary>
+        ///     SV: Re-fetch a player's preferences from the DB and push a fresh
+        ///     <see cref="MsgPreferencesAndSettings"/> to them. Used by the admin
+        ///     character-documents tool so that admin-side edits show up in the
+        ///     player's lobby UI without requiring a reconnect.
+        /// </summary>
+        public async Task RefreshPreferencesForUserAsync(ICommonSession session)
+        {
+            if (!_cachedPlayerPrefs.TryGetValue(session.UserId, out var prefsData) || !prefsData.PrefsLoaded)
+                return;
+
+            var prefs = await GetOrCreatePreferencesAsync(session.UserId, CancellationToken.None);
+            prefsData.Prefs = SanitizePreferences(session, ConvertPreferences(prefs), _dependencies);
+
+            var msg = new MsgPreferencesAndSettings();
+            msg.Preferences = prefsData.Prefs;
+            msg.Settings = new GameSettings
+            {
+                MaxCharacterSlots = MaxCharacterSlots
+            };
+            _netManager.ServerSendMessage(msg, session.Channel);
+        }
+        // SV: Re-fetch a player's preferences from the DB - END
 
         public void OnClientDisconnected(ICommonSession session)
         {

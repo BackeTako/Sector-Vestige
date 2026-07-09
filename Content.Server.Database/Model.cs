@@ -89,6 +89,8 @@ namespace Content.Server.Database
         public DbSet<JobWhitelistGroup> JobWhitelistGroups { get; set; } = null!; // SV changes - Job whitelist groups
         public DbSet<BanTemplate> BanTemplate { get; set; } = null!;
         public DbSet<IPIntelCache> IPIntelCache { get; set; } = null!;
+        public DbSet<SVModel.SVProfile> SVProfiles { get; set; } = null!;
+        public DbSet<SVModel.CharacterDocument> CharacterDocuments { get; set; } = null!;
         public DbSet<CustomVoteLog> CustomVoteLog { get; set; } = null!;
         public DbSet<CustomVoteLogOption> CustomVoteLogOption { get; set; } = null!;
 
@@ -102,19 +104,19 @@ namespace Content.Server.Database
                 .HasIndex(p => new {p.Slot, PrefsId = p.PreferenceId})
                 .IsUnique();
 
-            // CD: CD Character Data
-            modelBuilder.Entity<CDModel.CDProfile>()
+            // SV: CharacterDocuments START
+            modelBuilder.Entity<SVModel.SVProfile>()
                 .HasOne(p => p.Profile)
-                .WithOne(p => p.CDProfile)
-                .HasForeignKey<CDModel.CDProfile>(p => p.ProfileId)
+                .WithOne(p => p.SVProfile)
+                .HasForeignKey<SVModel.SVProfile>(p => p.ProfileId)
                 .IsRequired();
 
-            modelBuilder.Entity<CDModel.CharacterRecordEntry>()
-                .HasOne(e => e.CDProfile)
-                .WithMany(e => e.CharacterRecordEntries)
-                .HasForeignKey(e => e.CDProfileId)
+            modelBuilder.Entity<SVModel.CharacterDocument>()
+                .HasOne(e => e.SVProfile)
+                .WithMany(e => e.CharacterDocuments)
+                .HasForeignKey(e => e.ProfileId)
                 .IsRequired();
-            // END CD
+            // SV: CharacterDocuments END
 
             modelBuilder.Entity<Antag>()
                 .HasIndex(p => new {HumanoidProfileId = p.ProfileId, p.AntagName})
@@ -417,7 +419,13 @@ namespace Content.Server.Database
         public int PreferenceId { get; set; }
         public Preference Preference { get; set; } = null!;
 
-        public CDModel.CDProfile? CDProfile { get; set; }
+        /// <summary>
+        ///     Character height multiplier. Persisted directly on Profile since the
+        ///     CDProfile table (and the CD records system that owned it) was ripped.
+        /// </summary>
+        public float Height { get; set; } = 1f;
+
+        public SVModel.SVProfile? SVProfile { get; set; }
     }
 
     public class Job

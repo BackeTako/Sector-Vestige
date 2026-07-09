@@ -1,0 +1,135 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      xmlns:documents="clr-namespace:Content.Client._SV.CharacterDocuments.UI"
+                      xmlns:paper="clr-namespace:Content.Client.Paper.UI"
+                      xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                      MinSize="1175 900"
+                      SetSize="1175 900"
+                      Title="{Loc 'sv-document-console-window-title-fallback'}" >
+            <BoxContainer Orientation="Vertical">
+                <BoxContainer VerticalExpand="true">
+                    <!-- Left bar - List all availible profiles/crew -->
+                    <BoxContainer Orientation="Vertical" Margin="5" MinWidth="250" MaxWidth="250">
+                        <Label Text="{Loc 'sv-document-console-header-crew'}" StyleClasses="LabelHeading" Margin="2 0 0 4"/>
+                        <PanelContainer StyleClasses="BorderedWindowPanel" VerticalExpand="True">
+                            <BoxContainer Orientation="Vertical" Margin="4">
+                                <LineEdit Name="CrewFiltersValue" PlaceHolder="{Loc 'sv-document-for-filter-line-placeholder'}" HorizontalExpand="True"/>
+                                <Label Name="CrewListingStatus" Visible="False"/>
+                                <ScrollContainer VerticalExpand="True">
+                                    <ItemList Name="CrewListing"/>
+                                </ScrollContainer>
+                            </BoxContainer>
+                        </PanelContainer>
+                    </BoxContainer>
+                    <!-- Show the document -->
+                    <BoxContainer Orientation="Vertical" Margin="5" MinWidth="580" MaxWidth="580">
+                        <Label Text="{Loc 'sv-document-console-header-document'}" StyleClasses="LabelHeading" Margin="2 0 0 4"/>
+                        <PanelContainer StyleIdentifier="PaperEditBackground" Margin="0 0 0 5" VerticalExpand="True" HorizontalExpand="True">
+                            <ScrollContainer Name="DocumentScrollContainer" HScrollEnabled="False">
+                                <RichTextLabel Name="Document" StyleClasses="PaperWrittenText" VerticalExpand="True" HorizontalExpand="True" VerticalAlignment="Top" Margin="5 5 5 10"/>
+                                <paper:StampCollection Name="StampDisplay" VerticalAlignment="Bottom" VerticalExpand="True"/>
+                            </ScrollContainer>
+                            <TextEdit Name="DocumentEdit" StyleClasses="PaperWrittenText" MinHeight="490" VerticalExpand="True" VerticalAlignment="Top" Editable="False" Visible="False"/>
+                        </PanelContainer>
+                        <!-- Bottom control panel -->
+                        <LineEdit Name="TitleInput" PlaceHolder="{Loc 'sv-document-console-title-input'}" VerticalAlignment="Top" HorizontalExpand="True" Editable="False"/>
+                        <BoxContainer Orientation="Horizontal" Margin="0 5 0 0" HorizontalExpand="True" MinHeight="75" VerticalAlignment="Bottom" >
+                            <Label Name="ControlPanelStatus"/>
+                            <!-- Left Control panel: document metadata in a bordered card. Widened so
+                                 values like "Central Command" don't clip to "Central co..". -->
+                            <PanelContainer StyleClasses="BorderedWindowPanel" MinWidth="355" MaxWidth="355" VerticalExpand="True" HorizontalAlignment="Left">
+                                <BoxContainer Orientation="Vertical" Margin="6 4 6 4">
+                                    <Label Text="{Loc 'sv-document-console-header-details'}" StyleClasses="LabelKeyText" Margin="0 0 0 4"/>
+                                    <BoxContainer>
+                                        <BoxContainer HorizontalAlignment="Left" Orientation="Vertical" Margin="0 0 8 0">
+                                            <Label Name="DocAuthorLabel" Text="{Loc 'sv-document-console-author-label'}"/>
+                                            <Label Name="DocLastEditedByLabel" Text="{Loc 'sv-document-console-editedby-label'}"/>
+                                            <Label Name="DocDateLabel" Text="{Loc 'sv-document-console-date-label'}"/>
+                                            <Label Name="DocSecurityStatusLabel" Text="{Loc 'sv-document-console-security-status-label'}" Visible="False"/>
+                                            <Label Name="DocSecurityReasonLabel" Text="{Loc 'sv-document-console-security-reason-label'}" Visible="False"/>
+                                        </BoxContainer>
+                                        <BoxContainer HorizontalExpand="True" Orientation="Vertical">
+                                            <Label Name="DocAuthorLabelValue" Text="{Loc 'sv-document-console-author-label-value-none'}" ClipText="True"/>
+                                            <Label Name="DocLastEditedByLabelValue" Text="{Loc 'sv-document-console-editedby-label-value-none'}" ClipText="True"/>
+                                            <Label Name="DocDateLabelValue" Text="{Loc 'sv-document-console-date-label-value-none'}" ClipText="True"/>
+                                            <Label Name="DocSecurityStatusLabelValue" Text="-" Visible="False" ClipText="True"/>
+                                            <Label Name="DocSecurityReasonLabelValue" Text="-" Visible="False" ClipText="True"/>
+                                        </BoxContainer>
+                                    </BoxContainer>
+                                </BoxContainer>
+                            </PanelContainer>
+                            <!-- Right Control panel: actions in a bordered card. -->
+                            <PanelContainer StyleClasses="BorderedWindowPanel" HorizontalExpand="True" VerticalExpand="True" Margin="5 0 0 0">
+                                <BoxContainer Orientation="Vertical" Margin="6 4 6 4">
+                                    <Label Text="{Loc 'sv-document-console-header-actions'}" StyleClasses="LabelKeyText" Margin="0 0 0 4"/>
+                                    <PanelContainer Name="PaperStatusPanel" HorizontalExpand="True" Margin="0 0 0 4">
+                                        <Label Name="PaperStatusLabel" Text="{Loc 'sv-document-console-paper-empty'}" HorizontalAlignment="Center"/>
+                                    </PanelContainer>
+                                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                                        <Button Name="ScanButton" Text="{Loc 'sv-document-console-scan-button'}" HorizontalExpand="True"/>
+                                        <Button Name="PrintButton" Text="{Loc 'sv-document-console-print-button'}" HorizontalExpand="True"/>
+                                    </BoxContainer>
+                                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                                        <Button Name="EditButton" Text="{Loc 'sv-document-console-edit-button'}" HorizontalExpand="True"/>
+                                        <Button Name="DeleteButton" Text="{Loc 'sv-document-console-delete-button'}" HorizontalExpand="True"/>
+                                    </BoxContainer>
+                                    <Button Name="StatusButton" Text="{Loc 'sv-document-console-status-button'}" HorizontalExpand="True" Visible="False"/>
+                                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                                        <Button Name="BinButton" Text="{Loc 'sv-document-console-bin-button'}" HorizontalExpand="True" ToggleMode="True" Visible="False"/>
+                                        <Button Name="RestoreButton" Text="{Loc 'sv-document-console-restore-button'}" HorizontalExpand="True" Visible="False"/>
+                                    </BoxContainer>
+                                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                                        <Button Name="PurgeButton" Text="{Loc 'sv-document-console-purge-button'}" HorizontalExpand="True" Visible="False"/>
+                                        <Button Name="EmptyBinButton" Text="{Loc 'sv-document-console-empty-bin-button'}" HorizontalExpand="True" Visible="False"/>
+                                    </BoxContainer>
+                                </BoxContainer>
+                            </PanelContainer>
+                        </BoxContainer>
+                        <!-- General flavour fields panel. -->
+                        <PanelContainer Name="GeneralInfoPanel" StyleClasses="BorderedWindowPanel" HorizontalExpand="True" Margin="0 5 0 0" Visible="False">
+                            <BoxContainer Orientation="Vertical" Margin="6 4 6 4">
+                                <Label Text="{Loc 'sv-document-console-general-heading'}" StyleClasses="LabelKeyText" Margin="0 0 0 4"/>
+                                <BoxContainer>
+                                    <BoxContainer HorizontalAlignment="Left" Orientation="Vertical" Margin="0 0 8 0">
+                                        <Label Name="DocGenHeightLabel" Text="{Loc 'sv-document-lobby-general-height'}" Visible="False"/>
+                                        <Label Name="DocGenWeightLabel" Text="{Loc 'sv-document-lobby-general-weight'}" Visible="False"/>
+                                        <Label Name="DocGenContactLabel" Text="{Loc 'sv-document-lobby-general-emergency-contact'}" Visible="False"/>
+                                        <Label Name="DocGenWorkAuthLabel" Text="{Loc 'sv-document-lobby-general-work-authorization'}" Visible="False"/>
+                                        <Label Name="DocGenIdFeaturesLabel" Text="{Loc 'sv-document-lobby-general-identifying-features'}" Visible="False"/>
+                                        <Label Name="DocGenAllergiesLabel" Text="{Loc 'sv-document-lobby-general-allergies'}" Visible="False"/>
+                                        <Label Name="DocGenDrugAllergiesLabel" Text="{Loc 'sv-document-lobby-general-drug-allergies'}" Visible="False"/>
+                                        <Label Name="DocGenPostmortemLabel" Text="{Loc 'sv-document-lobby-general-postmortem'}" Visible="False"/>
+                                    </BoxContainer>
+                                    <BoxContainer HorizontalExpand="True" Orientation="Vertical">
+                                        <RichTextLabel Name="DocGenHeightValue" Visible="False" HorizontalExpand="True"/>
+                                        <RichTextLabel Name="DocGenWeightValue" Visible="False" HorizontalExpand="True"/>
+                                        <RichTextLabel Name="DocGenContactValue" Visible="False" HorizontalExpand="True"/>
+                                        <RichTextLabel Name="DocGenWorkAuthValue" Visible="False" HorizontalExpand="True"/>
+                                        <RichTextLabel Name="DocGenIdFeaturesValue" Visible="False" HorizontalExpand="True"/>
+                                        <RichTextLabel Name="DocGenAllergiesValue" Visible="False" HorizontalExpand="True"/>
+                                        <RichTextLabel Name="DocGenDrugAllergiesValue" Visible="False" HorizontalExpand="True"/>
+                                        <RichTextLabel Name="DocGenPostmortemValue" Visible="False" HorizontalExpand="True"/>
+                                    </BoxContainer>
+                                </BoxContainer>
+                            </BoxContainer>
+                        </PanelContainer>
+                    </BoxContainer>
+                    <!-- Right bar - List all the availible documents for the selectedplayer -->
+                    <BoxContainer Orientation="Vertical" Margin="5" MinWidth="300" MaxWidth="300">
+                        <Label Text="{Loc 'sv-document-console-header-documents'}" StyleClasses="LabelHeading" Margin="2 0 0 4"/>
+                        <!-- Per-type filter tabs (only shown on multi-type consoles like Central Command).
+                             Columns=2 so each button gets ~half the column width — enough for the longest
+                             label ("CentralCommand") and still readable. -->
+                        <GridContainer Name="DocumentTypeTabs" Columns="2" HorizontalExpand="True" Visible="False" Margin="0 0 0 4"/>
+                        <PanelContainer StyleClasses="BorderedWindowPanel" VerticalExpand="True">
+                            <BoxContainer Orientation="Vertical" Margin="4">
+                                <Label Name="DocumentListingStatus" Visible="False" Text="{Loc 'sv-document-console-no-document-selected'}"/>
+                                <ScrollContainer VerticalExpand="True">
+                                    <ItemList Name="DocumentListing"/>
+                                </ScrollContainer>
+                            </BoxContainer>
+                        </PanelContainer>
+                    </BoxContainer>
+                </BoxContainer>
+            </BoxContainer>
+</DefaultWindow>

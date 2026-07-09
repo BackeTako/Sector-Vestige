@@ -21,4 +21,13 @@ public sealed class SVCCVars : CVars
     /// </summary>
     public static readonly CVarDef<bool>
         GameGroupWhitelist = CVarDef.Create("sv.group_whitelist", true, CVar.SERVER | CVar.REPLICATED);
+
+    /// <summary>
+    /// How many days a soft-deleted ("binned") character document is retained before it is
+    /// permanently purged. During this window the document is invisible to normal viewers
+    /// but can still be reviewed / restored by Central Command consoles and admins.
+    /// Set to 0 (or less) to purge binned documents immediately on the next sweep.
+    /// </summary>
+    public static readonly CVarDef<int>
+        CharacterDocumentBinRetentionDays = CVarDef.Create("sv.character_documents.bin_retention_days", 30, CVar.SERVERONLY);
 }

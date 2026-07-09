@@ -1762,6 +1762,7 @@ entities:
     - type: Fixtures
       fixtures: {}
     - type: OccluderTree
+    - type: CharacterDocumentStation
     - type: SpreaderGrid
     - type: Shuttle
       dampingModifier: 0.25

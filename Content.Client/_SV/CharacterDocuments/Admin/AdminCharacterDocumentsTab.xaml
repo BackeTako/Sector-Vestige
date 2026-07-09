@@ -1,0 +1,56 @@
+<Control xmlns="https://spacestation14.io"
+         xmlns:paper="clr-namespace:Content.Client.Paper.UI">
+    <BoxContainer Orientation="Horizontal">
+        <BoxContainer Orientation="Vertical" Margin="5" MinWidth="250" MaxWidth="250">
+            <LineEdit Name="PlayerFilter" PlaceHolder="Filter players..." HorizontalExpand="True"/>
+            <ScrollContainer VerticalExpand="True">
+                <ItemList Name="PlayerListing"/>
+            </ScrollContainer>
+        </BoxContainer>
+        <BoxContainer Orientation="Vertical" Margin="5" MinWidth="250" MaxWidth="250">
+            <Label Text="Characters" StyleClasses="LabelHeading"/>
+            <ScrollContainer VerticalExpand="True">
+                <ItemList Name="CharacterListing"/>
+            </ScrollContainer>
+        </BoxContainer>
+        <BoxContainer Orientation="Vertical" Margin="5" MinWidth="300" MaxWidth="300">
+            <Label Text="Documents" StyleClasses="LabelHeading"/>
+            <ScrollContainer VerticalExpand="True">
+                <ItemList Name="DocumentListing"/>
+            </ScrollContainer>
+            <Button Name="CreateButton" Text="Create New" Margin="0 4 0 0" Disabled="True"/>
+            <Button Name="EmptyBinButton" Text="{Loc 'sv-document-console-empty-bin-button'}" Margin="0 4 0 0" Disabled="True"/>
+        </BoxContainer>
+        <BoxContainer Orientation="Vertical" Margin="5" HorizontalExpand="True">
+            <BoxContainer Orientation="Horizontal" Margin="0 0 0 4">
+                <LineEdit Name="TitleInput" PlaceHolder="Title" HorizontalExpand="True" Editable="False"/>
+                <Button Name="EditButton" Text="Edit" Margin="4 0 0 0" Disabled="True"/>
+                <Button Name="DeleteButton" Text="Delete" Margin="4 0 0 0" Disabled="True"/>
+                <Button Name="PurgeButton" Text="{Loc 'sv-document-console-purge-button'}" Margin="4 0 0 0" Disabled="True"/>
+            </BoxContainer>
+            <BoxContainer Name="StampEditorRow" Orientation="Horizontal" Margin="0 0 0 4" Visible="False">
+                <Label Text="Stamps:" Margin="0 0 4 0" VerticalAlignment="Center"/>
+                <OptionButton Name="StampPicker" HorizontalExpand="True"/>
+                <Button Name="AddStampButton" Text="Add" Margin="4 0 0 0"/>
+                <Button Name="ClearStampsButton" Text="Clear" Margin="4 0 0 0"/>
+            </BoxContainer>
+            <BoxContainer Orientation="Vertical" Margin="0 0 0 4">
+                <BoxContainer Orientation="Horizontal">
+                    <Label Text="Author:" Margin="0 0 4 0"/>
+                    <Label Name="AuthorValue" HorizontalExpand="True" ClipText="True"/>
+                </BoxContainer>
+                <BoxContainer Orientation="Horizontal">
+                    <Label Text="Last edited by:" Margin="0 0 4 0"/>
+                    <Label Name="LastEditedByValue" HorizontalExpand="True" ClipText="True"/>
+                </BoxContainer>
+            </BoxContainer>
+            <PanelContainer StyleIdentifier="PaperEditBackground" VerticalExpand="True" HorizontalExpand="True">
+                <ScrollContainer HScrollEnabled="False">
+                    <RichTextLabel Name="ContentView" StyleClasses="PaperWrittenText" VerticalExpand="True" HorizontalExpand="True" VerticalAlignment="Top" Margin="5 5 5 10"/>
+                    <paper:StampCollection Name="StampDisplay" VerticalAlignment="Bottom" VerticalExpand="True"/>
+                </ScrollContainer>
+                <TextEdit Name="ContentEdit" StyleClasses="PaperWrittenText" MinHeight="690" VerticalExpand="True" VerticalAlignment="Top" Editable="False" Visible="False"/>
+            </PanelContainer>
+        </BoxContainer>
+    </BoxContainer>
+</Control>

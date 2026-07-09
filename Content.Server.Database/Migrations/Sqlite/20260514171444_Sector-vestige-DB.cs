@@ -1,0 +1,81 @@
+using System;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
+
+namespace Content.Server.Database.Migrations.Sqlite
+{
+    /// <inheritdoc />
+    public partial class SectorvestigeDB : Migration
+    {
+        /// <inheritdoc />
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.CreateTable(
+                name: "sv_profiles",
+                columns: table => new
+                {
+                    profile_id = table.Column<int>(type: "INTEGER", nullable: false),
+                    player_name = table.Column<string>(type: "TEXT", nullable: false),
+                    character_name = table.Column<string>(type: "TEXT", nullable: false),
+                    character_document_general = table.Column<byte[]>(type: "jsonb", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_sv_profiles", x => x.profile_id);
+                    table.ForeignKey(
+                        name: "FK_sv_profiles_profile_profile_id",
+                        column: x => x.profile_id,
+                        principalTable: "profile",
+                        principalColumn: "profile_id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "sv_character_document_entries",
+                columns: table => new
+                {
+                    doc_i_d = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    doc_type = table.Column<int>(type: "INTEGER", nullable: false),
+                    doc_date_last_edited = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    doc_title = table.Column<string>(type: "TEXT", nullable: false),
+                    doc_author = table.Column<string>(type: "TEXT", nullable: false),
+                    doc_last_edited_by = table.Column<string>(type: "TEXT", nullable: false),
+                    doc_content = table.Column<string>(type: "TEXT", nullable: false),
+                    doc_stamps = table.Column<string>(type: "TEXT", nullable: false),
+                    profile_id = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_sv_character_document_entries", x => x.doc_i_d);
+                    table.ForeignKey(
+                        name: "FK_sv_character_document_entries_sv_profiles__sv_profile_temp_id",
+                        column: x => x.profile_id,
+                        principalTable: "sv_profiles",
+                        principalColumn: "profile_id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_sv_character_document_entries_doc_i_d",
+                table: "sv_character_document_entries",
+                column: "doc_i_d");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_sv_character_document_entries_profile_id",
+                table: "sv_character_document_entries",
+                column: "profile_id");
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "sv_character_document_entries");
+
+            migrationBuilder.DropTable(
+                name: "sv_profiles");
+        }
+    }
+}

@@ -1,0 +1,13 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               MinSize="320 130"
+               SetSize="320 130"
+               Title="New Document Title">
+    <BoxContainer Orientation="Vertical" Margin="8">
+        <LineEdit Name="TitleInput" PlaceHolder="Enter document title..." HorizontalExpand="True"/>
+        <BoxContainer Orientation="Horizontal" Margin="0 6 0 0">
+            <Button Name="OKButton" Text="OK" HorizontalExpand="True" Margin="0 0 4 0"/>
+            <Button Name="CancelButton" Text="Cancel" HorizontalExpand="True" Margin="4 0 0 0"/>
+        </BoxContainer>
+    </BoxContainer>
+</DefaultWindow>
+

@@ -65,10 +65,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Utility;
 
-// CD: imports
-using Content.Server._CD.Records;
-using Content.Shared._CD.Records;
-
 namespace Content.Server.Database
 {
     public abstract class ServerDbBase
@@ -96,11 +92,11 @@ namespace Content.Server.Database
                 .Include(p => p.Profiles).ThenInclude(h => h.Jobs)
                 .Include(p => p.Profiles).ThenInclude(h => h.Antags)
                 .Include(p => p.Profiles).ThenInclude(h => h.Traits)
-                // CD: Store CD info
+                // SV: pull the SV character documents alongside the profile so the lobby
+                // editor can display & edit them in-place. Stays null for first-time chars.
                 .Include(p => p.Profiles)
-                    .ThenInclude(h => h.CDProfile)
-                    .ThenInclude(cd => cd != null ? cd.CharacterRecordEntries : null)
-                // END CD
+                    .ThenInclude(h => h.SVProfile)
+                    .ThenInclude(sv => sv!.CharacterDocuments)
                 .Include(p => p.Profiles)
                     .ThenInclude(h => h.Loadouts)
                     .ThenInclude(l => l.Groups)
@@ -154,8 +150,9 @@ namespace Content.Server.Database
             }
 
             var oldProfile = db.DbContext.Profile
-                .Include(p => p.CDProfile) // CD: Store CD info
-                    .ThenInclude(cd => cd != null ? cd.CharacterRecordEntries : null)
+                // SV: pull existing SV documents so ConvertProfiles can preserve stamps on edited rows.
+                .Include(p => p.SVProfile)
+                    .ThenInclude(sv => sv!.CharacterDocuments)
                 .Include(p => p.Preference)
                 .Where(p => p.Preference.UserId == userId.UserId)
                 .Include(p => p.Jobs)
@@ -178,6 +175,18 @@ namespace Content.Server.Database
                 prefs.Profiles.Add(newProfile);
             }
 
+            // SV: stamp the owning player's username onto SVProfile.PlayerName so
+            // the admin browser shows the right owner. Without this the row gets
+            // an empty PlayerName on imports / new characters.
+            if (newProfile.SVProfile != null)
+            {
+                var username = await db.DbContext.Player
+                    .Where(p => p.UserId == userId.UserId)
+                    .Select(p => p.LastSeenUserName)
+                    .FirstOrDefaultAsync();
+                newProfile.SVProfile.PlayerName = username ?? string.Empty;
+            }
+
             await db.DbContext.SaveChangesAsync();
         }
 
@@ -197,24 +206,152 @@ namespace Content.Server.Database
 
         public async Task<Preference> InitPrefsAsync(NetUserId userId, HumanoidCharacterProfile defaultProfile)
         {
+            // SV changes start
+            try
+            {
+                await using var db = await GetDb();
+
+                var profile = ConvertProfiles((HumanoidCharacterProfile) defaultProfile, 0);
+                var prefs = new Preference
+                {
+                    UserId = userId.UserId,
+                    SelectedCharacterSlot = 0,
+                    AdminOOCColor = Color.Red.ToHex(),
+                    ConstructionFavorites = [],
+                };
+
+                prefs.Profiles.Add(profile);
+
+                db.DbContext.Preference.Add(prefs);
+
+                await db.DbContext.SaveChangesAsync();
+
+                return prefs;
+            }
+            catch (DbUpdateException)
+            {
+                // SV: Two load paths can race to create the same user's prefs on first join
+                var existing = await GetPlayerPreferencesAsync(userId);
+                if (existing == null)
+                    throw;
+
+                return existing;
+            }
+            // SV changes End
+        }
+
+        // SV changes start - Admin character documents browser
+        #region Admin SV Character Documents Browser
+
+        /// <summary>
+        ///     Loads every SV profile in the database along with all their character documents.
+        ///     Includes the owning Profile + Preference so the admin EUI can resolve each
+        ///     entry to a stable UserId (used for live-session lookups instead of fragile
+        ///     name matching). Used by the admin offline-browse UI; do not use on hot paths.
+        /// </summary>
+        public async Task<List<SVModel.SVProfile>> GetAllSVCharacterDocumentsAsync(CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            var profiles = await db.DbContext.SVProfiles
+                .Include(p => p.CharacterDocuments)
+                .Include(p => p.Profile).ThenInclude(profile => profile.Preference)
+                .AsNoTracking()
+                .ToListAsync(cancel);
+
+            return profiles;
+        }
+
+        #endregion
+        // SV changes end
+
+        public async Task SaveSVCharacterDocumentsAsync(int profileId, string playerName, string characterName, IReadOnlyCollection<SVModel.CharacterDocument> documents)
+        {
             await using var db = await GetDb();
 
-            var profile = ConvertProfiles((HumanoidCharacterProfile) defaultProfile, 0);
-            var prefs = new Preference
+            var testProfile = await db.DbContext.SVProfiles
+                .Include(p => p.CharacterDocuments)
+                .SingleOrDefaultAsync(p => p.ProfileId == profileId);
+
+            if (testProfile == null)
             {
-                UserId = userId.UserId,
-                SelectedCharacterSlot = 0,
-                AdminOOCColor = Color.Red.ToHex(),
-                ConstructionFavorites = [],
-            };
+                testProfile = new SVModel.SVProfile
+                {
+                    ProfileId = profileId,
+                };
 
-            prefs.Profiles.Add(profile);
+                db.DbContext.SVProfiles.Add(testProfile);
+            }
 
-            db.DbContext.Preference.Add(prefs);
+            testProfile.PlayerName = playerName;
+            testProfile.CharacterName = characterName;
+            testProfile.CharacterDocuments.Clear();
+
+            foreach (var document in documents)
+            {
+                testProfile.CharacterDocuments.Add(new SVModel.CharacterDocument
+                {
+                    DocTitle = document.DocTitle,
+                    DocAuthor = document.DocAuthor,
+                    DocLastEditedBy = document.DocLastEditedBy,
+                    DocContent = document.DocContent,
+                    DocStamps = document.DocStamps,
+                    DocType = document.DocType,
+                    DocDateLastEdited = document.DocDateLastEdited,
+                    DeletedAt = document.DeletedAt,
+                });
+            }
 
             await db.DbContext.SaveChangesAsync();
+        }
 
-            return prefs;
+        /// <summary>
+        /// Permanently deletes binned (soft-deleted) character documents whose deletion
+        /// timestamp is older than <paramref name="retention"/>. Run periodically (e.g. on
+        /// round start) so the 30-day recycling bin actually empties over real wall-clock time.
+        /// </summary>
+        public async Task<int> PurgeExpiredSVCharacterDocumentsAsync(TimeSpan retention, CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            var cutoff = DateTime.UtcNow - retention;
+            return await db.DbContext.Set<SVModel.CharacterDocument>()
+                .Where(d => d.DeletedAt != null && d.DeletedAt < cutoff)
+                .ExecuteDeleteAsync(cancel);
+        }
+
+        public async Task<(JsonDocument? SerializedDocument, List<SVModel.CharacterDocument> Documents)?> GetSVCharacterDocumentsAsync(
+            int profileId,
+            CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            var testProfile = await db.DbContext.SVProfiles
+                .Include(p => p.CharacterDocuments)
+                .SingleOrDefaultAsync(p => p.ProfileId == profileId, cancel);
+
+            if (testProfile == null)
+                return null;
+
+            var documents = testProfile.CharacterDocuments
+                .Select(document => new SVModel.CharacterDocument
+                {
+                    DocID = document.DocID,
+                    DocTitle = document.DocTitle,
+                    DocAuthor = document.DocAuthor,
+                    DocLastEditedBy = document.DocLastEditedBy,
+                    DocContent = document.DocContent,
+                    DocStamps = document.DocStamps,
+                    DocType = document.DocType,
+                    DocDateLastEdited = document.DocDateLastEdited,
+                    DeletedAt = document.DeletedAt,
+                    ProfileId = document.ProfileId,
+                })
+                .ToList();
+
+            // SV: piggyback the General flavour-block JSON in the previously-unused
+            // first tuple slot, so callers get docs + General in one fetch.
+            return (testProfile.CharacterDocumentGeneral, documents);
         }
 
         public async Task DeleteSlotAndSetSelectedIndex(NetUserId userId, int deleteSlot, int newSlot)
@@ -315,17 +452,100 @@ namespace Content.Server.Database
                         .Select(t => new Trait {TraitName = t})
             );
 
-            // CD: CD Character Data
-            profile.CDProfile ??= new CDModel.CDProfile();
-            profile.CDProfile.Height = humanoid.Height;
-            // There are JsonIgnore annotations to ensure that entries are not stored as JSON.
-            profile.CDProfile.CharacterRecords = JsonSerializer.SerializeToDocument(humanoid.CDCharacterRecords ?? PlayerProvidedCharacterRecords.DefaultRecords());
-            if (humanoid.CDCharacterRecords != null)
+            // Height (formerly persisted on CDProfile; flattened onto Profile after the
+            // CD records rip — CDProfile no longer exists).
+            profile.Height = humanoid.Height;
+
+            // SV: persist lobby edits to SV character documents into SVProfile.
+            // The lobby never sends stamps so we preserve stamps from any existing row
+            // matched by DocID — that way in-world stamps survive a lobby edit.
+            if (humanoid.SVCharacterDocuments != null || humanoid.SVCharacterDocumentGeneral != null)
             {
-                profile.CDProfile.CharacterRecordEntries.Clear();
-                profile.CDProfile.CharacterRecordEntries.AddRange(RecordsSerialization.GetEntries(humanoid.CDCharacterRecords));
+                profile.SVProfile ??= new SVModel.SVProfile { ProfileId = profile.Id };
+                profile.SVProfile.CharacterName = humanoid.Name;
+
+                if (humanoid.SVCharacterDocuments != null)
+                {
+                    // Syndicate + CentralCommand docs are HRP-critical and must NEVER be
+                    // mutated by lobby saves — only the in-game console flow and the admin
+                    // EUI can touch them. The lobby UI hides the buttons, but a modded client
+                    // could still POST forged ones, so the server enforces it too.
+                    var restrictedTypes = new HashSet<int>
+                    {
+                        (int)Content.Shared._SV.CharacterDocuments.DocumentType.Syndicate,
+                        (int)Content.Shared._SV.CharacterDocuments.DocumentType.CentralCommand,
+                    };
+
+                    // IMPORTANT: upsert by DocID rather than wiping + reinserting the whole set.
+                    // The old Clear()+re-add reassigned a fresh autoincrement DocID to every row
+                    // on each save, while the lobby client keeps the DocIDs from its original
+                    // load. After one save the client's IDs no longer matched the DB, so every
+                    // kept doc looked "deleted" — getting binned AND re-added — which piled up
+                    // duplicate binned copies on every subsequent save. Updating rows in place
+                    // keeps DocIDs stable so the client's view stays correct across saves, and it
+                    // also lets in-world stamps survive a lobby edit (the lobby never sends them).
+                    var docs = profile.SVProfile.CharacterDocuments;
+                    var payloadById = humanoid.SVCharacterDocuments
+                        .Where(d => d.DocID != 0)
+                        .GroupBy(d => d.DocID)
+                        .ToDictionary(g => g.Key, g => g.First());
+
+                    foreach (var row in docs)
+                    {
+                        // Restricted + already-binned rows are off-limits to the lobby; leave them
+                        // exactly as they are (this also keeps their DocIDs stable).
+                        if (restrictedTypes.Contains(row.DocType) || row.DeletedAt != null)
+                            continue;
+
+                        if (payloadById.TryGetValue(row.DocID, out var payloadDoc)
+                            && !restrictedTypes.Contains(payloadDoc.DocType))
+                        {
+                            // Player kept (and possibly edited) this doc: update in place, preserving
+                            // DocID and the existing stamps (the lobby never sends stamps).
+                            row.DocType = payloadDoc.DocType;
+                            row.DocTitle = payloadDoc.DocTitle;
+                            row.DocAuthor = payloadDoc.DocAuthor;
+                            row.DocLastEditedBy = payloadDoc.DocLastEditedBy;
+                            row.DocDateLastEdited = payloadDoc.DocDateLastEdited;
+                            row.DocContent = payloadDoc.DocContent;
+                        }
+                        else
+                        {
+                            // Player removed it in the lobby: route through the retention bin instead
+                            // of hard-deleting, so a salty player can't quietly erase their own
+                            // firing paperwork between rounds.
+                            row.DeletedAt = DateTime.UtcNow;
+                        }
+                    }
+
+                    // Insert brand-new docs (no matching existing row). Restricted-type entries can
+                    // only originate from the in-game / admin flows, so drop any the client forges.
+                    var existingIds = docs.Where(d => d.DocID != 0).Select(d => d.DocID).ToHashSet();
+                    foreach (var doc in humanoid.SVCharacterDocuments)
+                    {
+                        if (restrictedTypes.Contains(doc.DocType))
+                            continue;
+                        if (doc.DocID != 0 && existingIds.Contains(doc.DocID))
+                            continue; // already updated in place above
+
+                        docs.Add(new SVModel.CharacterDocument
+                        {
+                            DocType = doc.DocType,
+                            DocTitle = doc.DocTitle,
+                            DocAuthor = doc.DocAuthor,
+                            DocLastEditedBy = doc.DocLastEditedBy,
+                            DocDateLastEdited = doc.DocDateLastEdited,
+                            DocContent = doc.DocContent,
+                            DocStamps = Content.Server._SV.CharacterDocuments.CharacterDocumentSerializer.SerializeStamp(doc.DocStamps),
+                        });
+                    }
+                }
+
+                // Serialize the General flavour block as JSON on the SV profile.
+                profile.SVProfile.CharacterDocumentGeneral = humanoid.SVCharacterDocumentGeneral == null
+                    ? null
+                    : JsonSerializer.SerializeToDocument(humanoid.SVCharacterDocumentGeneral);
             }
-            // END CD
 
             profile.Loadouts.Clear();
 

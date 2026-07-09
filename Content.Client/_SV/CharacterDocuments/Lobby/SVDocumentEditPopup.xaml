@@ -1,0 +1,44 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      MinSize="540 700"
+                      SetSize="540 700"
+                      Title="{Loc 'sv-document-lobby-edit-popup-title'}">
+    <BoxContainer Margin="5 2 5 5" Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" SeparationOverride="2">
+        <PanelContainer StyleClasses="AngleRect">
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="4" SeparationOverride="6">
+                <Label Text="{Loc 'sv-document-lobby-edit-popup-title-label'}"/>
+                <LineEdit Name="TitleEdit" HorizontalExpand="True" PlaceHolder="{Loc 'sv-document-lobby-edit-popup-title-placeholder'}"/>
+
+                <Label Text="{Loc 'sv-document-lobby-edit-popup-author-label'}" Margin="0 4 0 0"/>
+                <LineEdit Name="AuthorEdit" HorizontalExpand="True" PlaceHolder="{Loc 'sv-document-lobby-edit-popup-author-placeholder'}"/>
+            </BoxContainer>
+        </PanelContainer>
+
+        <Label Text="{Loc 'sv-document-lobby-edit-popup-content-label'}" Margin="4 4 0 2"/>
+        <!-- Paper-styled content area: 460 wide matches the console window's paper and gives a clear edge against the popup background. -->
+        <PanelContainer Name="ContentPanel"
+                        StyleIdentifier="PaperEditBackground"
+                        MinWidth="460" MaxWidth="460"
+                        HorizontalAlignment="Center"
+                        VerticalExpand="True">
+            <TextEdit Name="ContentEdit"
+                      StyleClasses="PaperWrittenText"
+                      MinHeight="400"
+                      HorizontalExpand="True"
+                      VerticalExpand="True"
+                      VerticalAlignment="Top"/>
+        </PanelContainer>
+
+        <BoxContainer Orientation="Vertical" HorizontalExpand="True" SeparationOverride="4">
+            <PanelContainer StyleClasses="AngleRect">
+                <Button Access="Public"
+                        Name="SaveButton"
+                        Text="{Loc 'sv-document-lobby-edit-popup-save'}"
+                        Margin="4"/>
+            </PanelContainer>
+            <Label Name="ValidationLabel"
+                   HorizontalExpand="True"
+                   HorizontalAlignment="Center"/>
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>

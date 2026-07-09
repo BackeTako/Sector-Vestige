@@ -21,9 +21,6 @@ using Robust.Shared.Utility;
 using Robust.Shared;
 using YamlDotNet.RepresentationModel;
 
-// CD: Imports
-using Content.Shared._CD.Records;
-
 namespace Content.Shared.Preferences
 {
     /// <summary>
@@ -133,8 +130,13 @@ namespace Content.Shared.Preferences
         [DataField("cosmaticDriftCharacterHeight")]
         public float Height = 1f;
 
-        [DataField("cosmaticDriftCharacterRecords")]
-        public PlayerProvidedCharacterRecords? CDCharacterRecords;
+        // SV - CharacterDocuments
+        [DataField("svCharacterDocuments")]
+        public List<_SV.CharacterDocuments.CharacterDocument>? SVCharacterDocuments;
+
+        [DataField("svCharacterDocumentGeneral")]
+        public Content.Shared._SV.CharacterDocuments.CharacterDocumentGeneral? SVCharacterDocumentGeneral;
+        // SV - CharacterDocuments
 
         public HumanoidCharacterProfile(
             string name,
@@ -151,7 +153,8 @@ namespace Content.Shared.Preferences
             HashSet<ProtoId<AntagPrototype>> antagPreferences,
             HashSet<ProtoId<TraitPrototype>> traitPreferences,
             Dictionary<string, RoleLoadout> loadouts,
-            PlayerProvidedCharacterRecords? cdCharacterRecords) // CD character records
+            List<_SV.CharacterDocuments.CharacterDocument>? svCharacterDocuments = null, // SV character documents
+            _SV.CharacterDocuments.CharacterDocumentGeneral? svCharacterDocumentGeneral = null) // SV character documents
         {
             Name = name;
             FlavorText = flavortext;
@@ -167,7 +170,8 @@ namespace Content.Shared.Preferences
             _antagPreferences = antagPreferences;
             _traitPreferences = traitPreferences;
             _loadouts = loadouts;
-            CDCharacterRecords = cdCharacterRecords; // CD character records
+            SVCharacterDocuments = svCharacterDocuments; // SV character documents
+            SVCharacterDocumentGeneral = svCharacterDocumentGeneral; // SV character documents
 
             var hasHighPrority = false;
             foreach (var (key, value) in _jobPriorities)
@@ -200,7 +204,8 @@ namespace Content.Shared.Preferences
                 new HashSet<ProtoId<AntagPrototype>>(other.AntagPreferences),
                 new HashSet<ProtoId<TraitPrototype>>(other.TraitPreferences),
                 new Dictionary<string, RoleLoadout>(other.Loadouts),
-                other.CDCharacterRecords)
+                other.SVCharacterDocuments,
+                other.SVCharacterDocumentGeneral)
         {
         }
 
@@ -478,9 +483,16 @@ namespace Content.Shared.Preferences
             };
         }
 
-        public HumanoidCharacterProfile WithCDCharacterRecords(PlayerProvidedCharacterRecords records)
+        // SV: returns a clone of this profile with the supplied SV documents list.
+        public HumanoidCharacterProfile WithSVCharacterDocuments(List<Content.Shared._SV.CharacterDocuments.CharacterDocument>? docs)
         {
-            return new HumanoidCharacterProfile(this) { CDCharacterRecords = records };
+            return new HumanoidCharacterProfile(this) { SVCharacterDocuments = docs };
+        }
+
+        // SV: returns a clone of this profile with the supplied general flavour block.
+        public HumanoidCharacterProfile WithSVCharacterDocumentGeneral(Content.Shared._SV.CharacterDocuments.CharacterDocumentGeneral? general)
+        {
+            return new HumanoidCharacterProfile(this) { SVCharacterDocumentGeneral = general };
         }
 
         public string Summary =>
@@ -506,9 +518,46 @@ namespace Content.Shared.Preferences
             if (!_traitPreferences.SequenceEqual(other._traitPreferences)) return false;
             if (!Loadouts.SequenceEqual(other.Loadouts)) return false;
             if (FlavorText != other.FlavorText) return false;
-            if (CDCharacterRecords != null && other.CDCharacterRecords != null &&
-                !CDCharacterRecords.MemberwiseEquals(other.CDCharacterRecords)) return false;
+            // SV: lobby SV docs participate in the dirty check so edits enable the Save button.
+            if (!SVDocsEqual(SVCharacterDocuments, other.SVCharacterDocuments))
+                return false;
+            // SV: same for the general flavour block.
+            if (SVCharacterDocumentGeneral != null && other.SVCharacterDocumentGeneral != null
+                && !SVCharacterDocumentGeneral.MemberwiseEquals(other.SVCharacterDocumentGeneral))
+                return false;
+            if ((SVCharacterDocumentGeneral == null) != (other.SVCharacterDocumentGeneral == null))
+                return false;
             return Appearance.Equals(other.Appearance);
+        }
+
+        // SV: clamp helper used by EnsureValid on incoming wire payloads.
+        private static string ClampStr(string? s, int maxLen)
+        {
+            if (string.IsNullOrEmpty(s)) return string.Empty;
+            return s.Length > maxLen ? s[..maxLen] : s;
+        }
+
+        // SV: shallow per-field equality on the SV documents lists; stamps are not edited
+        // in the lobby so we only diff what the lobby exposes.
+        private static bool SVDocsEqual(
+            List<Content.Shared._SV.CharacterDocuments.CharacterDocument>? a,
+            List<Content.Shared._SV.CharacterDocuments.CharacterDocument>? b)
+        {
+            if (ReferenceEquals(a, b)) return true;
+            var ac = a?.Count ?? 0;
+            var bc = b?.Count ?? 0;
+            if (ac != bc) return false;
+            for (var i = 0; i < ac; i++)
+            {
+                var x = a![i];
+                var y = b![i];
+                if (x.DocID != y.DocID) return false;
+                if (x.DocType != y.DocType) return false;
+                if (x.DocTitle != y.DocTitle) return false;
+                if (x.DocAuthor != y.DocAuthor) return false;
+                if (x.DocContent != y.DocContent) return false;
+            }
+            return true;
         }
 
         public void EnsureValid(ICommonSession session, IDependencyCollection collection)
@@ -663,14 +712,27 @@ namespace Content.Shared.Preferences
             _traitPreferences.Clear();
             _traitPreferences.UnionWith(GetValidTraits(traits, prototypeManager));
 
-            if (CDCharacterRecords == null)
+            // SV: sanitize lobby-sent SV documents and the General block.
+            // We trust admins but not raw wire payloads — clamp lengths, drop unknown types.
+            if (SVCharacterDocuments != null)
             {
-                CDCharacterRecords = PlayerProvidedCharacterRecords.DefaultRecords();
+                const int titleMax = 256;
+                const int contentMax = 8192;
+                var validTypes = Enum.GetValues<Content.Shared._SV.CharacterDocuments.DocumentType>();
+                var validTypeSet = new HashSet<int>(validTypes.Select(t => (int) t));
+                SVCharacterDocuments = SVCharacterDocuments
+                    .Where(d => d != null && validTypeSet.Contains(d.DocType))
+                    .Select(d =>
+                    {
+                        d.DocTitle = ClampStr(d.DocTitle, titleMax);
+                        d.DocAuthor = ClampStr(d.DocAuthor, titleMax);
+                        d.DocLastEditedBy = ClampStr(d.DocLastEditedBy, titleMax);
+                        d.DocContent = ClampStr(d.DocContent, contentMax);
+                        return d;
+                    })
+                    .ToList();
             }
-            else
-            {
-                CDCharacterRecords!.EnsureValid();
-            }
+            SVCharacterDocumentGeneral?.EnsureValid();
 
             // Checks prototypes exist for all loadouts and dump / set to default if not.
             var toRemove = new ValueList<string>();

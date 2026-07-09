@@ -365,14 +365,28 @@
     color: "#1f8c28"
   - type: Computer
     board: MedicalRecordsComputerCircuitboard
-  - type: CharacterRecordConsole
-    consoleType: Medical
+  - type: CharacterDocumentConsole #SV - CharacterDocuments
+    documentType: Medical
+    paperSlot:
+      insertSound: /Audio/Machines/scanning.ogg
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      whitelist:
+        components:
+          - Paper
+  - type: ItemSlots #SV - CharacterDocuments
+  - type: ContainerContainer #SV - CharacterDocuments
+    containers:
+      board: !type:Container
+        ents: []
+      Paper: !type:ContainerSlot {}
   - type: UserInterface
     interfaces:
-      enum.CharacterRecordConsoleKey.Key:
-        type: CharacterRecordConsoleBoundUserInterface
+        enum.CharacterDocumentConsoleUiKey.Key:
+          type: CharacterDocumentConsoleBoundUserInterface #SV - CharacterDocuments
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
   - type: ActivatableUI
-    key: enum.CharacterRecordConsoleKey.Key
+    key: enum.CharacterDocumentConsoleUiKey.Key
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -380,15 +394,7 @@
   name: security records computer
   description: This can be used to access security records.
   components:
-    # We need to have both a CriminalRecordsConsole and CharacterRecordConsole
-    # component to be able to set wanted status.
   - type: CriminalRecordsConsole
-  - type: UserInterface
-    interfaces:
-      enum.CharacterRecordConsoleKey.Key:
-        type: CharacterRecordConsoleBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
@@ -410,10 +416,28 @@
     board: CriminalRecordsComputerCircuitboard
   - type: AccessReader
     access: [["Security"]]
-  - type: CharacterRecordConsole
-    consoleType: Security
+  - type: CharacterDocumentConsole #SV - CharacterDocuments
+    documentType: Security
+    paperSlot:
+      insertSound: /Audio/Machines/scanning.ogg
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      whitelist:
+        components:
+          - Paper
+  - type: ItemSlots #SV - CharacterDocuments
+  - type: ContainerContainer #SV - CharacterDocuments
+    containers:
+      board: !type:Container
+        ents: []
+      Paper: !type:ContainerSlot {}
+  - type: UserInterface
+    interfaces:
+        enum.CharacterDocumentConsoleUiKey.Key:
+          type: CharacterDocumentConsoleBoundUserInterface #SV - CharacterDocuments
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
   - type: ActivatableUI
-    key: enum.CharacterRecordConsoleKey.Key
+    key: enum.CharacterDocumentConsoleUiKey.Key
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -421,15 +445,29 @@
   name: employment records computer
   description: This can be used to check employment records.
   components:
-  - type: GeneralStationRecordConsole
+  # - type: GeneralStationRecordConsole #SV - CharacterDocuments
+  - type: CharacterDocumentConsole #SV - CharacterDocuments
+    documentType: Employment
+    paperSlot:
+      insertSound: /Audio/Machines/scanning.ogg
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      whitelist:
+        components:
+          - Paper
+  - type: ItemSlots #SV - CharacterDocuments
+  - type: ContainerContainer #SV - CharacterDocuments
+    containers:
+      board: !type:Container
+        ents: []
+      Paper: !type:ContainerSlot {}
   - type: UserInterface
     interfaces:
-        enum.CharacterRecordConsoleKey.Key:
-          type: CharacterRecordConsoleBoundUserInterface
+        enum.CharacterDocumentConsoleUiKey.Key:
+          type: CharacterDocumentConsoleBoundUserInterface #SV - CharacterDocuments
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
   - type: ActivatableUI
-    key: enum.CharacterRecordConsoleKey.Key
+    key: enum.CharacterDocumentConsoleUiKey.Key #SV - CharacterDocuments
   - type: PointLight
     radius: 1.5
     energy: 4.0
@@ -439,8 +477,118 @@
   - type: GuideHelp
     guides:
     - Forensics
-  - type: CharacterRecordConsole
-    consoleType: Employment
+
+# SV: Central Command documentation computer — handles Employment, Medical, Security,
+# AND Central Command documents. New scans land as CentralCommand by default; existing
+# docs of any of the four types show up and can be edited / printed (with their own headers).
+- type: entity
+  parent: BaseComputerAiAccess
+  id: SVComputerCentralCommandDocuments
+  name: central command records computer
+  description: A multi-purpose Central Command terminal. Reads employment, medical, security, and CentCom-classified documents.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: comm
+    - map: ["computerLayerKeys"]
+      state: tech_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+      visible: false
+  - type: PointLight
+    radius: 1.5
+    energy: 4.0
+    color: "#a4885c"
+  - type: Computer
+    board: CommsComputerCircuitboard
+  - type: AccessReader
+    access: [["CentralCommand"]]
+  - type: CharacterDocumentConsole
+    documentType: CentralCommand
+    additionalDocumentTypes:
+    - Employment
+    - Medical
+    - Security
+    paperSlot:
+      insertSound: /Audio/Machines/scanning.ogg
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      whitelist:
+        components:
+          - Paper
+  # CentComm operates from a different map than the main station without this the
+  # console would only see crew on its own (empty) station entity
+  - type: CrossMapDocumentAccess
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+        ents: []
+      Paper: !type:ContainerSlot {}
+  - type: UserInterface
+    interfaces:
+        enum.CharacterDocumentConsoleUiKey.Key:
+          type: CharacterDocumentConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+  - type: ActivatableUI
+    key: enum.CharacterDocumentConsoleUiKey.Key
+
+# SV: Syndicate documentation computer — handles Syndicate-classified documents.
+- type: entity
+  parent: BaseComputerAiAccess
+  id: SVComputerSyndicateDocuments
+  name: syndicate records computer
+  description: A clandestine records terminal. Bears no NanoTrasen branding.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: comm_syndie
+    - map: ["computerLayerKeys"]
+      state: syndie_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+      visible: false
+  - type: PointLight
+    radius: 1.5
+    energy: 4.0
+    color: "#aa0000"
+  - type: Computer
+    board: SyndicateCommsComputerCircuitboard
+  - type: CharacterDocumentConsole
+    documentType: Syndicate
+    paperSlot:
+      insertSound: /Audio/Machines/scanning.ogg
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      whitelist:
+        components:
+          - Paper
+    # CentComm operates from a different map than the main station without this the
+    # console would only see crew on its own (empty) station entity
+  - type: CrossMapDocumentAccess
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+        ents: []
+      Paper: !type:ContainerSlot {}
+  - type: UserInterface
+    interfaces:
+        enum.CharacterDocumentConsoleUiKey.Key:
+          type: CharacterDocumentConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+  - type: ActivatableUI
+    key: enum.CharacterDocumentConsoleUiKey.Key
 
 - type: entity
   parent: BaseComputerAiAccess

@@ -1,0 +1,47 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# Central Command documentation terminal — tabletop variant.
+- type: entity
+  parent: [ BaseStructureComputerTabletop, SVComputerCentralCommandDocuments ]
+  id: SVComputerTabletopCentralCommandDocuments
+  suffix: Tabletop
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "computerLayerBody" ]
+      sprite: _CD/Structures/Machines/Computers/tabletopcomputer.rsi
+      state: computer_tabletop
+    - map: [ "computerLayerKeyboard" ]
+      sprite: _CD/Structures/Machines/Computers/tabletopcomputer.rsi
+      state: generic_keyboard_tabletop
+    - map: [ "computerLayerScreen" ]
+      sprite: Structures/Machines/computers.rsi
+      state: comm
+    - map: [ "computerLayerKeys" ]
+      sprite: Structures/Machines/computers.rsi
+      state: tech_key
+
+# Syndicate documentation terminal — tabletop variant.
+# Single-type Syndicate console; clandestine, no NT branding.
+- type: entity
+  parent: [ BaseStructureComputerTabletop, SVComputerSyndicateDocuments ]
+  id: SVComputerTabletopSyndicateDocuments
+  suffix: Tabletop
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "computerLayerBody" ]
+      sprite: _CD/Structures/Machines/Computers/tabletopcomputer.rsi
+      state: computer_tabletop
+    - map: [ "computerLayerKeyboard" ]
+      sprite: _CD/Structures/Machines/Computers/tabletopcomputer.rsi
+      state: generic_keyboard_tabletop
+    - map: [ "computerLayerScreen" ]
+      sprite: Structures/Machines/computers.rsi
+      state: comm_syndie
+    - map: [ "computerLayerKeys" ]
+      sprite: Structures/Machines/computers.rsi
+      state: syndie_key

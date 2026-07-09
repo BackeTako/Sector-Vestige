@@ -17,6 +17,10 @@ namespace Content.Server.Preferences.Managers
         void FinishLoad(ICommonSession session);
         void OnClientDisconnected(ICommonSession session);
 
+        // SV: re-fetch a user's prefs from DB and push to the client. Used by the
+        // admin character-documents tool so edits show up without a reconnect.
+        Task RefreshPreferencesForUserAsync(ICommonSession session);
+
         bool TryGetCachedPreferences(NetUserId userId, [NotNullWhen(true)] out PlayerPreferences? playerPreferences);
         PlayerPreferences GetPreferences(NetUserId userId);
         PlayerPreferences? GetPreferencesOrNull(NetUserId? userId);

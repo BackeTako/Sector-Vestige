@@ -1,0 +1,35 @@
+<Control xmlns="https://spacestation14.io"
+         xmlns:paper="clr-namespace:Content.Client.Paper.UI">
+    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" VerticalExpand="True">
+        <!-- Left: list + buttons. Kept narrow so the preview can match the in-world
+             console width within the same overall footprint; the button strip
+             (Add/Edit/Remove/Up/Down) still fits comfortably at this width. -->
+        <BoxContainer Orientation="Vertical" MinWidth="300" MaxWidth="300" VerticalExpand="True">
+            <ItemList Name="EntrySelector" HorizontalExpand="True" VerticalExpand="True" MinSize="0 200"/>
+            <BoxContainer Orientation="Horizontal">
+                <Button Name="AddButton" StyleClasses="OpenBoth" Text="{Loc 'sv-document-lobby-add'}"/>
+                <Button Name="EditButton" StyleClasses="OpenBoth" Text="{Loc 'sv-document-lobby-edit'}"/>
+                <Button Name="RemoveButton" StyleClasses="OpenLeft" Text="{Loc 'sv-document-lobby-remove'}"/>
+                <Control HorizontalExpand="True"/>
+                <Button Name="UpButton" HorizontalAlignment="Right" StyleClasses="OpenRight" Text="{Loc 'sv-document-lobby-up'}"/>
+                <Button Name="DownButton" HorizontalAlignment="Right" StyleClasses="OpenBoth" Text="{Loc 'sv-document-lobby-down'}"/>
+            </BoxContainer>
+        </BoxContainer>
+        <!-- Right: read-only preview pane — width matches the in-world console document
+             pane (580, see CharacterDocumentConsoleWindow.xaml) so authored layouts
+             (dividers, [head] boxes, block-art) wrap identically to the console. -->
+        <BoxContainer Orientation="Vertical" MinWidth="580" MaxWidth="580" VerticalExpand="True" Margin="8 0 0 0">
+            <Label Name="PreviewTitleLabel" Text="{Loc 'sv-document-lobby-preview-empty'}" StyleClasses="LabelHeading"/>
+            <BoxContainer Orientation="Horizontal" Margin="0 0 0 4">
+                <Label Text="{Loc 'sv-document-lobby-edit-popup-author-label'}" Margin="0 0 4 0"/>
+                <Label Name="PreviewAuthorLabel" HorizontalExpand="True" ClipText="True"/>
+            </BoxContainer>
+            <PanelContainer StyleIdentifier="PaperEditBackground" VerticalExpand="True" HorizontalExpand="True">
+                <ScrollContainer HScrollEnabled="False">
+                    <RichTextLabel Name="PreviewContent" StyleClasses="PaperWrittenText" VerticalExpand="True" HorizontalExpand="True" VerticalAlignment="Top" Margin="5 5 5 10"/>
+                    <paper:StampCollection Name="PreviewStamps" VerticalAlignment="Bottom" VerticalExpand="True"/>
+                </ScrollContainer>
+            </PanelContainer>
+        </BoxContainer>
+    </BoxContainer>
+</Control>

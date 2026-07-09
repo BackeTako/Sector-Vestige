@@ -1,5 +1,15 @@
+// SPDX-FileCopyrightText: 2026 Wizards Den contributors
+// SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+// SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2026 portfiend <109661617+portfiend@users.noreply.github.com>
+//
+// SPDX-License-Identifier: MIT
+
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Content.Client.Sprite;
+using Content.Shared._SV.CharacterDocuments;
 using Content.Shared.Preferences;
 using Robust.Client.UserInterface;
 
@@ -41,6 +51,26 @@ public sealed partial class HumanoidProfileEditor
         {
             var profile = HumanoidCharacterProfile.FromStream(file, _playerManager.LocalSession!);
             var oldProfile = Profile;
+            // SV: character documents - Start
+            // Import the file's documents as fresh entries. Zeroing each DocID makes the save
+            // treat them as brand-new rows, so they can never collide with — or silently
+            // overwrite — the server's existing rows (which use server-assigned autoincrement
+            // IDs). Restricted-type entries (Syndicate / CentralCommand) are dropped server-side.
+            var importedDocs = profile.SVCharacterDocuments?
+                .Select(d => new CharacterDocument
+                {
+                    DocID = 0,
+                    DocType = d.DocType,
+                    DocTitle = d.DocTitle,
+                    DocAuthor = d.DocAuthor,
+                    DocLastEditedBy = d.DocLastEditedBy,
+                    DocDateLastEdited = d.DocDateLastEdited,
+                    DocContent = d.DocContent,
+                    DocStamps = new List<CharacterDocumentStamp>(d.DocStamps),
+                })
+                .ToList();
+            profile = profile.WithSVCharacterDocuments(importedDocs);
+            // SV: character documents - End
             SetProfile(profile, CharacterSlot);
 
             IsDirty = !profile.MemberwiseEquals(oldProfile);
