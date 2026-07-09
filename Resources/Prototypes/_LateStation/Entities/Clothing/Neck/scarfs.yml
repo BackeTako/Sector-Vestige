@@ -15,7 +15,6 @@
   - type: Clothing
     sprite: _LateStation/Clothing/Neck/Scarfs/PrideScarfs/lesbian_short.rsi
   - type: Butcherable
-    butcheringType: Knife
     spawned:
     - id: MaterialCloth1
       amount: 1
@@ -31,7 +30,6 @@
   - type: Clothing
     sprite: _LateStation/Clothing/Neck/Scarfs/PrideScarfs/lesbian_burnt.rsi
   - type: Butcherable
-    butcheringType: Knife
     spawned:
     - id: MaterialCloth1
       amount: 1
@@ -47,7 +45,6 @@
   - type: Clothing
     sprite: _LateStation/Clothing/Neck/Scarfs/PrideScarfs/gay_long.rsi
   - type: Butcherable
-    butcheringType: Knife
     spawned:
     - id: ClothingNeckScarfStripedGayShort
       amount: 2
@@ -63,7 +60,6 @@
   - type: Clothing
     sprite: _LateStation/Clothing/Neck/Scarfs/PrideScarfs/gay_short.rsi
   - type: Butcherable
-    butcheringType: Knife
     spawned:
     - id: MaterialCloth1
       amount: 1

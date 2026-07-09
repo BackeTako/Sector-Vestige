@@ -1,0 +1,44 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# Back - R&D bag choices for Directorate staff
+- type: loadout
+  id: RnDBackpack
+  equipment:
+    back: ClothingBackpackRnD
+
+- type: loadout
+  id: RnDSatchel
+  equipment:
+    back: ClothingBackpackSatchelRnD
+
+- type: loadout
+  id: RnDDuffel
+  equipment:
+    back: ClothingBackpackDuffelRnD
+
+# Jumpsuit / jumpskirt - field researcher
+- type: loadout
+  id: RnDFieldResearcherJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRnDFieldResearcher
+
+- type: loadout
+  id: RnDFieldResearcherJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtRnDFieldResearcher
+
+# Head - field researcher beret
+- type: loadout
+  id: RnDFieldResearcherBeret
+  equipment:
+    head: ClothingHeadHatBeretRnDFieldResearcher
+
+# Eyes - RCT goggles
+- type: loadout
+  id: RnDRCTGoggles
+  equipment:
+    eyes: ClothingEyesGogglesRnDRCT

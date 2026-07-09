@@ -113,7 +113,7 @@ function load_contribs([string] $repo)
 }
 
 $engineJson = load_contribs("space-wizards/RobustToolbox")
-$contentJson = load_contribs("space-wizards/space-station-14")
+$contentJson = load_contribs("Sector-Vestige/Sector-Vestige")
 
 ($engineJson).login + ($contentJson).login + ($add) `
     | select -unique `

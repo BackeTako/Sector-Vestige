@@ -1,0 +1,21 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconRCTLeader
+  icon:
+    sprite: /Textures/_SV/Interface/Misc/rnd_icons.rsi
+    state: RCTLeader
+  jobName: job-name-rctleader
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconRCT
+  icon:
+    sprite: /Textures/_SV/Interface/Misc/rnd_icons.rsi
+    state: RCT
+  jobName: job-name-rct

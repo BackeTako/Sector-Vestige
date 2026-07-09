@@ -189,5 +189,10 @@ namespace Content.Server.GameTicking
             UpdateRoundFlow(frameTime);
             UpdateGameRules();
         }
+
+        public static int GetRoundId(IEntitySystemManager esm)
+        {
+            return esm.GetEntitySystemOrNull<GameTicker>()?.RoundId ?? 0;
+        }
     }
 }

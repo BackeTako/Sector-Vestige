@@ -104,7 +104,6 @@
     sprite: Mobs/Species/Human/parts.rsi
     state: full
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeatHuman
       amount: 5

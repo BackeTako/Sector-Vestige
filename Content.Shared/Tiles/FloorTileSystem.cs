@@ -38,7 +38,6 @@ public sealed partial class FloorTileSystem : EntitySystem
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private TurfSystem _turf = default!;
 
-
     [Dependency] private EntityQuery<PhysicsComponent> _physicsQuery = default!;
 
     private static readonly Vector2 CheckRange = new(1f, 1f);

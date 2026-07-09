@@ -27,19 +27,6 @@
     solution:
       maxVol: 50
 
-- type: entity
-  parent: SolutionFood
-  id: SolutionResomiStomachFood
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: food
-    solution:
-      maxVol: 5
-      reagents:
-      - ReagentId: UncookedAnimalProteins
-        Quantity: 5
-
 - type: entity # Goobstation - resomi stomach
   id: OrganResomiStomach
   parent: OrganAnimalStomach
@@ -49,4 +36,3 @@
   - type: SolutionManager
     solutions:
     - SolutionResomiStomach
-    - SolutionResomiStomachFood

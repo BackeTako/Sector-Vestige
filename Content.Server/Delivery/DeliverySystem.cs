@@ -1,3 +1,16 @@
+// SPDX-FileCopyrightText: 2026 Wizards Den contributors
+// SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+// SPDX-FileCopyrightText: 2025 J <billsmith116@gmail.com>
+// SPDX-FileCopyrightText: 2025 Milon <milonpl.git@proton.me>
+// SPDX-FileCopyrightText: 2025 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
+// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+// SPDX-FileCopyrightText: 2025 ScarKy0 <106310278+ScarKy0@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+//
+// SPDX-License-Identifier: MIT
+
 using Content.Server.Cargo.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Station.Systems;
@@ -48,6 +61,37 @@ public sealed partial class DeliverySystem : SharedDeliverySystem
 
     private void OnMapInit(Entity<DeliveryComponent> ent, ref MapInitEvent args)
     {
+        SetupRecipient(ent);
+
+        // SV - Mail additions - Start - Commented out the MapInit
+        // _container.EnsureContainer<Container>(ent, ent.Comp.Container);
+
+        // if (_station.GetStationInMap(Transform(ent).MapID) is not { } stationId)
+        //     return;
+
+        // if (!_records.TryGetRandomRecord<GeneralStationRecord>(stationId, out var entry))
+        //     return;
+
+        // ent.Comp.RecipientName = entry.Name;
+        // ent.Comp.RecipientJobTitle = entry.JobTitle;
+        // ent.Comp.RecipientStation = stationId;
+
+        // _appearance.SetData(ent, DeliveryVisuals.JobIcon, entry.JobIcon);
+
+        // _label.Label(ent, ent.Comp.RecipientName);
+
+        // if (TryComp<FingerprintReaderComponent>(ent, out var reader) && entry.Fingerprint != null)
+        // {
+        //     _fingerprintReader.AddAllowedFingerprint((ent.Owner, reader), entry.Fingerprint);
+        // }
+
+        // Dirty(ent);
+        // SV - Mail additions - End - Commented out the MapInit
+    }
+
+    // SV - Mail additions - Start - Moved mapinit to a new method to set the recipient
+    public void SetupRecipient(Entity<DeliveryComponent> ent)
+    {
         _container.EnsureContainer<Container>(ent, ent.Comp.Container);
 
         if (_station.GetStationInMap(Transform(ent).MapID) is not { } stationId)
@@ -71,6 +115,7 @@ public sealed partial class DeliverySystem : SharedDeliverySystem
 
         Dirty(ent);
     }
+    // SV - Mail additions - End - Moved mapinit to a new method to set the recipient
 
     protected override void GrantSpesoReward(Entity<DeliveryComponent?> ent)
     {

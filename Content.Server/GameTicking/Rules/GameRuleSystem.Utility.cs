@@ -108,6 +108,7 @@ public abstract partial class GameRuleSystem<T> where T: IComponent
 
         var found = false;
         var aabb = gridComp.LocalAABB;
+        var mapUid = Transform(targetGrid).MapUid;
 
         for (var i = 0; i < 10; i++)
         {
@@ -115,7 +116,7 @@ public abstract partial class GameRuleSystem<T> where T: IComponent
             var randomY = RobustRandom.Next((int) aabb.Bottom, (int) aabb.Top);
 
             tile = new Vector2i(randomX, randomY);
-            if (_atmosphere.IsTileSpace(targetGrid, Transform(targetGrid).MapUid, tile)
+            if (_atmosphere.IsTileSpace(targetGrid, mapUid, tile)
                 || _atmosphere.IsTileAirBlockedCached(targetGrid, tile))
             {
                 continue;
@@ -125,6 +126,37 @@ public abstract partial class GameRuleSystem<T> where T: IComponent
             targetCoords = _map.GridTileToLocal(targetGrid, gridComp, tile);
             break;
         }
+
+        // Sector Vestige - start: the random AABB sampling above only makes 10 attempts, and station
+        // grids occupy a fraction of their bounding box, so it intermittently fails to find a valid
+        // floor tile even when plenty exist. Consumers that cache this result (e.g. AntagRandomSpawn)
+        // were then left without coordinates, producing an intermittent "no valid positions to place
+        // antag spawner" error (heisentest in TestAntagGhostRolesSequential). Deterministically fall
+        // back to a real, non-air-blocked tile so we reliably succeed whenever the grid has one.
+        if (!found)
+        {
+            var validTiles = new ValueList<Vector2i>();
+            var tileEnumerator = _map.GetAllTilesEnumerator(targetGrid, gridComp);
+            while (tileEnumerator.MoveNext(out var tileRef))
+            {
+                var indices = tileRef.Value.GridIndices;
+                if (_atmosphere.IsTileSpace(targetGrid, mapUid, indices)
+                    || _atmosphere.IsTileAirBlockedCached(targetGrid, indices))
+                {
+                    continue;
+                }
+
+                validTiles.Add(indices);
+            }
+
+            if (validTiles.Count > 0)
+            {
+                tile = validTiles[RobustRandom.Next(validTiles.Count)];
+                targetCoords = _map.GridTileToLocal(targetGrid, gridComp, tile);
+                found = true;
+            }
+        }
+        // Sector Vestige - end
 
         return found;
     }

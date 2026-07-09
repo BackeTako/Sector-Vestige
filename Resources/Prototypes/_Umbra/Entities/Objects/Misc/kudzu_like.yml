@@ -1,0 +1,71 @@
+# SPDX-FileCopyrightText: 2026 Umbra contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 Nico64 <74880554+NicoSGF64@users.noreply.github.com>
+#
+# SPDX-License-Identifier: MIT
+
+- type: entity
+  parent: WeakKudzu
+  id: FireKudzuWeak
+  name: magical fire
+  suffix: Weak, Pyro Crystal
+  description: It's fire, but it doesn't seem to set you on fire. Still hurts though... you should probably grab a fire extinguisher.
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Umbra/Objects/Misc/fire.rsi
+    #shader: unshaded # SV - Remove outdated attributes
+  - type: Kudzu
+    spriteVariants: 1
+    spreadChance: 0.3
+  - type: Damageable
+    damageModifierSet: FireKudzu
+  - type: Fixtures # Needed for IgniteOnCollide to work
+    fixtures:
+      ignition:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        hard: false
+        mask:
+        - ItemMask
+        layer:
+        - SlipLayer
+  - type: IgniteOnCollide # For some reason the fire dies once being collided with
+    fireStacks: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: DamageContacts
+    damage:
+      types:
+        Heat: 4
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+    reactions:
+    - reagents: [ Water ]
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        #scaleByQuantity: true # SV - Remove outdated attributes
+        damage:
+          types:
+            Cold: 2
+  - type: PointLight
+    radius: 3
+    energy: 1
+    color: "#FF4913"
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.6
+    sprintSpeedModifier: 0.6
+  - type: Barotrauma
+    damage:
+      types:
+        Cold: 1 # Per second, fire cannot exist without air

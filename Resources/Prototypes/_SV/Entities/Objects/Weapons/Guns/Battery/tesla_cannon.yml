@@ -1,0 +1,63 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# NT R&D experimental tesla weaponry - the Tesla Cannon (HEAVY loadout).
+# A two-handed backpack-fed weapon: it has NO ammo of its own.
+
+- type: entity
+  name: X-7 Tesla cannon
+  parent: [BaseItem, BaseGunWieldable, BaseRnDContraband]
+  id: WeaponTeslaCannon
+  description: An experimental R&D heavy directed-energy cannon. It has no internal cell - it draws power from a tesla cannon pack worn on the back, and must be braced in both hands to fire.
+  components:
+  - type: Item
+    size: Huge
+  # PLACEHOLDER art - dedicated tesla_cannon.rsi copied from the laser cannon, awaiting final sprites.
+  - type: Sprite
+    sprite: _SV/Objects/Weapons/Guns/Experimental/tesla_cannon.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-unshaded-4
+        map: ["enum.GunVisualLayers.MagUnshaded"]
+        shader: unshaded
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 1.5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Effects/Lightning/lightningshock.ogg
+      params:
+        variation: 0.2
+  - type: GunRequiresWield # must be braced in both hands
+  # No ammo of its own - draws from the pack worn in the BACK slot.
+  - type: ClothingSlotAmmoProvider
+  - type: SlotBasedConnectedContainer
+    targetSlot: BACK
+    containerWhitelist:
+      tags:
+      - TeslaCannonPack
+  - type: Appearance
+
+- type: entity
+  name: tesla cannon lightning
+  id: TeslaCannonHitscan
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanAmmo
+  - type: HitscanBasicRaycast
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Shock: 18
+  - type: HitscanStaminaDamage
+    staminaDamage: 30
+  - type: HitscanLightningArc
+    range: 4
+    boltCount: 2
+    arcDepth: 1

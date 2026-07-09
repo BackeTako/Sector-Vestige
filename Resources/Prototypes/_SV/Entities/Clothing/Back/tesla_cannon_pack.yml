@@ -1,0 +1,36 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# NT R&D experimental tesla weaponry - the Tesla Cannon power pack.
+# A dedicated back-worn energy pack (no general storage). It IS the cannon's ammo source: the
+# WeaponTeslaCannon forwards every shot to this pack's BatteryAmmoProvider via the connected
+# container. Slowly recharges itself from contained electrical-anomaly energy.
+- type: entity
+  name: XB-7 Power pack
+  parent: [Clothing, BaseRnDContraband]
+  id: ClothingBackpackTeslaCannon
+  description: A heavy back-mounted reactor pack that feeds the tesla cannon. It hums with contained electrical-anomaly energy and slowly recharges itself.
+  components:
+  - type: Tag
+    tags:
+    - TeslaCannonPack
+  - type: Sprite
+    sprite: Clothing/Back/Backpacks/waterbackpack.rsi
+    state: icon
+  - type: Item
+    size: Ginormous
+  - type: Clothing
+    slots: BACK
+    sprite: Clothing/Back/Backpacks/waterbackpack.rsi
+  - type: Battery
+    maxCharge: 1500
+    startingCharge: 1500
+  - type: BatterySelfRecharger
+    autoRechargeRate: 10 # slow anomaly-fed trickle
+  - type: BatteryAmmoProvider
+    proto: TeslaCannonHitscan
+    fireCost: 100 # 15 shots from a full pack
+  - type: Appearance

@@ -1,0 +1,259 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# NanoTrasen R&D - Recovery & Containment Team (RCT) ghost roles + spawners.
+# Spawn these like ERT: admin Spawn Entities menu, search "RCTRole".
+# Squad doctrine (see faction design doc): two named command-tier roles
+# (RCT Leader, Proctor) and two operative-tier roles (Containment Tech, Operative).
+# Containment Tech is the reason it's a recovery team and not a deathsquad.
+
+# Shared base for NanoTrasen R&D event humanoids (Researchers, Agents, RCT).
+- type: randomHumanoidSettings
+  id: EventHumanoidR&D
+  parent: EventHumanoidMindShielded
+  randomizeName: false
+  components:
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+    - DeathRattleImplantCentcomm
+
+# =========================================================================
+# RCT Leader - the team's commanding officer. Owns the operation end to end,
+# holds final recover-or-abort authority, and answers only to the Directorate.
+# Command tier (RCT Leader job).
+# =========================================================================
+- type: randomHumanoidSettings
+  id: RCTLeader
+  parent: EventHumanoidCentcomm
+  components:
+    - type: GhostRole
+      name: ghost-role-information-rct-leader-name
+      description: ghost-role-information-rct-leader-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+      job: RCTLeader
+    - type: Loadout
+      prototypes: [ RCTLeaderGear ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryLast
+      nameFormat: name-format-rct-leader
+
+- type: randomHumanoidSettings
+  id: RCTLeaderEVA
+  parent: RCTLeader
+  components:
+    - type: Loadout
+      prototypes: [ RCTLeaderGearEVA ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
+
+- type: entity
+  id: RandomHumanoidSpawnerRCTLeader
+  name: RCT leader
+  suffix: RCTRole, Leader
+  components:
+    - type: Sprite
+      sprite: _SV/Clothing/OuterClothing/Hardsuits/rnd_rct_hardsuit.rsi
+      state: icon
+    - type: RandomHumanoidSpawner
+      settings: RCTLeader
+
+- type: entity
+  id: RandomHumanoidSpawnerRCTLeaderEVA
+  parent: RandomHumanoidSpawnerRCTLeader
+  suffix: RCTRole, Leader, EVA
+  components:
+    - type: RandomHumanoidSpawner
+      settings: RCTLeaderEVA
+
+# =========================================================================
+# Containment Tech - stabilises hazards, deploys containment, IDs the asset.
+# The reason it's an RCT and not a deathsquad. Operative tier (RCT Operative).
+# =========================================================================
+- type: randomHumanoidSettings
+  id: RCTContainmentTech
+  parent: EventHumanoidCentcomm
+  components:
+    - type: GhostRole
+      name: ghost-role-information-rct-containment-name
+      description: ghost-role-information-rct-containment-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+      job: RCTMember
+    - type: Loadout
+      prototypes: [ RCTMemberGear ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryLast
+      nameFormat: name-format-rct-containment
+
+- type: randomHumanoidSettings
+  id: RCTContainmentTechEVA
+  parent: RCTContainmentTech
+  components:
+    - type: Loadout
+      prototypes: [ RCTMemberGearEVA ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
+
+- type: entity
+  id: RandomHumanoidSpawnerRCTContainmentTech
+  name: RCT containment tech
+  suffix: RCTRole, Containment Tech
+  components:
+    - type: Sprite
+      sprite: _SV/Clothing/OuterClothing/Hardsuits/rnd_rct_hardsuit.rsi
+      state: icon
+    - type: RandomHumanoidSpawner
+      settings: RCTContainmentTech
+
+- type: entity
+  id: RandomHumanoidSpawnerRCTContainmentTechEVA
+  parent: RandomHumanoidSpawnerRCTContainmentTech
+  suffix: RCTRole, Containment Tech, EVA
+  components:
+    - type: RandomHumanoidSpawner
+      settings: RCTContainmentTechEVA
+
+# =========================================================================
+# Operative - muscle. Breaching, cover, physically recovering the asset under
+# fire. Expendable; carries an RC-code rather than a name. Operative tier.
+# =========================================================================
+- type: randomHumanoidSettings
+  id: RCTOperative
+  parent: EventHumanoidCentcomm
+  components:
+    - type: GhostRole
+      name: ghost-role-information-rct-operative-name
+      description: ghost-role-information-rct-operative-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+      job: RCTMember
+    - type: Loadout
+      prototypes: [ RCTMemberGear ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
+    - type: RandomMetadata
+      nameSegments:
+      - RCTOperativeCodes
+      nameFormat: name-format-rct-operative
+
+- type: randomHumanoidSettings
+  id: RCTOperativeEVA
+  parent: RCTOperative
+  components:
+    - type: Loadout
+      prototypes: [ RCTMemberGearEVA ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
+
+- type: entity
+  id: RandomHumanoidSpawnerRCTOperative
+  name: RCT operative
+  suffix: RCTRole, Operative
+  components:
+    - type: Sprite
+      sprite: _SV/Clothing/OuterClothing/Hardsuits/rnd_rct_hardsuit.rsi
+      state: icon
+    - type: RandomHumanoidSpawner
+      settings: RCTOperative
+
+- type: entity
+  id: RandomHumanoidSpawnerRCTOperativeEVA
+  parent: RandomHumanoidSpawnerRCTOperative
+  suffix: RCTRole, Operative, EVA
+  components:
+    - type: RandomHumanoidSpawner
+      settings: RCTOperativeEVA
+
+# Heavy operative - NOT a separate role: it's the Operative above with a different kit.
+# Inherits the Operative's ghost-role identity and RC-code naming and only swaps the
+# loadout - dropping the arc caster for the experimental tesla cannon + back-mounted
+# reactor pack (hitscan lightning that arcs between targets). Still an RCT Operative.
+- type: randomHumanoidSettings
+  id: RCTOperativeHeavy
+  parent: RCTOperative
+  components:
+    - type: Loadout
+      prototypes: [ RCTMemberGearHeavy ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
+
+- type: randomHumanoidSettings
+  id: RCTOperativeHeavyEVA
+  parent: RCTOperative
+  components:
+    - type: Loadout
+      prototypes: [ RCTMemberGearHeavyEVA ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
+
+- type: entity
+  id: RandomHumanoidSpawnerRCTOperativeHeavy
+  parent: RandomHumanoidSpawnerRCTOperative
+  suffix: RCTRole, Operative, Heavy
+  components:
+    - type: RandomHumanoidSpawner
+      settings: RCTOperativeHeavy
+
+- type: entity
+  id: RandomHumanoidSpawnerRCTOperativeHeavyEVA
+  parent: RandomHumanoidSpawnerRCTOperativeHeavy
+  suffix: RCTRole, Operative, Heavy, EVA
+  components:
+    - type: RandomHumanoidSpawner
+      settings: RCTOperativeHeavyEVA
+
+# =========================================================================
+# Proctor - optional 4th member when the risk is political: enforces
+# discipline, blocks unilateral destroy-calls. Command tier (RCT Leader job).
+# =========================================================================
+- type: randomHumanoidSettings
+  id: RCTProctor
+  parent: EventHumanoidCentcomm
+  components:
+    - type: GhostRole
+      name: ghost-role-information-rct-proctor-name
+      description: ghost-role-information-rct-proctor-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+      job: RCTLeader
+    - type: Loadout
+      prototypes: [ RCTLeaderGear ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryLast
+      nameFormat: name-format-rct-proctor
+
+- type: randomHumanoidSettings
+  id: RCTProctorEVA
+  parent: RCTProctor
+  components:
+    - type: Loadout
+      prototypes: [ RCTLeaderGearEVA ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
+
+- type: entity
+  id: RandomHumanoidSpawnerRCTProctor
+  name: RCT proctor
+  suffix: RCTRole, Proctor
+  components:
+    - type: Sprite
+      sprite: _SV/Clothing/OuterClothing/Hardsuits/rnd_rct_hardsuit.rsi
+      state: icon
+    - type: RandomHumanoidSpawner
+      settings: RCTProctor
+
+- type: entity
+  id: RandomHumanoidSpawnerRCTProctorEVA
+  parent: RandomHumanoidSpawnerRCTProctor
+  suffix: RCTRole, Proctor, EVA
+  components:
+    - type: RandomHumanoidSpawner
+      settings: RCTProctorEVA

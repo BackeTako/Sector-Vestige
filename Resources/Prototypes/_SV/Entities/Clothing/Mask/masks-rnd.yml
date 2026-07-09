@@ -1,0 +1,32 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# NanoTrasen R&D - Recovery & Containment Team gas mask
+- type: entity
+  parent: [ ClothingMaskGas, BaseRnDContraband ]
+  id: ClothingMaskGasRnDRCT
+  name: RCT gas mask
+  description: A reinforced gas mask issued to NanoTrasen's Recovery & Containment Teams.
+  components:
+  - type: Sprite
+    sprite: _SV/Clothing/Mask/rnd_rct_gasmask.rsi
+  - type: Clothing
+    sprite: _SV/Clothing/Mask/rnd_rct_gasmask.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    hideOnToggle: true
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95

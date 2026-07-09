@@ -34,7 +34,6 @@
     lightningPrototype: SupermatterLightning
   - type: Beam
     sound: /Audio/_EE/Supermatter/emitter2.ogg
-    allowSpriteOverwrite: false
   - type: TimedDespawn
     lifetime: 1
 

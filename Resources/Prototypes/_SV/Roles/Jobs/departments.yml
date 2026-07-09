@@ -13,3 +13,19 @@
   roles:
   - SVMagistrate
   weight: 115
+
+# NT R&D jobs (EVENT JOBS)
+- type: department
+  id: NTRnD
+  name: department-ntrnd
+  description: department-ntrnd-description
+  color: "#462749" # R&D house colour
+  roles:
+  - RCTLeader
+  - RCTMember
+  - FieldResearcher
+  - FirstDirector
+  - SecondDirector
+  - ThirdDirector
+  editorHidden: true
+  weight: 115

@@ -1,0 +1,29 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made by HexReject (Discord)",
+    "size": {
+        "x": 8,
+        "y": 8
+    },
+    "states": [
+        {
+            "name": "FirstDirector"
+        },
+        {
+            "name": "SecondDirector"
+        },
+        {
+            "name": "ThirdDirector"
+        },
+        {
+            "name": "RCTLeader"
+        },
+        {
+            "name": "RCT"
+        },
+        {
+            "name": "FieldResearcher"
+        }
+    ]
+}

@@ -2257,73 +2257,61 @@ entities:
   - uid: 356
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: -1.5,16.5
       parent: 1
   - uid: 357
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: -1.5,17.5
       parent: 1
   - uid: 358
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: -1.5,18.5
       parent: 1
   - uid: 359
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: -0.5,18.5
       parent: 1
   - uid: 360
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: -0.5,19.5
       parent: 1
   - uid: 361
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 0.5,19.5
       parent: 1
   - uid: 362
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 1.5,19.5
       parent: 1
   - uid: 363
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 1.5,18.5
       parent: 1
   - uid: 364
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 2.5,18.5
       parent: 1
   - uid: 365
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 2.5,17.5
       parent: 1
   - uid: 366
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 2.5,16.5
       parent: 1
   - uid: 367
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 0.5,20.5
       parent: 1
 - proto: GrilleDiagonal

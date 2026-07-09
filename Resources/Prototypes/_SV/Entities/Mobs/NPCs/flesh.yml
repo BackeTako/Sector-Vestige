@@ -1,0 +1,74 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 OnyxTheBrave <131422822+OnyxTheBrave@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: SimpleSpaceMobBase
+  id: MobFrozenAbomination
+  name: frozen abomination
+  description: A frozen husk of flesh. It almost looks like a person.
+  components:
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 25
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: gib
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            Acidifier:
+              min: 1
+              max: 1
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: BarestepHard
+  - type: Tag
+    tags:
+    - FootstepSound
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _SV/Mobs/Demons/frozenabomination.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: frozenabomination
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: abomination
+      Dead:
+        Base: dead
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      25: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 2.5
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 5
+        Cold: 2

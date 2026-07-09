@@ -64,6 +64,5 @@
         params:
           volume: 3
           variation: 0.025
-    - type: Sharp
     - type: Contraband
       severity: Syndicate

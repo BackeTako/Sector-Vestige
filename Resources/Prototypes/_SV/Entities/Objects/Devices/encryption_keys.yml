@@ -1,0 +1,23 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# NanoTrasen R&D encryption key - grants the Directorate's private channel.
+- type: entity
+  parent: [ EncryptionKey, BaseCentcommContraband ]
+  id: EncryptionKeyRnD
+  name: R&D encryption key
+  description: An encryption key used by the Directorate of Research & Development. Clearance you almost certainly do not have.
+  components:
+  - type: EncryptionKey
+    channels:
+    - RnD
+    defaultChannel: RnD
+  - type: Sprite
+    sprite: Objects/Devices/encryption_keys.rsi
+    layers:
+    - state: crypt_gold
+    - sprite: _SV/Objects/Devices/encryption_keys.rsi
+      state: "r&d-label"

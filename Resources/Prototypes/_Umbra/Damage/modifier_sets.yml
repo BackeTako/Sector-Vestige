@@ -1,0 +1,20 @@
+# SPDX-FileCopyrightText: 2026 Umbra contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 Nico64 <74880554+NicoSGF64@users.noreply.github.com>
+#
+# SPDX-License-Identifier: MIT
+
+- type: damageModifierSet
+  id: FireKudzu # Fire, you know it, I know it. Bad at cold, water, and the lack of oxygen.
+  coefficients:
+    # Can't punch, shoot, or slash at fire
+    Blunt: 0.0
+    Slash: 0.0
+    Piercing: 0.0
+    Heat: 0.0
+    Cold: 2.0 # Water beats fire, water colder then fire, BOOM
+    Shock: 0.0
+    Poison: 0.0
+    Radiation: 0.0
+    Cellular: 0.0
+    Caustic: 0.0

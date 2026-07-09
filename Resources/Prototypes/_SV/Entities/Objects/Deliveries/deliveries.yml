@@ -1,0 +1,99 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# Player-addressable mail. Spawn-menu only. Activate to open the storage grid and load
+# items; the "Address" verb opens a UI to pick a recipient and Send, which routes a real
+# addressed delivery (carrying the loaded items) through the mail system.
+
+# --- Blank letter: small items ---
+- type: entity
+  parent: BaseStorageItem
+  id: SVLetterDeliveryAddressable
+  name: blank letter
+  description: A blank letter you can fill with small items, address to a crewmember, and send through the mail.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Cargo/mail.rsi
+    state: icon
+  - type: Item
+    storedRotation: 90
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,2,1
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+      enum.DeliveryAddressUiKey.Key:
+        type: AddressableDeliveryBoundUserInterface
+  - type: AddressableDelivery
+    deliveryProto: SVLetterDeliveryAddressed
+  - type: ActivatableUI
+    key: enum.DeliveryAddressUiKey.Key
+    verbOnly: true
+    verbText: addressable-delivery-verb
+
+# --- Blank package: large items (weapons, etc.) ---
+- type: entity
+  parent: BaseStorageItem
+  id: SVPackageDeliveryAddressable
+  name: blank package
+  description: An empty package you can fill with items, address to a crewmember, and send through the mail.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Cargo/mail_large.rsi
+    state: icon
+  - type: Item
+    size: Huge
+  - type: MultiHandedItem
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,4,3
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+      enum.DeliveryAddressUiKey.Key:
+        type: AddressableDeliveryBoundUserInterface
+  - type: AddressableDelivery
+    deliveryProto: SVPackageDeliveryAddressed
+  - type: ActivatableUI
+    key: enum.DeliveryAddressUiKey.Key
+    verbOnly: true
+    verbText: addressable-delivery-verb
+
+# --- Sent deliveries ---
+- type: entity
+  parent: LetterDelivery
+  id: SVLetterDeliveryAddressed
+  suffix: Addressed
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ComponentTable
+    table: !type:AllSelector
+      children: [ ]
+  # No random reward fill: a player-sent delivery only contains the items the sender loaded.
+  - type: EntityTableContainerFill
+    containers:
+      delivery: !type:AllSelector
+        children: [ ]
+
+- type: entity
+  parent: PackageDelivery
+  id: SVPackageDeliveryAddressed
+  suffix: Addressed
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ComponentTable
+    table: !type:AllSelector
+      children: [ ]
+  # No random reward fill: a player-sent delivery only contains the items the sender loaded.
+  - type: EntityTableContainerFill
+    containers:
+      delivery: !type:AllSelector
+        children: [ ]

@@ -1,5 +1,15 @@
 name: Diff RSIs
 
+# Least privilege: this workflow only reads the repo and writes a PR comment.
+permissions:
+  contents: read
+  pull-requests: write
+
+# Coalesce rapid pushes so two runs don't race to create/edit the same diff comment.
+concurrency:
+  group: rsi-diff-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 on:
   pull_request_target:
     paths:
@@ -11,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v7
 
       - name: Get changed files
         id: files
@@ -35,7 +45,7 @@ jobs:
           headsha: ${{ github.event.pull_request.head.sha }}
 
       - name: Potentially find comment
-        uses: peter-evans/find-comment@v1
+        uses: peter-evans/find-comment@v3
         id: fc
         with:
           issue-number: ${{ github.event.number }}
@@ -44,7 +54,7 @@ jobs:
 
       - name: Create comment if it doesn't exist
         if: steps.fc.outputs.comment-id == ''
-        uses: peter-evans/create-or-update-comment@v1
+        uses: peter-evans/create-or-update-comment@v4
         with:
           issue-number: ${{ github.event.number }}
           body: |
@@ -52,7 +62,7 @@ jobs:
 
       - name: Update comment if it exists
         if: steps.fc.outputs.comment-id != ''
-        uses: peter-evans/create-or-update-comment@v1
+        uses: peter-evans/create-or-update-comment@v4
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           edit-mode: replace
@@ -61,7 +71,7 @@ jobs:
 
       - name: Update comment to read that it has been edited
         if: steps.fc.outputs.comment-id != ''
-        uses: peter-evans/create-or-update-comment@v1
+        uses: peter-evans/create-or-update-comment@v4
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           edit-mode: append

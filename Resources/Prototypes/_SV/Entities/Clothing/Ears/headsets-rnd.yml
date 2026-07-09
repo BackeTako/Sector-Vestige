@@ -1,0 +1,39 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: [ ClothingHeadset, BaseRnDContraband ]
+  id: ClothingHeadsetRnD
+  name: R&D headset
+  description: A headset used by the Directorate of Research & Development. Keyed to channels well above your clearance.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyRnD
+      - EncryptionKeyCommon
+      - EncryptionKeyHailing
+  - type: Sprite
+    sprite: _SV/Clothing/Ears/Headsets/rnd_headset.rsi
+  - type: Clothing
+    sprite: _SV/Clothing/Ears/Headsets/rnd_headset.rsi
+
+- type: entity
+  parent: [ ClothingHeadsetAlt, BaseRnDContraband ]
+  id: ClothingHeadsetAltRnD
+  name: R&D over-ear headset
+  description: A discreet over-ear headset used by the Directorate of Research & Development.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyRnD
+      - EncryptionKeyCommon
+      - EncryptionKeyHailing
+  - type: Sprite
+    sprite: _SV/Clothing/Ears/Headsets/rnd_headset.rsi
+  - type: Clothing
+    sprite: _SV/Clothing/Ears/Headsets/rnd_headset.rsi

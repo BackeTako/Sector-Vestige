@@ -1,70 +1,3 @@
-// SPDX-FileCopyrightText: 2026 Wizards Den contributors
-// SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
-// SPDX-FileCopyrightText: 2021 20kdc <asdd2808@gmail.com>
-// SPDX-FileCopyrightText: 2021 Acruid <shatter66@gmail.com>
-// SPDX-FileCopyrightText: 2021 Javier Guardia Fernández <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Vordenburg <114301317+Vordenburg@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 corentt <36075110+corentt@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 metalgearsloth <metalgearsloth@gmail.com>
-// SPDX-FileCopyrightText: 2022 mirrorcult <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2022 wrexbe <81056464+wrexbe@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Kara <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2023 Moony <moony@hellomouse.net>
-// SPDX-FileCopyrightText: 2023 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 TemporalOroboros <TemporalOroboros@gmail.com>
-// SPDX-FileCopyrightText: 2023 TsjipTsjip <19798667+TsjipTsjip@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Ubaser <134914314+UbaserB@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Visne <39844191+Visne@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Ygg01 <y.laughing.man.y@gmail.com>
-// SPDX-FileCopyrightText: 2023 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <comedian_vs_clown@hotmail.com>
-// SPDX-FileCopyrightText: 2024 778b <33431126+778b@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Ed <96445749+TheShuEd@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Emisse <99158783+Emisse@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 FluffMe <dex.stb@gmail.com>
-// SPDX-FileCopyrightText: 2024 Golinth <amh2023@gmail.com>
-// SPDX-FileCopyrightText: 2024 Jacob Scott <scott@wearejacob.com>
-// SPDX-FileCopyrightText: 2024 Kelderan <66748890+KeldWolf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Rainfey <rainfey0+github@gmail.com>
-// SPDX-FileCopyrightText: 2024 Southbridge <7013162+southbridge-fur@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Anzuneth <malachigene@gmail.com>
-// SPDX-FileCopyrightText: 2025 ArtisticRoomba <145879011+ArtisticRoomba@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Deerstop <edainturner@gmail.com>
-// SPDX-FileCopyrightText: 2025 ElectroJr <leonsfriedrich@gmail.com>
-// SPDX-FileCopyrightText: 2025 Errant <35878406+Errant-4@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 IProduceWidgets <107586145+IProduceWidgets@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Killerqu00 <killerqueen1777@gmail.com>
-// SPDX-FileCopyrightText: 2025 KravinDes <cib20@humboldt.edu>
-// SPDX-FileCopyrightText: 2025 Lachri <lachri.lachryphage@gmail.com>
-// SPDX-FileCopyrightText: 2025 Lachryphage <lachri.lachryphage@gmail.com>
-// SPDX-FileCopyrightText: 2025 Lachryphage <stuart.e.clough@gmail.com>
-// SPDX-FileCopyrightText: 2025 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2025 Pok <113675512+Pok27@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
-// SPDX-FileCopyrightText: 2025 Rellu225 <1blackrilfe1@gmail.com>
-// SPDX-FileCopyrightText: 2025 SlamBamActionman <83650252+SlamBamActionman@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Spanky <scott@wearejacob.com>
-// SPDX-FileCopyrightText: 2025 Spessmann <156740760+Spessmann@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Tayrtahn <tayrtahn@gmail.com>
-// SPDX-FileCopyrightText: 2025 Unisol <1929445+Unisol@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Vortebo <64214314+Vortebo@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 compilatron <40789662+jbox144@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 jajsha <corbinbinouche7@gmail.com>
-// SPDX-FileCopyrightText: 2025 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 qu4drivium <aaronholiver@outlook.com>
-// SPDX-FileCopyrightText: 2025 tanuko <signar2005@gmail.com>
-// SPDX-FileCopyrightText: 2026 OnyxTheBrave <131422822+OnyxTheBrave@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2026 Sophia12434 (GitHub)
-// SPDX-FileCopyrightText: 2026 Sophia12434 <sanesthetheskeleton@gmail.com>
-// SPDX-FileCopyrightText: 2026 TytosB <54259736+TytosB@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2026 lambdatiger <11843718+lambdatiger@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2026 lambdatiger <spam.stnuocca.sl@gmail.com>
-//
-// SPDX-License-Identifier: MIT
-
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -78,10 +11,10 @@ using Content.Server.GameTicking;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Spawners.Components;
-//using Content.Server.Station.Components; //SV: redundant using causing CS0105
+using Content.Server.Station.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Maps;
-//using Content.Shared.Roles; //SV: redundant using causing CS0105
+using Content.Shared.Roles;
 using Content.Shared.Station.Components;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
@@ -94,7 +27,6 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Map.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-
 namespace Content.IntegrationTests.Tests
 {
     [TestFixture]
@@ -112,13 +44,13 @@ namespace Content.IntegrationTests.Tests
         private static readonly string[] NoSpawnMaps =
         {
             "CentComm",
-            "Dart",
+            "Dart"
         };
 
         private static readonly string[] Grids =
         {
             "/Maps/centcomm.yml",
-            AdminTestArenaSystem.ArenaMapPath,
+            AdminTestArenaSystem.ArenaMapPath
         };
 
         /// <summary>
@@ -137,10 +69,17 @@ namespace Content.IntegrationTests.Tests
             {"/Maps/Shuttles/ShuttleEvent/syndie_evacpod.yml", ["RubberStampSyndicate"]},
             {"/Maps/Shuttles/ShuttleEvent/cruiser.yml", ["ShuttleGunPerforator"]},
             {"/Maps/Shuttles/ShuttleEvent/instigator.yml", ["ShuttleGunFriendship"]},
-            {"/Maps/_LateStation/shuttles/avenger.yml", ["ShuttleGunSvalinnMachineGun", "ShuttleGunDuster"]},
+            // SV - Begin
+            {"/Maps/Misc/terminal.yml", ["RubberStampCentcom"]},
             {"/Maps/_SV/cluster.yml", ["RubberStampMime"]},
-            {"/Maps/_SV/Shuttles/Syndicate/big/Mamba.yml", ["RubberStampSyndicate", "ShuttleGunDuster", "ShuttleGunDusterCircuitboard"]}, //SV Custom Syndi shuttle
-            {"/Maps/_SV/Shuttles/Syndicate/big/CopperHead.yml", ["RubberStampSyndicate", "ShuttleGunDuster", "ShuttleGunDusterCircuitboard"]}, //SV Custom Syndi shuttle
+            {"/Maps/_Harmony/Nonstations/listening-outpost.yml", [
+                "RubberStampCaptain", "RubberStampCE", "RubberStampChaplain", "RubberStampClown",
+                "RubberStampCMO", "RubberStampDetective", "RubberStampHop", "RubberStampHos",
+                "RubberStampMime", "RubberStampPsychologist", "RubberStampQm", "RubberStampRd",
+                "RubberStampSyndicate", "RubberStampWarden"]},
+            {"/Maps/_LateStation/shuttles/avenger.yml", ["ShuttleGunDuster", "ShuttleGunSvalinnMachineGun"]},
+            {"/Maps/_SV/Shuttles/Syndicate/big/Mamba.yml", ["ShuttleGunDuster", "ShuttleGunDusterCircuitboard", "RubberStampSyndicate"]},
+            // SV - End
         };
 
         /// <summary>
@@ -153,9 +92,7 @@ namespace Content.IntegrationTests.Tests
         private static readonly string[] DoNotMapWhitelist =
         {
             "/Maps/centcomm.yml",
-            "/Maps/Misc/terminal.yml", // Contains CentComm rubber stamp
-            "/Maps/Shuttles/AdminSpawn/**", // admin gaming
-            "/Maps/_Harmony/Nonstations/**" // custom nonstations may have various stamps and items
+            "/Maps/Shuttles/AdminSpawn/**" // admin gaming
         };
 
         /// <summary>
@@ -483,8 +420,6 @@ namespace Content.IntegrationTests.Tests
                         // Assert.That(lateSpawns, Is.GreaterThan(0), $"Found no latejoin spawn points on {mapProto}");
                     // }
 
-                    // NOTE: This test is disabled as we use CentCom spawners anyways, with a general fallback one
-                    // There still won't be spawners mapped, but as long as a fallback spawners exists it won't ever matter
                     // Test all availableJobs have spawnPoints
                     // This is done inside gamemap test because loading the map takes ages and we already have it.
                     // var comp = entManager.GetComponent<StationJobsComponent>(station);

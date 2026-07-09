@@ -1,0 +1,80 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2024 Saphire Lattice <lattice@saphi.re>
+# SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+#
+# SPDX-License-Identifier: MIT
+
+name: "Labels: Review status"
+
+# Drives the S: status labels from submitted reviews. `pull_request_review` is a
+# privileged event (runs in the base-repo context with secrets and a write
+# token, even for forks) and these steps only call the API — never check out PR
+# code — so the labelling can happen inline. This replaces the old three-part
+# relay (pr-review-trigger -> artifact -> workflow_run x2).
+
+on:
+  pull_request_review:
+    types: [submitted]
+
+concurrency:
+  group: review-status-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  manage:
+    runs-on: ubuntu-latest
+    if: >-
+      github.repository == 'Sector-Vestige/Sector-Vestige' &&
+      (github.event.review.state == 'approved' || github.event.review.state == 'changes_requested')
+    steps:
+      - name: Generate GitHub App Token
+        id: token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      # Changes requested -> S: Awaiting Changes (anyone can trigger this).
+      - name: Awaiting Changes
+        if: github.event.review.state == 'changes_requested'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ steps.token.outputs.token }}
+          script: |
+            const issue_number = context.payload.pull_request.number;
+            const { owner, repo } = context.repo;
+            await github.rest.issues.addLabels({ owner, repo, issue_number, labels: ['S: Awaiting Changes'] });
+            for (const name of ['S: Needs Review', 'S: Approved']) {
+              try { await github.rest.issues.removeLabel({ owner, repo, issue_number, name }); }
+              catch (e) { if (e.status !== 404) throw e; }
+            }
+
+      # Approval only counts toward S: Approved if it comes from a maintainer.
+      - name: Check maintainer membership
+        if: github.event.review.state == 'approved'
+        id: team
+        uses: tspascoal/get-user-teams-membership@v3
+        with:
+          username: ${{ github.event.review.user.login }}
+          team: "Maintainer team"
+          GITHUB_TOKEN: ${{ steps.token.outputs.token }}
+
+      - name: Approved
+        if: github.event.review.state == 'approved' && steps.team.outputs.isTeamMember == 'true'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ steps.token.outputs.token }}
+          script: |
+            const issue_number = context.payload.pull_request.number;
+            const { owner, repo } = context.repo;
+            await github.rest.issues.addLabels({ owner, repo, issue_number, labels: ['S: Approved'] });
+            for (const name of ['S: Needs Review', 'S: Awaiting Changes']) {
+              try { await github.rest.issues.removeLabel({ owner, repo, issue_number, name }); }
+              catch (e) { if (e.status !== 404) throw e; }
+            }

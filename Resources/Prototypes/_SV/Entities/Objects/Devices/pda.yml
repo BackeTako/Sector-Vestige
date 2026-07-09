@@ -43,3 +43,246 @@
   - type: Icon
     sprite: _SV/Objects/Devices/pda.rsi
     state: sv-pda-magistrate
+
+# NT R&D - Recovery & Containment Team
+- type: entity
+  parent: CentcomPDA
+  id: RCTLeaderPDA
+  name: RCT leader PDA
+  description: A ruggedised PDA issued to the leader of a Recovery & Containment Team.
+  components:
+  - type: Pda
+    id: RCTLeaderIDCard
+    penSlot:
+      startingItem: LuxuryPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Sprite
+    sprite: _SV/Objects/Devices/rnd_pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: "pda-rctleader"
+    - state: "light_overlay"
+      sprite: Objects/Devices/pda.rsi
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      sprite: Objects/Devices/pda.rsi
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-rctleader
+  - type: PdaBorderColor
+    borderColor: "#462749"
+  - type: Icon
+    sprite: _SV/Objects/Devices/rnd_pda.rsi
+    state: pda-rctleader
+
+- type: entity
+  parent: CentcomPDA
+  id: RCTPDA
+  name: RCT PDA
+  description: A ruggedised PDA issued to operatives of a Recovery & Containment Team.
+  components:
+  - type: Pda
+    id: RCTMemberIDCard
+    penSlot:
+      startingItem: Pen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Sprite
+    sprite: _SV/Objects/Devices/rnd_pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: "pda-rct"
+    - state: "light_overlay"
+      sprite: Objects/Devices/pda.rsi
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      sprite: Objects/Devices/pda.rsi
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-rct
+  - type: PdaBorderColor
+    borderColor: "#462749"
+  - type: Icon
+    sprite: _SV/Objects/Devices/rnd_pda.rsi
+    state: pda-rct
+
+# NT R&D - Directorate research staff
+- type: entity
+  parent: CentcomPDA
+  id: FieldResearcherPDA
+  name: field researcher PDA
+  description: A ruggedised PDA issued to Directorate field researchers.
+  components:
+  - type: Pda
+    id: FieldResearcherIDCard
+    penSlot:
+      startingItem: Pen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Sprite
+    sprite: _SV/Objects/Devices/rnd_pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: "pda-fieldresearcher"
+    - state: "light_overlay"
+      sprite: Objects/Devices/pda.rsi
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      sprite: Objects/Devices/pda.rsi
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-fieldresearcher
+  - type: PdaBorderColor
+    borderColor: "#462749"
+  - type: Icon
+    sprite: _SV/Objects/Devices/rnd_pda.rsi
+    state: pda-fieldresearcher
+
+# NT R&D - Directorate command
+- type: entity
+  parent: CentcomPDA
+  id: FirstDirectorPDA
+  name: first director PDA
+  description: A prestigious PDA bearing the seal of the Directorate of Research & Development.
+  components:
+  - type: Pda
+    id: FirstDirectorIDCard
+    penSlot:
+      startingItem: LuxuryPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Sprite
+    sprite: _SV/Objects/Devices/rnd_pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: "pda-firstdirector"
+    - state: "light_overlay"
+      sprite: Objects/Devices/pda.rsi
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      sprite: Objects/Devices/pda.rsi
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-firstdirector
+  - type: PdaBorderColor
+    borderColor: "#462749"
+  - type: Icon
+    sprite: _SV/Objects/Devices/rnd_pda.rsi
+    state: pda-firstdirector
+
+- type: entity
+  parent: CentcomPDA
+  id: SecondDirectorPDA
+  name: second director PDA
+  description: A prestigious PDA bearing the seal of the Directorate of Research & Development.
+  components:
+  - type: Pda
+    id: SecondDirectorIDCard
+    penSlot:
+      startingItem: Pen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Sprite
+    sprite: _SV/Objects/Devices/rnd_pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: "pda-seconddirector"
+    - state: "light_overlay"
+      sprite: Objects/Devices/pda.rsi
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      sprite: Objects/Devices/pda.rsi
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-seconddirector
+  - type: PdaBorderColor
+    borderColor: "#462749"
+  - type: Icon
+    sprite: _SV/Objects/Devices/rnd_pda.rsi
+    state: pda-seconddirector
+
+- type: entity
+  parent: CentcomPDA
+  id: ThirdDirectorPDA
+  name: third director PDA
+  description: A prestigious PDA bearing the seal of the Directorate of Research & Development.
+  components:
+  - type: Pda
+    id: ThirdDirectorIDCard
+    penSlot:
+      startingItem: Pen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Sprite
+    sprite: _SV/Objects/Devices/rnd_pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: "pda-thirddirector"
+    - state: "light_overlay"
+      sprite: Objects/Devices/pda.rsi
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      sprite: Objects/Devices/pda.rsi
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-thirddirector
+  - type: PdaBorderColor
+    borderColor: "#462749"
+  - type: Icon
+    sprite: _SV/Objects/Devices/rnd_pda.rsi
+    state: pda-thirddirector

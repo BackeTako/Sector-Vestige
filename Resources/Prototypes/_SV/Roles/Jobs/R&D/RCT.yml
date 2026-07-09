@@ -1,0 +1,127 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# NanoTrasen R&D - Recovery & Containment Team (RCT)
+- type: job
+  id: RCTLeader
+  name: job-name-rctleader
+  description: job-description-rctleader
+  playTimeTracker: JobRCTLeader
+  setPreference: false
+  startingGear: RCTLeaderGearEVA
+  icon: "JobIconRCTLeader"
+  supervisors: job-supervisors-directorate
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+  - !type:AddFactionSpecial
+    factions: [ RnD ]
+
+- type: job
+  id: RCTMember
+  name: job-name-rct
+  description: job-description-rct
+  playTimeTracker: JobRCTMember
+  setPreference: false
+  startingGear: RCTMemberGearEVA
+  icon: "JobIconRCT"
+  supervisors: job-supervisors-directorate
+  access:
+  - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+  - !type:AddFactionSpecial
+    factions: [ RnD ]
+
+# --- Starting gear ---
+
+# Operative, overt (no hardsuit) - the baseline kit every RCT member carries.
+# The leader and EVA sets below inherit this and only add their tier extras.
+- type: startingGear
+  id: RCTMemberGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRnDRCT
+    back: ClothingBackpackRnD
+    shoes: ClothingShoesBootsCombatFilled
+    eyes: ClothingEyesGogglesRnDRCT
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetRnD
+    id: RCTPDA
+    belt: ClothingBeltMilitaryWebbingRCT
+    suitstorage: WeaponArcCaster # experimental tesla suite - hurls shock-stun lightning bolts, fed by a self-recharging anomalous cell
+  storage:
+    belt:
+    - PowerCellAnomaly # spare cell for hot-swapping during sustained fire (each self-recharges to full in ~1 min)
+    - PowerCellAnomaly
+    - Stunbaton
+    - Handcuffs
+    - FlashlightSeclite
+
+# Operative, armed EVA (hardsuit) - the loadout the job actually spawns with.
+# Adds hardsuit + gas mask + EVA survival; inherits the rest from RCTMemberGear.
+- type: startingGear
+  id: RCTMemberGearEVA
+  parent: RCTMemberGear
+  equipment:
+    mask: ClothingMaskGasRnDRCT
+    outerClothing: ClothingOuterHardsuitRCT
+
+# Heavy, overt (no hardsuit) - the fire-support variant of the operative kit.
+# Swaps the standard backpack for the tesla cannon's reactor pack (which IS the cannon's
+# ammo source) and carries the cannon in suit storage instead of the arc caster.
+# The belt drops the arc caster's spare cells - the cannon is fed entirely by the back pack.
+- type: startingGear
+  id: RCTMemberGearHeavy
+  parent: RCTMemberGear
+  equipment:
+    back: ClothingBackpackTeslaCannon
+    suitstorage: WeaponTeslaCannon
+  storage:
+    belt:
+    - Stunbaton
+    - Handcuffs
+    - FlashlightSeclite
+
+# Heavy, armed EVA (hardsuit) - the loadout the heavy ghost role actually spawns with.
+- type: startingGear
+  id: RCTMemberGearHeavyEVA
+  parent: RCTMemberGearHeavy
+  equipment:
+    mask: ClothingMaskGasRnDRCT
+    outerClothing: ClothingOuterHardsuitRCT
+
+# Leader, overt (no hardsuit) - house tone openly worn.
+# Same kit as a member, distinguished only by the leader's PDA and mantle.
+- type: startingGear
+  id: RCTLeaderGear
+  parent: RCTMemberGear
+  equipment:
+    id: RCTLeaderPDA
+    neck: ClothingNeckMantleRnDRCTLeader
+
+# Leader, armed EVA (hardsuit) - the loadout the job actually spawns with.
+- type: startingGear
+  id: RCTLeaderGearEVA
+  parent: RCTMemberGearEVA
+  equipment:
+    id: RCTLeaderPDA
+    neck: ClothingNeckMantleRnDRCTLeader
+
+# --- Chameleon outfits ---
+- type: chameleonOutfit
+  id: RCTLeaderChameleonOutfit
+  job: RCTLeader
+  hasMindShield: true
+
+- type: chameleonOutfit
+  id: RCTMemberChameleonOutfit
+  job: RCTMember
+  hasMindShield: true

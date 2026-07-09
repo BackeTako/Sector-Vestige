@@ -1,5 +1,14 @@
+// SPDX-FileCopyrightText: 2026 Wizards Den contributors
+// SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+// SPDX-FileCopyrightText: 2025 J <billsmith116@gmail.com>
+// SPDX-FileCopyrightText: 2025 ScarKy0 <106310278+ScarKy0@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+//
+// SPDX-License-Identifier: MIT
+
 using Content.Shared.EntityTable.EntitySelectors;
 using Robust.Shared.Audio;
+using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 namespace Content.Shared.Delivery;
 
@@ -33,11 +42,21 @@ public sealed partial class DeliverySpawnerComponent : Component
     /// The sound to play when the spawner spawns a delivery.
     /// </summary>
     [DataField]
-    public SoundSpecifier? SpawnSound = new SoundCollectionSpecifier("DeliverySpawnSounds", AudioParams.Default.WithVolume(-7));
+    public SoundSpecifier? SpawnSound = new SoundCollectionSpecifier("DeliverySpawnSounds", AudioParams.Default.WithVolume(-9)); // SV - Mail additions (-7 -> -9) - This is loud AF
 
     /// <summary>
     /// The sound to play when a spawner is opened, and spills all the deliveries out.
     /// </summary>
     [DataField]
     public SoundSpecifier? OpenSound = new SoundCollectionSpecifier("storageRustle");
+
+    // SV mail additons - start
+
+    /// <summary>
+    /// The container ID in where the mail is stored
+    /// </summary>
+    [DataField]
+    public string ContainerId = "maildeliveries";
+
+    // SV mail additons - end
 }

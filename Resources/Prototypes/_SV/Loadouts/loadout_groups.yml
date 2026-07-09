@@ -13,6 +13,7 @@
 # SPDX-FileCopyrightText: 2026 Nico <74880554+NicoSGF64@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2026 Nico64 <74880554+NicoSGF64@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2026 OnyxTheBrave <131422822+OnyxTheBrave@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2026 TakoDragon <69509841+BackeTako@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2026 TakoDragon <branne33@gmail.com>
 # SPDX-FileCopyrightText: 2026 Zamshi8 <235235723+Zamshi8@users.noreply.github.com>
@@ -23,7 +24,6 @@
 # SPDX-FileCopyrightText: 2026 riv <234791249+qu4drivium@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2026 s3ptemb3rr (GitHub)
 # SPDX-FileCopyrightText: 2026 september <rdamico2204@gmail.com>
-# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -61,6 +61,7 @@
   - PersonalItemJagerGoggles
   - PersonalItemMelvynSatchel
   - PersonalItemFrostbiteCoat
+  - PersonalItemOktavianFragment
 
 # Senior Courier
 - type: loadoutGroup
@@ -166,3 +167,41 @@
   loadouts:
   - Crewsimov
   - NTDefault
+
+# NT R&D - Directorate bag choice
+- type: loadoutGroup
+  id: SVRnDBackpack
+  name: loadout-group-vestige-backpack
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - RnDBackpack
+  - RnDSatchel
+  - RnDDuffel
+
+# NT R&D - Field researcher uniform choice
+- type: loadoutGroup
+  id: SVRnDFieldUniform
+  name: loadout-group-vestige-jumpsuit
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - RnDFieldResearcherJumpsuit
+  - RnDFieldResearcherJumpskirt
+
+- type: loadoutGroup
+  id: SVRnDFieldHead
+  name: loadout-group-vestige-head
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - RnDFieldResearcherBeret
+
+# NT R&D - RCT goggles
+- type: loadoutGroup
+  id: SVRnDRCTGoggles
+  name: loadout-group-vestige-goggles
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - RnDRCTGoggles

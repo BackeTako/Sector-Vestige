@@ -1,8 +1,8 @@
 # SPDX-FileCopyrightText: 2026 Cosmatic Drift contributors
 # SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
-# SPDX-FileCopyrightText: 2025 Anzuneth <malachigene@gmail.com>
-# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+# SPDX-FileCopyrightText: 2026 Anzuneth <malachigene@gmail.com>
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
 #
 # SPDX-License-Identifier: MIT
 
@@ -415,50 +415,51 @@
 #   - type: Foldable
 #     folded: true
 
-- type: entity
-  id: VehicleWheelchair
-  parent: [BaseVehicleRideable, BaseFoldable, BaseItem]
-  name: wheelchair
-  description: A chair with big wheels. It looks like you can move in these on your own.
-  components:
-    - type: Vehicle
-      northOver: true
-      hasKey: true
-      northOverride: 0
-      southOverride: 0
-    - type: Sprite
-      sprite: Objects/Vehicles/wheelchair.rsi
-      layers:
-      - state: vehicle
-        map: ["enum.VehicleVisualLayers.AutoAnimate", "unfoldedLayer"]
-      - state: vehicle_folded
-        map: ["foldedLayer"]
-        visible: false
-      noRot: true
-    - type: MovementSpeedModifier
-      baseWalkSpeed: 2
-      baseSprintSpeed: 2
-    - type: Strap
-      buckleOffset: "0,0"
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape:
-            !type:PhysShapeCircle
-            radius: 0.2
-          density: 360
-          restitution: 0.0
-          mask:
-            - MobMask
-          layer:
-            - TableLayer
-    - type: StaticPrice
-      price: 70
+#  Rendered obsolete via my RMC wheelchair port. left in for posterity and potential future refactor - Anzu
+#- type: entity
+#  id: VehicleWheelchair
+#  parent: [BaseVehicleRideable, BaseFoldable, BaseItem]
+#  name: wheelchair
+#  description: A chair with big wheels. It looks like you can move in these on your own.
+#  components:
+#    - type: Vehicle
+#      northOver: true
+#      hasKey: true
+#      northOverride: 0
+#      southOverride: 0
+#    - type: Sprite
+#      sprite: Objects/Vehicles/wheelchair.rsi
+#      layers:
+#      - state: vehicle
+#        map: ["enum.VehicleVisualLayers.AutoAnimate", "unfoldedLayer"]
+#      - state: vehicle_folded
+#        map: ["foldedLayer"]
+#        visible: false
+#      noRot: true
+#    - type: MovementSpeedModifier
+#      baseWalkSpeed: 2
+#      baseSprintSpeed: 2
+#    - type: Strap
+#      buckleOffset: "0,0"
+#    - type: Fixtures
+#      fixtures:
+#        fix1:
+#          shape:
+#            !type:PhysShapeCircle
+#            radius: 0.2
+#          density: 360
+#          restitution: 0.0
+#          mask:
+#            - MobMask
+#          layer:
+#            - TableLayer
+#    - type: StaticPrice
+#      price: 70
 
-- type: entity
-  parent: VehicleWheelchair
-  id: VehicleWheelchairFolded
-  suffix: folded
-  components:
-    - type: Foldable
-      folded: true
+#- type: entity
+#  parent: VehicleWheelchair
+#  id: VehicleWheelchairFolded
+#  suffix: folded
+#  components:
+#    - type: Foldable
+#      folded: true

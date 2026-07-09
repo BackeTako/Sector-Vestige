@@ -3620,37 +3620,31 @@ entities:
   - uid: 534
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: 7.5,11.5
       parent: 1
   - uid: 535
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: 8.5,11.5
       parent: 1
   - uid: 536
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: 9.5,11.5
       parent: 1
   - uid: 537
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: 7.5,16.5
       parent: 1
   - uid: 538
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: 8.5,16.5
       parent: 1
   - uid: 539
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: 9.5,16.5
       parent: 1
   - uid: 540

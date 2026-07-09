@@ -95,7 +95,11 @@ public sealed class SkinTonesTest
         for (var i = 0; i <= 10000; i++)
         {
             var color = new Color(random.NextFloat(), random.NextFloat(), random.NextFloat());
-            var skinColor = strategy.ClosestSkinColor(color);
+            // Sector Vestige - start: skin colors are stored as 8-bit RGB (HumanoidCharacterAppearance.ClampColor),
+            // so verification must hold for the quantized (stored) color, not just the raw float output of ClosestSkinColor.
+            // var skinColor = strategy.ClosestSkinColor(color); // original upstream line
+            var skinColor = Quantize(strategy.ClosestSkinColor(color));
+            // Sector Vestige - end
             LogDriftIfGreater(strategy, color, skinColor, TestContext.CurrentContext.Test.Name); // Monitor drift
 
             Assert.That(strategy.VerifySkinColor(skinColor, out var reason),
@@ -119,7 +123,11 @@ public sealed class SkinTonesTest
         for (var i = 0; i <= 10000; i++)
         {
             var color = new Color(random.NextFloat(), random.NextFloat(), random.NextFloat());
-            var skinColor = strategy.ClosestSkinColor(color);
+            // Sector Vestige - start: skin colors are stored as 8-bit RGB (HumanoidCharacterAppearance.ClampColor),
+            // so verification must hold for the quantized (stored) color, not just the raw float output of ClosestSkinColor.
+            // var skinColor = strategy.ClosestSkinColor(color); // original upstream line
+            var skinColor = Quantize(strategy.ClosestSkinColor(color));
+            // Sector Vestige - end
             LogDriftIfGreater(strategy, color, skinColor, TestContext.CurrentContext.Test.Name); // Monitor drift
 
             Assert.That(strategy.VerifySkinColor(skinColor, out var reason),
@@ -144,7 +152,11 @@ public sealed class SkinTonesTest
         for (var i = 0; i <= 10000; i++)
         {
             var color = new Color(random.NextFloat(), random.NextFloat(), random.NextFloat());
-            var skinColor = strategy.ClosestSkinColor(color);
+            // Sector Vestige - start: skin colors are stored as 8-bit RGB (HumanoidCharacterAppearance.ClampColor),
+            // so verification must hold for the quantized (stored) color, not just the raw float output of ClosestSkinColor.
+            // var skinColor = strategy.ClosestSkinColor(color); // original upstream line
+            var skinColor = Quantize(strategy.ClosestSkinColor(color));
+            // Sector Vestige - end
             LogDriftIfGreater(strategy, color, skinColor, TestContext.CurrentContext.Test.Name); // Monitor drift
 
             Assert.That(strategy.VerifySkinColor(skinColor, out var reason),
@@ -169,7 +181,11 @@ public sealed class SkinTonesTest
         for (var i = 0; i <= 10000; i++)
         {
             var color = new Color(random.NextFloat(), random.NextFloat(), random.NextFloat());
-            var skinColor = strategy.ClosestSkinColor(color);
+            // Sector Vestige - start: skin colors are stored as 8-bit RGB (HumanoidCharacterAppearance.ClampColor),
+            // so verification must hold for the quantized (stored) color, not just the raw float output of ClosestSkinColor.
+            // var skinColor = strategy.ClosestSkinColor(color); // original upstream line
+            var skinColor = Quantize(strategy.ClosestSkinColor(color));
+            // Sector Vestige - end
             LogDriftIfGreater(strategy, color, skinColor, TestContext.CurrentContext.Test.Name); // Monitor drift
 
             Assert.That(strategy.VerifySkinColor(skinColor, out var reason),
@@ -194,7 +210,11 @@ public sealed class SkinTonesTest
         for (var i = 0; i <= 10000; i++)
         {
             var color = new Color(random.NextFloat(), random.NextFloat(), random.NextFloat());
-            var skinColor = strategy.ClosestSkinColor(color);
+            // Sector Vestige - start: skin colors are stored as 8-bit RGB (HumanoidCharacterAppearance.ClampColor),
+            // so verification must hold for the quantized (stored) color, not just the raw float output of ClosestSkinColor.
+            // var skinColor = strategy.ClosestSkinColor(color); // original upstream line
+            var skinColor = Quantize(strategy.ClosestSkinColor(color));
+            // Sector Vestige - end
             LogDriftIfGreater(strategy, color, skinColor, TestContext.CurrentContext.Test.Name); // Monitor drift
 
             Assert.That(strategy.VerifySkinColor(skinColor, out var reason),
@@ -239,6 +259,17 @@ public sealed class SkinTonesTest
         Assert.That(strategy.VerifySkinColor(result, out _), Is.True);
         Assert.That(result, Is.Not.EqualTo(invalidColor));
     }
+
+    // Sector Vestige - start: helper mirroring the 8-bit storage applied to every skin color, so the tests above
+    // verify colors as they are actually stored rather than as raw floats.
+    /// <summary>
+    /// Mirrors HumanoidCharacterAppearance.ClampColor: the 8-bit byte round-trip applied to every stored skin color.
+    /// </summary>
+    private static Color Quantize(Color color)
+    {
+        return new Color(color.RByte, color.GByte, color.BByte);
+    }
+    // Sector Vestige - end
 
     /// <summary>
     /// Helper method to calculate and log the maximum floating-point drift observed during clamping.

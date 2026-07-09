@@ -16,7 +16,6 @@
     - 0,0,1,1
     blacklist:
       components:
-      - Sharp
       - MindContainer
   - type: ContainerContainer
     containers:

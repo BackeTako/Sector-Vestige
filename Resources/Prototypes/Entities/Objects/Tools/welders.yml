@@ -45,25 +45,16 @@
   parent: [SolutionWelder, BaseItem]
   id: BaseWelder
   components:
-#Goob - Begin: pickup and drop sounds
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/_Goobstation/Items/Handling/weldingtool_drop.ogg
-  - type: EmitSoundOnPickup
-    sound:
-      path: /Audio/_Goobstation/Items/Handling/weldingtool_pickup.ogg
-  - type: EmitSoundOnDrop
-    sound:
-      path: /Audio/Items/weldingtool_drop.ogg
   - type: Sprite
-#Goob - End: pickup and drop sounds
-    sprite: Objects/Tools/welder.rsi
     layers:
     - state: icon
     - state: welder_flame
       visible: false
       shader: unshaded
       map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/welder_drop.ogg
   - type: GenericVisualizer
     visuals:
       enum.ToggleableVisuals.Enabled:

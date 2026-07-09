@@ -18,7 +18,6 @@ public abstract partial class SharedEmpSystem : EntitySystem
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
 
-
     [Dependency] private EntityQuery<EmpResistanceComponent> _resistanceQuery = default!;
 
     private HashSet<EntityUid> _entSet = new();

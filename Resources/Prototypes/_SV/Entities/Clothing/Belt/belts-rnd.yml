@@ -1,0 +1,16 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: [ BaseRnDContraband, ClothingBeltMilitaryWebbing ]
+  id: ClothingBeltMilitaryWebbingRCT
+  name: RCT chest rig
+  description: A set of tactical webbing worn by Recovery & Containment operatives.
+  components:
+  - type: Sprite
+    sprite: _SV/Clothing/Belt/rnd_rct_webbing.rsi
+  - type: Clothing
+    sprite: _SV/Clothing/Belt/rnd_rct_webbing.rsi

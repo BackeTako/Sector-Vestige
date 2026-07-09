@@ -1,9 +1,20 @@
+// SPDX-FileCopyrightText: 2026 Wizards Den contributors
+// SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+// SPDX-FileCopyrightText: 2025 ScarKy0 <106310278+ScarKy0@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 āda <ss.adasts@gmail.com>
+// SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+//
+// SPDX-License-Identifier: MIT
+
 using Content.Shared.Delivery;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.EntityTable;
 using Content.Shared.StationRecords;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Containers;
+using Content.Shared.FingerprintReader;
 
 namespace Content.Server.Delivery;
 
@@ -33,7 +44,8 @@ public sealed partial class DeliverySystem
         if (!Resolve(ent.Owner, ref ent.Comp))
             return;
 
-        var coords = Transform(ent).Coordinates;
+        // var coords = Transform(ent).Coordinates; // SV - Mail additions
+        var hasContainer = _container.TryGetContainer(ent, ent.Comp.ContainerId, out var baseContainer); // SV - Mail additions
 
         for (int i = 0; i < ent.Comp.ContainedDeliveryAmount; i++)
         {
@@ -41,9 +53,17 @@ public sealed partial class DeliverySystem
 
             foreach (var id in spawns)
             {
-                Spawn(id, coords);
+                // SV - Mail additions - Start
+                var uid = SpawnInContainerOrDrop(id, ent, ent.Comp.ContainerId);
+                if (TryComp<DeliveryComponent>(uid, out var delivery))
+                    SetupRecipient((uid, delivery));
+                // SV - Mail additions - End
             }
         }
+        // SV - Mail additions - Start
+        if (hasContainer && baseContainer != null)
+            _container.EmptyContainer(baseContainer, force: false);
+        // SV - Mail additions - End
 
         ent.Comp.ContainedDeliveryAmount = 0;
         Dirty(ent);

@@ -265,7 +265,12 @@ namespace Content.Server.GameTicking
                     speciesId = weights.Pick(_robustRandom);
                 }
 
-                character = HumanoidCharacterProfile.RandomWithSpecies(speciesId);
+                // The random profile must retain the job priorities set by the player
+                var jobs = character.JobPriorities;
+                character = HumanoidCharacterProfile.RandomWithSpecies(speciesId).WithJobPriorities(jobs);
+
+                // This does not utilize overflow job slots, so if the character profile
+                // had no available job priorities (ie Captain on Dev) set, then the player will spawn as a ghost
             }
 
             // We raise this event to allow other systems to handle spawning this player themselves. (e.g. late-join wizard, etc)
@@ -407,10 +412,6 @@ namespace Content.Server.GameTicking
             DebugTools.AssertNotNull(mobMaybe);
             mob = mobMaybe!.Value;
 
-            // CD - raise event before we add the mind to the mob entity
-            var cdPlayerEntSpawnEv = new CdPlayerSpawnBeforeMindEvent(player, character, jobId);
-            RaiseLocalEvent(mob, cdPlayerEntSpawnEv);
-            // CD end
             var newMind = _mind.CreateMind(data.UserId, Name(mob));
             _mind.SetUserId(newMind, data.UserId);
 

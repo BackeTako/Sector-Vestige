@@ -1,0 +1,24 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# NanoTrasen R&D - Directorate field researcher beret
+- type: entity
+  parent: [ ClothingHeadBase, BaseRnDContraband ]
+  id: ClothingHeadHatBeretRnDFieldResearcher
+  name: R&D beret
+  description: A beret bearing the insignia of NanoTrasen's Directorate of Research & Development.
+  components:
+  - type: Sprite
+    sprite: _SV/Clothing/Head/Hats/rnd_beret_field_researcher.rsi
+  - type: Clothing
+    sprite: _SV/Clothing/Head/Hats/rnd_beret_field_researcher.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon

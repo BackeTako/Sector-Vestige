@@ -1,0 +1,29 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+#R&D Recovery & Containment Team (RCT) HARDSUITS
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndieCommander ]
+  id: ClothingOuterHardsuitRCT
+  name: RCT hardsuit
+  description: A protective hardsuit worn by the recovery and containment team.
+  components:
+  - type: Sprite
+    sprite: _SV/Clothing/OuterClothing/Hardsuits/rnd_rct_hardsuit.rsi
+  - type: Clothing
+    sprite: _SV/Clothing/OuterClothing/Hardsuits/rnd_rct_hardsuit.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitRCT
+  - type: SupermatterImmune
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.3
+        Heat: 0.5
+        Radiation: 0
+        Caustic: 0.4

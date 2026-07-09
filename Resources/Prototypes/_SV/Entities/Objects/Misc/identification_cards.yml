@@ -17,3 +17,128 @@
     - state: sv-idmagistrate
   - type: PresetIdCard
     job: SVMagistrate
+
+# NT R&D
+# Directorate ID's
+- type: entity
+  parent: IDCardStandard
+  id: RCTLeaderIDCard
+  name: RCT leader ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+    - state: stripe_top
+      color: "#462749"
+    - state: stripe_bottom
+      color: "#2a172c"
+    - sprite: /Textures/_SV/Interface/Misc/rnd_icons.rsi
+      offset: -0.09375, 0.0625 # 3 pixels left, 2 pixels up
+      state: RCTLeader
+  - type: PresetIdCard
+    job: RCTLeader
+  - type: NanoChatCard # CD
+    listNumber: false
+
+- type: entity
+  parent: IDCardStandard
+  id: RCTMemberIDCard
+  name: RCT ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+    - state: stripe_top
+      color: "#462749"
+    - state: stripe_bottom
+      color: "#2a172c"
+    - sprite: /Textures/_SV/Interface/Misc/rnd_icons.rsi
+      offset: -0.09375, 0.0625 # 3 pixels left, 2 pixels up
+      state: RCT
+  - type: PresetIdCard
+    job: RCTMember
+  - type: NanoChatCard # CD
+    listNumber: false
+
+# Directorate research staff
+- type: entity
+  parent: IDCardStandard
+  id: FieldResearcherIDCard
+  name: field researcher ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+    - state: stripe_top
+      color: "#462749"
+    - state: stripe_bottom
+      color: "#2a172c"
+    - sprite: /Textures/_SV/Interface/Misc/rnd_icons.rsi
+      offset: -0.09375, 0.0625 # 3 pixels left, 2 pixels up
+      state: FieldResearcher
+  - type: PresetIdCard
+    job: FieldResearcher
+  - type: NanoChatCard # CD
+    listNumber: false
+
+# Directorate command
+- type: entity
+  parent: IDCardStandard
+  id: FirstDirectorIDCard
+  name: first director ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+    - state: stripe_top
+      color: "#462749"
+    - state: stripe_bottom
+      color: "#2a172c"
+    - sprite: /Textures/_SV/Interface/Misc/rnd_icons.rsi
+      offset: -0.09375, 0.0625 # 3 pixels left, 2 pixels up
+      state: FirstDirector
+  - type: PresetIdCard
+    job: FirstDirector
+  - type: NanoChatCard # CD
+    listNumber: false
+
+- type: entity
+  parent: IDCardStandard
+  id: SecondDirectorIDCard
+  name: second director ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+    - state: stripe_top
+      color: "#462749"
+    - state: stripe_bottom
+      color: "#2a172c"
+    - sprite: /Textures/_SV/Interface/Misc/rnd_icons.rsi
+      offset: -0.09375, 0.0625 # 3 pixels left, 2 pixels up
+      state: SecondDirector
+  - type: PresetIdCard
+    job: SecondDirector
+  - type: NanoChatCard # CD
+    listNumber: false
+
+- type: entity
+  parent: IDCardStandard
+  id: ThirdDirectorIDCard
+  name: third director ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+    - state: stripe_top
+      color: "#462749"
+    - state: stripe_bottom
+      color: "#2a172c"
+    - sprite: /Textures/_SV/Interface/Misc/rnd_icons.rsi
+      offset: -0.09375, 0.0625 # 3 pixels left, 2 pixels up
+      state: ThirdDirector
+  - type: PresetIdCard
+    job: ThirdDirector
+  - type: NanoChatCard # CD
+    listNumber: false
+

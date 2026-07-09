@@ -16,3 +16,5 @@
   id: MagazineSuggestion # Magazine for SCR-g2 'Suggestion'
 - type: Tag
   id: CartridgePMS # Cartridge for SCR-g2
+- type: Tag
+  id: TeslaCannonPack # Back-worn reactor pack that feeds the experimental Tesla Cannon

@@ -45,7 +45,6 @@ public abstract partial class SharedStaminaSystem : EntitySystem
     [Dependency] private StatusEffectsSystem _status = default!;
     [Dependency] protected SharedStunSystem StunSystem = default!;
 
-
     [Dependency] private EntityQuery<StaminaComponent> _stamQuery = default!;
 
     /// <summary>
@@ -398,7 +397,8 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         component.Critical = true;
         component.StaminaDamage = component.CritThreshold;
 
-        StunSystem.TryUpdateParalyzeDuration(uid, component.StunTime);
+        StunSystem.TryUpdateParalyzeDuration(uid, component.StunTime, true);
+
 
         // Give them buffer before being able to be re-stunned
         component.NextUpdate = Timing.CurTime + component.StunTime + StamCritBufferTime;

@@ -1,0 +1,43 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 OnyxTheBrave <131422822+OnyxTheBrave@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: HealingBonfire
+  parent: Bonfire
+  suffix: Healing
+  components:
+  - type: HealNearby
+    radius: 5
+    damage:
+      types:
+        Slash: -0.1
+        Cold: -0.1
+
+- type: entity
+  id: MicrowaveBonfire
+  parent: Bonfire
+  suffix: Microwave
+  components:
+  - type: Microwave
+    capacity: 10
+    cookTimeMultiplier: 2 #it's a bonfire, so cook slower
+  - type: ActivatableUI
+    key: enum.MicrowaveUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.MicrowaveUiKey.Key:
+        type: MicrowaveBoundUserInterface
+  - type: ApcPowerReceiver
+    needsPower: false
+    powerLoad: 0
+  - type: ContainerContainer
+    containers:
+      microwave_entity_container: !type:Container
+
+- type: entity
+  id: MicrowaveHealingBonfire
+  parent: [ MicrowaveBonfire, HealingBonfire ]
+  suffix: Microwave, Healing

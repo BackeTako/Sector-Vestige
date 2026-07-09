@@ -105,7 +105,6 @@
     sprite: _CD/Mobs/Species/Avali/parts.rsi
     state: full
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeatChicken
       amount: 3

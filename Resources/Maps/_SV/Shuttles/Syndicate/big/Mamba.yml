@@ -42528,13 +42528,11 @@ entities:
   - uid: 3334
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: -0.5,47.5
       parent: 1
   - uid: 3335
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 4.5,46.5
       parent: 1
   - uid: 3336
@@ -42585,151 +42583,126 @@ entities:
   - uid: 3345
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
       pos: 10.5,20.5
       parent: 1
   - uid: 3346
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
       pos: 11.5,20.5
       parent: 1
   - uid: 3347
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 5.5,47.5
       parent: 1
   - uid: 3348
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 5.5,46.5
       parent: 1
   - uid: 3349
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 3.5,45.5
       parent: 1
   - uid: 3350
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 4.5,45.5
       parent: 1
   - uid: 3351
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 2.5,46.5
       parent: 1
   - uid: 3352
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 2.5,47.5
       parent: 1
   - uid: 3353
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: -1.5,47.5
       parent: 1
   - uid: 3354
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: -2.5,46.5
       parent: 1
   - uid: 3355
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 4.5,47.5
       parent: 1
   - uid: 3356
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 0.5,45.5
       parent: 1
   - uid: 3357
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 3.5,47.5
       parent: 1
   - uid: 3358
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: -2.5,47.5
       parent: 1
   - uid: 3359
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: -1.5,45.5
       parent: 1
   - uid: 3360
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: -0.5,45.5
       parent: 1
   - uid: 3361
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: -1.5,46.5
       parent: 1
   - uid: 3362
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 3.5,46.5
       parent: 1
   - uid: 3363
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: -0.5,46.5
       parent: 1
   - uid: 3364
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 1.5,46.5
       parent: 1
   - uid: 3365
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 0.5,46.5
       parent: 1
   - uid: 3366
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 0.5,47.5
       parent: 1
   - uid: 3367
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 2.5,45.5
       parent: 1
   - uid: 3368
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 1.5,47.5
       parent: 1
   - uid: 3369
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 1.5,45.5
       parent: 1
 - proto: GunSafe

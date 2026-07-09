@@ -84,6 +84,7 @@ public sealed partial class DamageOverlayUiController : UIController
 
     private void ClearOverlay()
     {
+        _overlay.State = MobState.Alive;
         _overlay.DeadLevel = 0f;
         _overlay.CritLevel = 0f;
         _overlay.PainLevel = 0f;

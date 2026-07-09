@@ -1,0 +1,28 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# Experimental NT R&D power cell that powers the tesla weaponry (Arc Caster).
+# Small form-factor (inherits the PowerCellSmall tag) so it fits standard gun cell slots,
+# high capacity, and slowly recharges itself from the contained electrical-anomaly energy.
+- type: entity
+  parent: [PowerCellSmall, BaseRnDContraband]
+  id: PowerCellAnomaly
+  name: anomalous power cell
+  description: An experimental R&D energy cell humming with contained electrical-anomaly energy. It slowly recharges itself.
+  suffix: Full
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: microreactor
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 720
+    startingCharge: 720
+  - type: BatterySelfRecharger
+    autoRechargeRate: 12 # ~1 minute to fully recharge

@@ -36,7 +36,6 @@ public abstract partial class SharedStunSystem
     [Dependency] private StandingStateSystem _standingState = default!;
     [Dependency] private IConfigurationManager _cfgManager = default!;
 
-
     [Dependency] private EntityQuery<CrawlerComponent> _crawlerQuery = default!;
     [Dependency] private EntityQuery<FixturesComponent> _fixtureQuery = default!;
 

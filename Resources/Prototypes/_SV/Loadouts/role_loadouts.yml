@@ -39,3 +39,64 @@
   - Trinkets
   - GroupSpeciesBreathTool
   - PersonalItemsJobAgnostic
+
+# NT R&D - Directorate research staff
+- type: roleLoadout
+  id: JobFieldResearcher
+  groups:
+  - SVRnDFieldUniform
+  - SVRnDFieldHead
+  - SVRnDBackpack
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
+  - PersonalItemsJobAgnostic
+
+- type: roleLoadout
+  id: JobFirstDirector
+  groups:
+  - SVRnDFieldHead
+  - SVRnDBackpack
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
+  - PersonalItemsJobAgnostic
+
+- type: roleLoadout
+  id: JobSecondDirector
+  groups:
+  - SVRnDFieldHead
+  - SVRnDBackpack
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
+  - PersonalItemsJobAgnostic
+
+- type: roleLoadout
+  id: JobThirdDirector
+  groups:
+  - SVRnDFieldHead
+  - SVRnDBackpack
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
+  - PersonalItemsJobAgnostic
+
+# NT R&D - Recovery & Containment Team
+- type: roleLoadout
+  id: JobRCTLeader
+  groups:
+  - SVRnDRCTGoggles
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
+  - PersonalItemsJobAgnostic
+
+- type: roleLoadout
+  id: JobRCTMember
+  groups:
+  - SVRnDRCTGoggles
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
+  - PersonalItemsJobAgnostic

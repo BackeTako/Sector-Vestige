@@ -67,6 +67,7 @@
   - type: CollideOnAnchor
   - type: Anchorable
   - type: Rotatable
+    increment: 90
   - type: Destructible
     thresholds:
     - trigger: # for nukes

@@ -18,21 +18,28 @@ on:
       - synchronize
       - reopened
       - ready_for_review
+    # Only spin up the job for PRs that can actually contain REUSE-relevant files.
+    paths:
+      - '**.cs'
+      - '**.yml'
+      - '**.yaml'
 
 # Avoid piling up duplicate runs for the same PR.
 concurrency:
   group: reuse-updater-pr-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
+# The default GITHUB_TOKEN needs no write: every write below is performed with WEH_BOT_PAT
+# (the checkout token and the push remote). Keep it read-only to shrink the blast radius.
 permissions:
-  contents: write
+  contents: read
   pull-requests: read
 
 jobs:
   update_headers:
     # Skip if the event was triggered by the bot's own auto-commit so we don't loop.
     # Also skip if the PR has the "Maintenance" label or is a draft.
-    if: ${{ github.actor != 'vestige-bot' && github.actor != 'vestige-bot[bot]' && !contains(github.event.pull_request.labels.*.name, 'Maintenance') && github.event.pull_request.draft == false }}
+    if: ${{ github.actor != 'Vestige-bot' && github.actor != 'vestige-bot[bot]' && !contains(github.event.pull_request.labels.*.name, 'Maintenance') && github.event.pull_request.draft == false }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -42,17 +49,12 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
           token: ${{ secrets.WEH_BOT_PAT }}
+          persist-credentials: false
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
-      - name: Install jq
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y jq
-        shell: bash
 
       - name: Resolve bot identity
         id: bot_id
@@ -146,15 +148,35 @@ jobs:
         if: ${{ steps.changed_files.outputs.has_files == 'true' }}
         env:
           REUSE_FORCE_LICENSE: "true"  # Ensure existing headers are realigned to path rules
+          # SECURITY: pass values through the environment instead of templating ${{ }} straight
+          # into the shell. An attacker-controlled filename or author login can no longer break
+          # out of the command line. ADDED_FILES_LIST / MODIFIED_FILES_LIST / PR_LICENSE are
+          # already exported to $GITHUB_ENV by the previous step.
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
         run: |
           python Tools/update_pr_reuse_headers.py \
-            --files-added ${{ env.ADDED_FILES_LIST }} \
-            --files-modified ${{ env.MODIFIED_FILES_LIST }} \
-            --pr-license ${{ env.PR_LICENSE }} \
-            --pr-base-sha ${{ github.event.pull_request.base.sha }} \
-            --pr-head-sha ${{ github.event.pull_request.head.sha }} \
-            --pr-author ${{ github.event.pull_request.user.login }}
+            --files-added="$ADDED_FILES_LIST" \
+            --files-modified="$MODIFIED_FILES_LIST" \
+            --pr-license "$PR_LICENSE" \
+            --pr-base-sha "$PR_BASE_SHA" \
+            --pr-head-sha "$PR_HEAD_SHA" \
+            --pr-author "$PR_AUTHOR"
         working-directory: ${{ github.workspace }}
+
+      # Re-attach push credentials ONLY after the untrusted PR script has finished, so the PAT
+      # is never on disk while that code runs. head.repo.full_name is GitHub-constrained to a
+      # safe charset, but we still route it through env to keep the rule "no untrusted data in
+      # ${{ }} shell templating" airtight.
+      - name: Configure push credentials
+        if: ${{ steps.changed_files.outputs.has_files == 'true' }}
+        env:
+          GH_PAT: ${{ secrets.WEH_BOT_PAT }}
+          HEAD_REPO: ${{ github.event.pull_request.head.repo.full_name }}
+        run: |
+          git remote set-url origin "https://x-access-token:${GH_PAT}@github.com/${HEAD_REPO}.git"
+        shell: bash
 
       - name: Commit changes
         if: ${{ steps.changed_files.outputs.has_files == 'true' }}

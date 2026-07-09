@@ -14,7 +14,6 @@ public sealed partial class DamageContactsSystem : EntitySystem
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
 
-
     [Dependency] private EntityQuery<DamageContactsComponent> _damageQuery = default!;
 
     public override void Initialize()

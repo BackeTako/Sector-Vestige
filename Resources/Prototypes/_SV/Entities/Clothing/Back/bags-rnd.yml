@@ -1,0 +1,33 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# NanoTrasen R&D - Directorate of Research & Development bags
+- type: entity
+  parent: [ ClothingBackpack, BaseRnDContraband ]
+  id: ClothingBackpackRnD
+  name: R&D backpack
+  description: A backpack issued to personnel of NanoTrasen's Directorate of Research & Development.
+  components:
+  - type: Sprite
+    sprite: _SV/Clothing/Back/Backpacks/rnd.rsi
+
+- type: entity
+  parent: [ ClothingBackpackSatchel, BaseRnDContraband ]
+  id: ClothingBackpackSatchelRnD
+  name: R&D satchel
+  description: A satchel issued to personnel of NanoTrasen's Directorate of Research & Development.
+  components:
+  - type: Sprite
+    sprite: _SV/Clothing/Back/Satchels/rnd.rsi
+
+- type: entity
+  parent: [ ClothingBackpackDuffel, BaseRnDContraband ]
+  id: ClothingBackpackDuffelRnD
+  name: R&D duffel bag
+  description: A large duffel bag issued to personnel of NanoTrasen's Directorate of Research & Development.
+  components:
+  - type: Sprite
+    sprite: _SV/Clothing/Back/Duffels/rnd.rsi

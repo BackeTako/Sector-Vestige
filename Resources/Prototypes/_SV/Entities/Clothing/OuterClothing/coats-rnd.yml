@@ -1,0 +1,36 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# NanoTrasen R&D - Directorate labcoats
+- type: entity
+  parent: [ ClothingOuterStorageFoldableBase, BaseRnDContraband ]
+  id: ClothingOuterCoatLabRnDDirector
+  name: R&D director's labcoat
+  description: A pristine labcoat worn by a Director of NanoTrasen's Directorate of Research & Development. Tailored from heavier cloth than its station-issue cousins.
+  components:
+  - type: Sprite
+    sprite: _SV/Clothing/OuterClothing/Coats/rnd_director_labcoat.rsi
+  - type: Clothing
+    sprite: _SV/Clothing/OuterClothing/Coats/rnd_director_labcoat.rsi
+
+- type: entity
+  parent: [ ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabRnDDirector ]
+  id: ClothingOuterCoatLabRnDDirectorOpened
+
+- type: entity
+  parent: [ ClothingOuterStorageFoldableBase, BaseRnDContraband ]
+  id: ClothingOuterCoatLabRnDFieldResearcher
+  name: R&D field researcher's labcoat
+  description: A hard-wearing labcoat issued to field researchers of NanoTrasen's Directorate of Research & Development.
+  components:
+  - type: Sprite
+    sprite: _SV/Clothing/OuterClothing/Coats/rnd_field_researcher_labcoat.rsi
+  - type: Clothing
+    sprite: _SV/Clothing/OuterClothing/Coats/rnd_field_researcher_labcoat.rsi
+
+- type: entity
+  parent: [ ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabRnDFieldResearcher ]
+  id: ClothingOuterCoatLabRnDFieldResearcherOpened

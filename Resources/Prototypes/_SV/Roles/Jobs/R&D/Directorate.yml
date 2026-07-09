@@ -1,0 +1,148 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# NanoTrasen R&D - Directorate research staff (EVENT JOBS)
+
+- type: job
+  id: FieldResearcher
+  name: job-name-fieldresearcher
+  description: job-description-fieldresearcher
+  playTimeTracker: JobFieldResearcher
+  setPreference: false
+  startingGear: FieldResearcherGear
+  icon: "JobIconFieldResearcher"
+  supervisors: job-supervisors-directorate
+  access:
+  - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddFactionSpecial
+    factions: [ RnD ]
+
+- type: startingGear
+  id: FieldResearcherGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRnDFieldResearcher
+    head: ClothingHeadHatBeretRnDFieldResearcher
+    back: ClothingBackpackRnD
+    shoes: ClothingShoesColorBlack
+    ears: ClothingHeadsetRnD
+    outerClothing: ClothingOuterCoatLabRnDFieldResearcher
+    id: FieldResearcherPDA
+
+# NanoTrasen R&D - Directorate command council (EVENT JOBS)
+
+- type: job
+  id: FirstDirector
+  name: job-name-firstdirector
+  description: job-description-firstdirector
+  playTimeTracker: JobFirstDirector
+  setPreference: false
+  startingGear: FirstDirectorGear
+  icon: "JobIconFirstDirector"
+  supervisors: job-supervisors-directorate
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+  - !type:AddFactionSpecial
+    factions: [ RnD ]
+
+- type: startingGear
+  id: FirstDirectorGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRnDFieldResearcher #Change when we get jumpsuits for directors
+    head: ClothingHeadHatBeretRnDFieldResearcher
+    back: ClothingBackpackRnD
+    shoes: ClothingShoesBootsLaceup
+    ears: ClothingHeadsetRnD
+    outerClothing: ClothingOuterCoatLabRnDDirector
+    id: FirstDirectorPDA
+
+- type: job
+  id: SecondDirector
+  name: job-name-seconddirector
+  description: job-description-seconddirector
+  playTimeTracker: JobSecondDirector
+  setPreference: false
+  startingGear: SecondDirectorGear
+  icon: "JobIconSecondDirector"
+  supervisors: job-supervisors-directorate
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+  - !type:AddFactionSpecial
+    factions: [ RnD ]
+
+- type: startingGear
+  id: SecondDirectorGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRnDFieldResearcher #Change when we get jumpsuits for directors
+    head: ClothingHeadHatBeretRnDFieldResearcher
+    back: ClothingBackpackRnD
+    shoes: ClothingShoesBootsLaceup
+    ears: ClothingHeadsetRnD
+    outerClothing: ClothingOuterCoatLabRnDDirector
+    id: SecondDirectorPDA
+
+- type: job
+  id: ThirdDirector
+  name: job-name-thirddirector
+  description: job-description-thirddirector
+  playTimeTracker: JobThirdDirector
+  setPreference: false
+  startingGear: ThirdDirectorGear
+  icon: "JobIconThirdDirector"
+  supervisors: job-supervisors-directorate
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+  - !type:AddFactionSpecial
+    factions: [ RnD ]
+
+- type: startingGear
+  id: ThirdDirectorGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRnDFieldResearcher #Change when we get jumpsuits for directors
+    head: ClothingHeadHatBeretRnDFieldResearcher
+    back: ClothingBackpackRnD
+    shoes: ClothingShoesBootsLaceup
+    ears: ClothingHeadsetRnD
+    outerClothing: ClothingOuterCoatLabRnDDirector
+    id: ThirdDirectorPDA
+
+# --- Chameleon outfits ---
+- type: chameleonOutfit
+  id: FieldResearcherChameleonOutfit
+  job: FieldResearcher
+  hasMindShield: true
+
+- type: chameleonOutfit
+  id: FirstDirectorChameleonOutfit
+  job: FirstDirector
+  hasMindShield: true
+
+- type: chameleonOutfit
+  id: SecondDirectorChameleonOutfit
+  job: SecondDirector
+  hasMindShield: true
+
+- type: chameleonOutfit
+  id: ThirdDirectorChameleonOutfit
+  job: ThirdDirector
+  hasMindShield: true

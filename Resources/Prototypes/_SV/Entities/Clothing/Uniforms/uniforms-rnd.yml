@@ -1,0 +1,40 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# NanoTrasen R&D - Directorate field researcher uniform
+- type: entity
+  parent: [ ClothingUniformBase, BaseRnDContraband ]
+  id: ClothingUniformJumpsuitRnDFieldResearcher
+  name: field researcher jumpsuit
+  description: A practical jumpsuit issued to field researchers of NanoTrasen's Directorate of Research & Development.
+  components:
+  - type: Sprite
+    sprite: _SV/Clothing/Uniforms/Jumpsuit/rnd_field_researcher.rsi
+  - type: Clothing
+    sprite: _SV/Clothing/Uniforms/Jumpsuit/rnd_field_researcher.rsi
+
+- type: entity
+  parent: [ ClothingUniformSkirtBase, BaseRnDContraband ]
+  id: ClothingUniformJumpskirtRnDFieldResearcher
+  name: field researcher jumpskirt
+  description: A practical jumpskirt issued to field researchers of NanoTrasen's Directorate of Research & Development.
+  components:
+  - type: Sprite
+    sprite: _SV/Clothing/Uniforms/Jumpskirt/rnd_field_researcher.rsi
+  - type: Clothing
+    sprite: _SV/Clothing/Uniforms/Jumpskirt/rnd_field_researcher.rsi
+
+# NanoTrasen R&D - Recovery & Containment Team uniform
+- type: entity
+  parent: [ ClothingUniformBase, BaseRnDContraband ]
+  id: ClothingUniformJumpsuitRnDRCT
+  name: RCT jumpsuit
+  description: A reinforced jumpsuit issued to NanoTrasen's Recovery & Containment Teams.
+  components:
+  - type: Sprite
+    sprite: _SV/Clothing/Uniforms/Jumpsuit/rnd_rct.rsi
+  - type: Clothing
+    sprite: _SV/Clothing/Uniforms/Jumpsuit/rnd_rct.rsi

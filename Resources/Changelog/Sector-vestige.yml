@@ -1722,7 +1722,7 @@ Entries:
     - type: Add
       message: >-
         spidermin and qualified doctor subtypes are now available for mining and
-        medical cyborgs, respectively 
+        medical cyborgs, respectively
   id: 235
   time: '2026-05-01T14:41:40.0000000+00:00'
 - author: Rose-Diere
@@ -1839,3 +1839,93 @@ Entries:
       message: Added a broken APC entity.
   id: 252
   time: '2026-05-29T15:29:42.0000000+00:00'
+- author: Boaz1111
+  changes:
+    - type: Fix
+      message: Prevents loneOps from spawning.
+  id: 253
+  time: '2026-06-02T18:40:00.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Add
+      message: Added a new variant of the abomination
+  id: 254
+  time: '2026-06-02T18:43:31.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Remove
+      message: Frozen Abominations now have a new texture.
+  id: 255
+  time: '2026-06-06T12:29:50.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Tweak
+      message: GM's can now send custom mail.
+  id: 256
+  time: '2026-06-06T12:39:43.0000000+00:00'
+- author: NicoSGF64
+  changes:
+    - type: Add
+      message: Ported magical fire from Sector Umbra.
+  id: 257
+  time: '2026-06-06T12:40:30.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Add
+      message: Added a new event map.
+  id: 258
+  time: '2026-06-07T13:13:46.0000000+00:00'
+- author: Onyx_The_Brave, HexReject
+  changes:
+    - type: Add
+      message: Added a personal item for Oktavian Llewelyn.
+  id: 259
+  time: '2026-06-18T08:46:08.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Add
+      message: Added a HealNearby component for map makers and GMs.
+  id: 260
+  time: '2026-06-24T11:36:40.0000000+00:00'
+- author: Anzuneth
+  changes:
+    - type: Tweak
+      message: Leg paralysis now allows very slow movement via crawling
+    - type: Tweak
+      message: Wheelchairs now allow you to use both hands
+    - type: Fix
+      message: Updated internal wheelchair functionality to be less buggy
+  id: 261
+  time: '2026-06-30T07:04:57.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Fix
+      message: You can now deconstruct broken APCs.
+    - type: Tweak
+      message: APCs will now turn into broken APCs when damaged.
+  id: 262
+  time: '2026-06-30T07:06:23.0000000+00:00'
+- author: HexReject
+  changes:
+    - type: Add
+      message: R&D has been given gear to make them stand out
+  id: 263
+  time: '2026-07-03T14:07:18.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Add
+      message: Added a bonfire that can be used as a microwave
+  id: 264
+  time: '2026-07-03T15:11:04.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Tweak
+      message: Updated event map.
+  id: 265
+  time: '2026-07-04T11:07:04.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Fix
+      message: Hypohonia is fixed again.
+  id: 266
+  time: '2026-07-08T23:30:17.0000000+00:00'

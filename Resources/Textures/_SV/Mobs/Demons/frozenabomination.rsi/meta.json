@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Abomination made by brainfood1183 (github) for ss14, retextured by JuneSzalkowska (github)",
+  "states": [
+    {
+      "name": "frozenabomination",
+      "directions": 4
+    }
+  ]
+}

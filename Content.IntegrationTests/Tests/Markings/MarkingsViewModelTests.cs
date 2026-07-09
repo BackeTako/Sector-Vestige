@@ -50,8 +50,8 @@ public sealed class MarkingsViewModelTests
     public ProtoId<MarkingPrototype> MothChestFan = "MothChestFan";
     public ProtoId<MarkingPrototype> LizardHornsCurled = "LizardHornsCurled";
     public ProtoId<MarkingPrototype> MothAntennasDefault = "MothAntennasDefault";
-    public ProtoId<MarkingPrototype> MothChestFirewatch = "MothChestFirewatch";
-    public ProtoId<MarkingPrototype> MothChestGothic =  "MothChestGothic";
+    public ProtoId<MarkingPrototype> MothChestFirewatch = "MothChestFirewatch"; // SV - Added this to test our bigger marking limit
+    public ProtoId<MarkingPrototype> MothChestGothic = "MothChestGothic"; // SV - Added this to test our bigger marking limit
 
     public TestPair Pair = default!;
     public RobustIntegrationTest.ClientIntegrationInstance Client => Pair.Client;

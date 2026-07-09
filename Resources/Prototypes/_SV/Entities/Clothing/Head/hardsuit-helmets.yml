@@ -1,0 +1,26 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+#R&D Recovery & Containment Team (RCT) HARDSUITS HELMETS
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndieCommander ]
+  id: ClothingHeadHelmetHardsuitRCT
+  name: RCT hardsuit helmet
+  description: A special hardsuit helmet worn by members of an recovery and containment team.
+  components:
+  - type: Sprite
+    sprite: _SV/Clothing/Head/Hardsuits/rnd_rct_helmets/rnd_rct_helmet_default.rsi
+  - type: Clothing
+    sprite: _SV/Clothing/Head/Hardsuits/rnd_rct_helmets/rnd_rct_helmet_default.rsi
+  - type: PointLight
+    color: "#addbff"
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9

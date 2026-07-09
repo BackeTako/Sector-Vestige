@@ -42,7 +42,6 @@ public sealed partial class ClimbSystem : VirtualController
     [Dependency] private SharedStunSystem _stunSystem = default!;
     [Dependency] private SharedTransformSystem _xformSystem = default!;
 
-
     [Dependency] private EntityQuery<ClimbableComponent> _climbableQuery = default!;
     [Dependency] private EntityQuery<FixturesComponent> _fixturesQuery = default!;
     [Dependency] private EntityQuery<TransformComponent> _xformQuery = default!;

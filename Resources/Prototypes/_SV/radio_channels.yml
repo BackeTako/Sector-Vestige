@@ -1,0 +1,16 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# NanoTrasen R&D - the Directorate's private channel.
+# Used by Researchers, Agents and the Recovery & Containment Team. Long range so
+# field teams stay in contact across the sector during events.
+- type: radioChannel
+  id: RnD
+  name: chat-radio-rnd
+  keycode: 'r'
+  frequency: 1340
+  color: "#d800ff"
+  longRange: true
