@@ -1,14 +1,3 @@
-// SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
-// SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
-// SPDX-FileCopyrightText: 2025 ArtisticRoomba <145879011+ArtisticRoomba@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 OnyxTheBrave <vinjeerik@gmail.com>
-// SPDX-FileCopyrightText: 2025 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
-// SPDX-FileCopyrightText: 2025 chromiumboy <50505512+chromiumboy@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using Content.Client.Gameplay;
 using Content.Client.Hands.Systems;
 using Content.Client.Construction;
@@ -39,7 +28,6 @@ public sealed partial class AlignRPDPipeLayers : SnapgridCenter
 {
     [Dependency] private IEntityManager _entityManager = default!;
     [Dependency] private IPrototypeManager _protoManager = default!;
-    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private IEyeManager _eyeManager = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private IStateManager _stateManager = default!;
@@ -117,7 +105,7 @@ public sealed partial class AlignRPDPipeLayers : SnapgridCenter
         if (pManager.PlacementType != PlacementTypes.None)
             return;
 
-        MouseCoords = _unalignedMouseCoords.AlignWithClosestGridTile(SearchBoxSize, _entityManager, _mapManager);
+        MouseCoords = _unalignedMouseCoords.AlignWithClosestGridTile(SearchBoxSize, _entityManager);
 
         var gridId = _transformSystem.GetGrid(MouseCoords);
 
@@ -220,10 +208,14 @@ public sealed partial class AlignRPDPipeLayers : SnapgridCenter
     private void UpdateHijackedPlacer(AtmosPipeLayer layer, ScreenCoordinates mouseScreen)
     {
         // Try to get alternative prototypes from the construction prototype
-        var constructionSystem = (pManager.Hijack as ConstructionPlacementHijack)?.CurrentConstructionSystem;
-        var altPrototypes = (pManager.Hijack as ConstructionPlacementHijack)?.CurrentPrototype?.AlternativePrototypes;
+        // Sector Vestige: ConstructionPlacementHijack no longer exposes CurrentConstructionSystem, resolve it directly.
+        if (pManager.Hijack is not ConstructionPlacementHijack hijack)
+            return;
 
-        if (constructionSystem == null || altPrototypes == null || (int)layer >= altPrototypes.Length)
+        var constructionSystem = _entityManager.System<ConstructionSystem>();
+        var altPrototypes = hijack.CurrentPrototype?.AlternativePrototypes;
+
+        if (altPrototypes == null || (int)layer >= altPrototypes.Length)
             return;
 
         var newProtoId = altPrototypes[(int)layer];
@@ -237,7 +229,7 @@ public sealed partial class AlignRPDPipeLayers : SnapgridCenter
             return;
         }
 
-        if (newProto.ID == (pManager.Hijack as ConstructionPlacementHijack)?.CurrentPrototype?.ID)
+        if (newProto.ID == hijack.CurrentPrototype?.ID)
             return;
 
         // Start placing
@@ -245,7 +237,7 @@ public sealed partial class AlignRPDPipeLayers : SnapgridCenter
         {
             IsTile = false,
             PlacementOption = newProto.PlacementMode,
-        }, new ConstructionPlacementHijack(constructionSystem, newProto));
+        }, new ConstructionPlacementHijack(newProto));
 
         if (pManager.CurrentMode is AlignRPDPipeLayers { } newMode)
             newMode.RefreshGrid(mouseScreen);

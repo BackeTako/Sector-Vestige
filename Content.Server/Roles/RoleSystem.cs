@@ -1,34 +1,17 @@
-// SPDX-FileCopyrightText: 2025 Wizards Den contributors
-// SPDX-FileCopyrightText: 2025 Sector Vestige contributors (modifications)
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Ed <96445749+TheShuEd@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Kara <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2023 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 ShadowCommander <10494922+ShadowCommander@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 deltanedas <@deltanedas:kde.org>
-// SPDX-FileCopyrightText: 2024 SlamBamActionman <83650252+SlamBamActionman@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Errant <35878406+Errant-4@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Milon <milonpl.git@proton.me>
-// SPDX-FileCopyrightText: 2025 OnyxTheBrave <131422822+OnyxTheBrave@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
-// SPDX-FileCopyrightText: 2025 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
-//
-// SPDX-License-Identifier: MIT
-
 using Content.Server.Chat.Managers;
+using Content.Shared.Administration.Logs;
 using Content.Shared.Chat;
+using Content.Shared.Database;
 using Content.Shared.Mind;
 using Content.Shared.Roles;
-using Robust.Shared.Prototypes;
+using Robust.Shared.Network;
 
 namespace Content.Server.Roles;
 
 public sealed partial class RoleSystem : SharedRoleSystem
 {
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private IChatManager _chat = default!;
-    [Dependency] private IPrototypeManager _proto = default!;
 
     public string? MindGetBriefing(EntityUid? mindId)
     {
@@ -68,7 +51,7 @@ public sealed partial class RoleSystem : SharedRoleSystem
         if (!Player.TryGetSessionById(mind.UserId, out var session))
             return;
 
-        if (!_proto.Resolve(mind.RoleType, out var proto))
+        if (!ProtoMan.Resolve(mind.RoleType, out var proto))
             return;
 
         var roleText = Loc.GetString(proto.Name);
@@ -85,6 +68,21 @@ public sealed partial class RoleSystem : SharedRoleSystem
             default,
             false,
             session.Channel);
+    }
+
+    protected override void UpdateCharacterWindow(NetUserId? user, MindStringRepresentation mindString)
+    {
+        if (Player.TryGetSessionById(user, out var session))
+        {
+            RaiseNetworkEvent(new MindRoleTypeChangedEvent(), session.Channel);
+        }
+        else
+        {
+            _adminLogger.Add(
+                LogType.Mind,
+                LogImpact.Medium,
+                $"The Character Window of {mindString} potentially did not update immediately : session error");
+        }
     }
 }
 

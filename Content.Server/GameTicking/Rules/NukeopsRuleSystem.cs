@@ -1,63 +1,3 @@
-// SPDX-FileCopyrightText: 2026 Wizards Den contributors
-// SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
-// SPDX-FileCopyrightText: 2022 Flipp Syder <76629141+vulppine@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Júlio César Ueti <52474532+Mirino97@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Kara <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2022 Moony <moonheart08@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Morber <14136326+Morb0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Pancake <Pangogie@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Paul Ritter <ritter.paul1@googlemail.com>
-// SPDX-FileCopyrightText: 2022 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2022 TekuNut <13456422+TekuNut@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Vera Aguilera Puerto <6766154+Zumorica@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Veritius <veritiusgaming@gmail.com>
-// SPDX-FileCopyrightText: 2022 drakewill-CRL <46307022+drakewill-CRL@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 metalgearsloth <metalgearsloth@gmail.com>
-// SPDX-FileCopyrightText: 2022 moonheart08 <moonheart08@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 2013HORSEMEATSCANDAL <146540817+2013HORSEMEATSCANDAL@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Dakamakat <52600490+dakamakat@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Jezithyr <jezithyr@gmail.com>
-// SPDX-FileCopyrightText: 2023 Kevin Zheng <kevinz5000@gmail.com>
-// SPDX-FileCopyrightText: 2023 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Moony <moony@hellomouse.net>
-// SPDX-FileCopyrightText: 2023 Morb <14136326+Morb0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 OctoRocket <88291550+OctoRocket@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Pieter-Jan Briers <pieterjan.briers@gmail.com>
-// SPDX-FileCopyrightText: 2023 Repo <47093363+Titian3@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Scribbles0 <91828755+Scribbles0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 ShadowCommander <10494922+ShadowCommander@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Visne <39844191+Visne@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Vyacheslav Titov <rincew1nd@ya.ru>
-// SPDX-FileCopyrightText: 2023 coolmankid12345 <55817627+coolmankid12345@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 csqrb <56765288+CaptainSqrBeard@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 deltanedas <@deltanedas:kde.org>
-// SPDX-FileCopyrightText: 2023 faint <46868845+ficcialfaint@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 lzk228 <124214523+lzk228@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <comedian_vs_clown@hotmail.com>
-// SPDX-FileCopyrightText: 2024 Errant <35878406+Errant-4@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 IProduceWidgets <107586145+IProduceWidgets@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 LankLTE <135308300+LankLTE@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Rainfey <rainfey0+github@gmail.com>
-// SPDX-FileCopyrightText: 2024 Wrexbe (Josh) <81056464+wrexbe@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 dolgovmi <96251346+dolgovmi@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 lzk <124214523+lzk228@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 themias <89101928+themias@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 wrexbe <wrexbe@protonmail.com>
-// SPDX-FileCopyrightText: 2025 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
-// SPDX-FileCopyrightText: 2025 Samuka <47865393+Samuka-C@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Super <84590915+SuperGDPWYL@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Tayrtahn <tayrtahn@gmail.com>
-// SPDX-FileCopyrightText: 2025 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2026 Boaz1111 <149967078+Boaz1111@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2026 OnyxTheBrave <131422822+OnyxTheBrave@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2026 SlamBamActionman <83650252+SlamBamActionman@users.noreply.github.com>
-//
-// SPDX-License-Identifier: MIT
-
 using Content.Server.Antag;
 using Content.Server.Communications;
 using Content.Server.GameTicking.Rules.Components;
@@ -70,7 +10,6 @@ using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
-using Content.Server.StationRecords.Systems;
 using Content.Server.Store.Systems;
 using Content.Shared.Access.Systems;
 using Content.Shared.GameTicking.Components;
@@ -102,6 +41,7 @@ using Robust.Shared.Utility;
 using System.Data;
 using System.Linq;
 using System.Text;
+using Content.Shared.StationRecords.Systems;
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -180,30 +120,87 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
     }
 
     #region Event Handlers
-//    protected override void AppendRoundEndText(EntityUid uid, // Vestige 14/04/2026 Remove antags and related things from round-end text.
-//        NukeopsRuleComponent component,
-//        GameRuleComponent gameRule,
-//        ref RoundEndTextAppendEvent args)
-//    {
-//        var winText = Loc.GetString($"nukeops-{component.WinType.ToString().ToLower()}");
-//        args.AddLine(winText);
-//
-//        foreach (var cond in component.WinConditions)
-//        {
-//            var text = Loc.GetString($"nukeops-cond-{cond.ToString().ToLower()}");
-//            args.AddLine(text);
-//        }
-//
-//        args.AddLine(Loc.GetString("nukeops-list-start"));
-//
-//        var antags = _antag.GetAntagIdentifiers(uid);
-//
-//        foreach (var (_, sessionData, name) in antags)
-//        {
-//            args.AddLine(Loc.GetString("nukeops-list-name-user", ("name", name), ("user", sessionData.UserName)));
-//        }
-//        args.AddLine("");
-//    }
+    protected override void AppendRoundEndText(EntityUid uid,
+        NukeopsRuleComponent component,
+        GameRuleComponent gameRule,
+        ref RoundEndTextAppendEvent args)
+    {
+        var winText = Loc.GetString($"nukeops-{component.WinType.ToString().ToLower()}");
+        args.AddLine(winText);
+
+        foreach (var cond in component.WinConditions)
+        {
+            var text = Loc.GetString($"nukeops-cond-{cond.ToString().ToLower()}");
+            args.AddLine(text);
+        }
+
+        // Print disk location if nuke didn't explode and is not armed
+        List<WinCondition> diskWinConditions = [WinCondition.NukeDiskOnCentCom, WinCondition.NukeDiskNotOnCentCom];
+        if (component.WinConditions.Any(diskWinConditions.Contains))
+        {
+            var diskQuery = AllEntityQuery<NukeDiskComponent, TransformComponent>();
+            while (diskQuery.MoveNext(out var diskUid, out _, out var transform))
+            {
+                StringBuilder text = new StringBuilder(Loc.GetString("nukeops-disk-location-title"));
+
+                List<String> containers = new List<String>();
+                bool carriedByMob = false;
+
+                var tempParent = diskUid;
+                while (_containers.TryGetContainingContainer((tempParent, null), out var container) && !carriedByMob)
+                {
+                    if (HasComp<MindContainerComponent>(container.Owner))
+                    {
+                        carriedByMob = true;
+                    }
+                    var containermeta = MetaData(container.Owner);
+                    containers.Add(containermeta.EntityName);
+                    tempParent = container.Owner;
+                }
+
+                string location = FormattedMessage.RemoveMarkupOrThrow(_navMap.GetNearestBeaconString((diskUid, transform)));
+
+                if (carriedByMob)
+                {
+                    GetDiskCarrierData(tempParent, out var name, out var job, out var username);
+                    text.Append(Loc.GetString("nukeops-disk-carried-by",
+                        ("name", name),
+                        ("job", job),
+                        ("user", username),
+                        ("location", location)));
+                }
+                else
+                {
+                    if (containers.Count > 0)
+                    {
+                        string hierarchy = string.Empty;
+                        for (var i = 0; i < containers.Count; i++)
+                        {
+                            hierarchy = (Loc.GetString(
+                                "storage-hierarchy-list",
+                                ("item", containers[i]),
+                                ("existing-text", hierarchy),
+                                ("items-left", containers.Count - i - 1)));
+                        }
+                        text.Append(hierarchy);
+                    }
+                    text.Append(" ");
+                    text.Append(location);
+                }
+                args.AddLine(text.ToString());
+            }
+        }
+
+        args.AddLine(Loc.GetString("nukeops-list-start"));
+
+        var antags = _antag.GetAntagIdentifiers(uid);
+
+        foreach (var (_, sessionData, name) in antags)
+        {
+            args.AddLine(Loc.GetString("nukeops-list-name-user", ("name", name), ("user", sessionData.UserName)));
+        }
+        args.AddLine("");
+    }
 
     private void OnNukeExploded(NukeExplodedEvent ev)
     {
@@ -324,14 +321,14 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
 
         if (_antag.AllAntagsAlive(ent.Owner))
         {
-            SetWinType(ent, WinType.OpsMinor);
             ent.Comp.WinConditions.Add(WinCondition.AllNukiesAlive);
-            return;
         }
-
-        ent.Comp.WinConditions.Add(_antag.AnyAliveAntags(ent.Owner)
-            ? WinCondition.SomeNukiesAlive
-            : WinCondition.AllNukiesDead);
+        else
+        {
+            ent.Comp.WinConditions.Add(_antag.AnyAliveAntags(ent.Owner)
+                ? WinCondition.SomeNukiesAlive
+                : WinCondition.AllNukiesDead);
+        }
 
         var diskAtCentCom = false;
         var diskQuery = AllEntityQuery<NukeDiskComponent, TransformComponent>();
@@ -346,7 +343,6 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
         }
 
         // If the disk is currently at Central Command, the crew wins - just slightly.
-        // This also implies that some nuclear operatives have died.
         SetWinType(ent,
             diskAtCentCom
             ? WinType.CrewMinor

@@ -309,20 +309,20 @@ public sealed partial class CharacterDocumentConsoleWindow : DefaultWindow
         var hasPlayer = state.SelectedPlayer.HasValue;
         StatusButton.Visible = isSecurity;
         StatusButton.Disabled = !hasPlayer;
-        DocSecurityStatusLabel.Visible = isSecurity;
-        DocSecurityStatusLabelValue.Visible = isSecurity;
-        DocSecurityReasonLabel.Visible = isSecurity;
-        DocSecurityReasonLabelValue.Visible = isSecurity;
+        SecurityRecordPanel.Visible = isSecurity;
 
         if (isSecurity && hasPlayer)
         {
             DocSecurityStatusLabelValue.Text = state.SecurityStatus.ToString();
             DocSecurityReasonLabelValue.Text = state.SecurityReason ?? Loc.GetString("sv-document-console-security-na");
+            // Null when this crew member has no station record, or their record never captured a print.
+            DocFingerprintLabelValue.Text = state.SelectedPlayerFingerprint ?? Loc.GetString("sv-document-console-security-na");
         }
         else
         {
             DocSecurityStatusLabelValue.Text = Loc.GetString("sv-document-console-security-none");
             DocSecurityReasonLabelValue.Text = Loc.GetString("sv-document-console-security-na");
+            DocFingerprintLabelValue.Text = Loc.GetString("sv-document-console-security-na");
         }
 
         foreach (var (uid, name) in state.PlayerList.OrderBy(x => x.Value))

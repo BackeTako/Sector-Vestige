@@ -1,44 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Wizards Den contributors
-// SPDX-FileCopyrightText: 2025 Sector Vestige contributors (modifications)
-// SPDX-FileCopyrightText: 2021 Acruid <shatter66@gmail.com>
-// SPDX-FileCopyrightText: 2021 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto <gradientvera@outlook.com>
-// SPDX-FileCopyrightText: 2021 metalgearsloth <comedian_vs_clown@hotmail.com>
-// SPDX-FileCopyrightText: 2022 Illiux <newoutlook@gmail.com>
-// SPDX-FileCopyrightText: 2022 Jacob Tong <10494922+ShadowCommander@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Júlio César Ueti <52474532+Mirino97@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Vera Aguilera Puerto <6766154+Zumorica@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 mirrorcult <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2022 wrexbe <81056464+wrexbe@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Jezithyr <jezithyr@gmail.com>
-// SPDX-FileCopyrightText: 2023 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 ShadowCommander <10494922+ShadowCommander@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Visne <39844191+Visne@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 DrSmugleaf <10968691+DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Kara <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2024 LordCarve <27449516+LordCarve@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Plykiya <58439124+Plykiya@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 ShadowCommander <shadowjjt@gmail.com>
-// SPDX-FileCopyrightText: 2024 Winkarst <74284083+Winkarst-cpu@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 lzk <124214523+lzk228@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 nikthechampiongr <32041239+nikthechampiongr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Hannah Giovanna Dawson <karakkaraz@gmail.com>
-// SPDX-FileCopyrightText: 2025 J <billsmith116@gmail.com>
-// SPDX-FileCopyrightText: 2025 Kyle Tyo <36606155+VerinSenpai@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Milon <milonpl.git@proton.me>
-// SPDX-FileCopyrightText: 2025 OnyxTheBrave <131422822+OnyxTheBrave@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
-// SPDX-FileCopyrightText: 2025 SpaceManiac <tad@platymuus.com>
-// SPDX-FileCopyrightText: 2025 Tayrtahn <tayrtahn@gmail.com>
-// SPDX-FileCopyrightText: 2025 keronshb <54602815+keronshb@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
-//
-// SPDX-License-Identifier: MIT
-
 using System.Linq;
 using System.Numerics;
 using Content.Server.Administration.Logs;
@@ -56,7 +15,9 @@ using Content.Shared.Database;
 using Content.Shared.Eye;
 using Content.Shared.FixedPoint;
 using Content.Shared.Follower;
-using Content.Shared.Ghost;
+using Content.Shared.Follower.Components;
+using Content.Shared.Ghost.Components;
+using Content.Shared.Ghost.Systems;
 using Content.Shared.GhostTypes;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
@@ -81,6 +42,10 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Ghost
 {
+    /// <summary>
+    /// A system for handling interactions with ghosts ("observers").
+    /// These are noncorporeal player entities (generally after dying in-round) that can roam and warp around.
+    /// </summary>
     public sealed partial class GhostSystem : SharedGhostSystem
     {
         [Dependency] private SharedActionsSystem _actions = default!;
@@ -97,7 +62,6 @@ namespace Content.Server.Ghost
         [Dependency] private VisibilitySystem _visibilitySystem = default!;
         [Dependency] private MetaDataSystem _metaData = default!;
         [Dependency] private MobThresholdSystem _mobThresholdSystem = default!;
-        [Dependency] private IPrototypeManager _prototypeManager = default!;
         [Dependency] private IConfigurationManager _configurationManager = default!;
         [Dependency] private IChatManager _chatManager = default!;
         [Dependency] private SharedMindSystem _mind = default!;
@@ -110,6 +74,7 @@ namespace Content.Server.Ghost
         [Dependency] private GhostSpriteStateSystem _ghostState = default!;
 
         [Dependency] private EntityQuery<GhostComponent> _ghostQuery = default!;
+        [Dependency] private EntityQuery<FollowerComponent> _followerQuery = default!;
         [Dependency] private EntityQuery<PhysicsComponent> _physicsQuery = default!;
 
         private static readonly ProtoId<TagPrototype> AllowGhostShownByEventTag = "AllowGhostShownByEvent";
@@ -133,8 +98,9 @@ namespace Content.Server.Ghost
             SubscribeNetworkEvent<GhostReturnToBodyRequest>(OnGhostReturnToBodyRequest);
             SubscribeNetworkEvent<GhostWarpToTargetRequestEvent>(OnGhostWarpToTargetRequest);
             SubscribeNetworkEvent<GhostnadoRequestEvent>(OnGhostnadoRequest);
+            SubscribeNetworkEvent<WarpToRandomFollowedRequestEvent>(OnWarpToRandomFollowedRequest);
+            SubscribeNetworkEvent<WarpToRandomRequestEvent>(OnWarpToRandomRequest);
 
-            SubscribeLocalEvent<GhostComponent, BooActionEvent>(OnActionPerform);
             SubscribeLocalEvent<GhostComponent, ToggleGhostHearingActionEvent>(OnGhostHearingAction);
             SubscribeLocalEvent<GhostComponent, InsertIntoEntityStorageAttemptEvent>(OnEntityStorageInsertAttempt);
 
@@ -174,33 +140,6 @@ namespace Content.Server.Ghost
 
             Popup.PopupEntity(str, uid, uid);
             Dirty(uid, component);
-        }
-
-        private void OnActionPerform(EntityUid uid, GhostComponent component, BooActionEvent args)
-        {
-            if (args.Handled)
-                return;
-
-            var entities = _lookup.GetEntitiesInRange(args.Performer, component.BooRadius).ToList();
-            // Shuffle the possible targets so we don't favor any particular entities
-            _random.Shuffle(entities);
-
-            var booCounter = 0;
-            foreach (var ent in entities)
-            {
-                var handled = DoGhostBooEvent(ent);
-
-                if (handled)
-                    booCounter++;
-
-                if (booCounter >= component.BooMaxTargets)
-                    break;
-            }
-
-            if (booCounter == 0)
-                _popup.PopupEntity(Loc.GetString("ghost-component-boo-action-failed"), uid, uid);
-
-            args.Handled = true;
         }
 
         private void OnRelayMoveInput(EntityUid uid, GhostOnMoveComponent component, ref MoveInputEvent args)
@@ -364,9 +303,12 @@ namespace Content.Server.Ghost
             GhostWarpRequest(args.SenderSession, msg.Target);
         }
 
+        /// <summary>
+        /// Request to warp to the player with the most ghost followers.
+        /// </summary>
         private void OnGhostnadoRequest(GhostnadoRequestEvent msg, EntitySessionEventArgs args)
         {
-            if (CanGhostWarp(args.SenderSession, out var uid))
+            if (!CanGhostWarp(args.SenderSession, out var uid))
             {
                 Log.Warning($"User {args.SenderSession.Name} tried to ghostnado without being a ghost.");
                 return;
@@ -378,6 +320,48 @@ namespace Content.Server.Ghost
             // If there is a ghostnado happening you almost definitely wanna join it, so we automatically follow instead of just warping.
             _followerSystem.StartFollowingEntity(uid, target);
         }
+
+        /// <summary>
+        /// Request to warp to a random player with at least one ghost follower.
+        /// </summary>
+        private void OnWarpToRandomFollowedRequest(WarpToRandomFollowedRequestEvent msg, EntitySessionEventArgs args)
+        {
+            if (!CanGhostWarp(args.SenderSession, out var uid))
+            {
+                Log.Warning($"User {args.SenderSession.Name} tried to warp to a random player with at least one ghost follower without being a ghost.");
+                return;
+            }
+
+            var following = _followerQuery.CompOrNull(uid)?.Following;
+            if (_followerSystem.GetRandomGhostFollowed(except:following) is not {} target)
+                return;
+
+            _followerSystem.StartFollowingEntity(uid, target);
+        }
+
+        /// <summary>
+        /// Request to warp to a random player.
+        /// </summary>
+        private void OnWarpToRandomRequest(WarpToRandomRequestEvent msg, EntitySessionEventArgs args)
+        {
+            if (!CanGhostWarp(args.SenderSession, out var uid))
+            {
+                Log.Warning($"User {args.SenderSession.Name} tried to warp to a random player without being a ghost.");
+                return;
+            }
+
+            var following = _followerQuery.CompOrNull(uid)?.Following;
+            // select player warps cuz no one wants to warp to places.
+            if (GetPlayerWarps(following).ToArray() is not {} warps)
+                return;
+            if (warps.Length == 0)
+                return;
+            var warp = _random.Pick(warps);
+
+            var realTarget = GetEntity(warp.Entity);
+            _followerSystem.StartFollowingEntity(uid, realTarget);
+        }
+
 
         private void WarpTo(EntityUid uid, EntityUid target)
         {
@@ -402,11 +386,11 @@ namespace Content.Server.Ghost
 
             while (allQuery.MoveNext(out var uid, out var warp))
             {
-                yield return new GhostWarp(GetNetEntity(uid), warp.Location ?? Name(uid), true);
+                yield return new GhostWarp(GetNetEntity(uid), warp.Location == null ? Name(uid) : Loc.GetString(warp.Location), true);
             }
         }
 
-        private IEnumerable<GhostWarp> GetPlayerWarps(EntityUid except)
+        private IEnumerable<GhostWarp> GetPlayerWarps(EntityUid? except = null)
         {
             foreach (var player in _player.Sessions)
             {
@@ -466,10 +450,16 @@ namespace Content.Server.Ghost
             }
         }
 
-        public bool DoGhostBooEvent(EntityUid target)
+        /// <summary>
+        /// Raises a GhostBooEvent on a particular entity.
+        /// </summary>
+        /// <param name="target">The target of the action.</param>
+        /// <param name="allowedIntensity">The permitted intensity of the response.</param>
+        /// <returns>Whether or not the target had a response.</returns>
+        public bool DoGhostBooEvent(EntityUid target, GhostBooIntensity allowedIntensity = GhostBooIntensity.Normal)
         {
-            var ghostBoo = new GhostBooEvent();
-            RaiseLocalEvent(target, ghostBoo, true);
+            var ghostBoo = new GhostBooEvent(allowedIntensity);
+            RaiseLocalEvent(target, ref ghostBoo, true);
 
             return ghostBoo.Handled;
         }
@@ -570,6 +560,15 @@ namespace Content.Server.Ghost
                     _adminLog.Add(LogType.Mind, $"{ToPrettyString(playerEntity.Value):player} is attempting to ghost via command");
             }
 
+            if (playerEntity != null && !forced)
+            {
+                var entityCancelEv = new GhostAttemptEvent(mindId);
+                RaiseLocalEvent(playerEntity.Value, ref entityCancelEv);
+
+                if (entityCancelEv.Cancelled)
+                    return false;
+            }
+
             var handleEv = new GhostAttemptHandleEvent(mind, canReturnGlobal);
             RaiseLocalEvent(handleEv);
 
@@ -634,7 +633,7 @@ namespace Content.Server.Ghost
                                       _damageable.GetTotalDamage((playerEntity.Value, damageable));
                     }
 
-                    DamageSpecifier damage = new(_prototypeManager.Index(AsphyxiationDamageType), dealtDamage);
+                    DamageSpecifier damage = new(ProtoMan.Index(AsphyxiationDamageType), dealtDamage);
 
                     _damageable.ChangeDamage(playerEntity.Value, damage, true);
                 }

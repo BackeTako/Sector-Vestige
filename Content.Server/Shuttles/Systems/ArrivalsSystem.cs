@@ -1,29 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Wizards Den contributors
-// SPDX-FileCopyrightText: 2025 Sector Vestige contributors (modifications)
-// SPDX-FileCopyrightText: 2023 Flipp Syder <76629141+vulppine@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Moony <moony@hellomouse.net>
-// SPDX-FileCopyrightText: 2023 Morb <14136326+Morb0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Tom Leys <tom@crump-leys.com>
-// SPDX-FileCopyrightText: 2024 DrSmugleaf <10968691+DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 DrSmugleaf <drsmugleaf@gmail.com>
-// SPDX-FileCopyrightText: 2024 ElectroJr <leonsfriedrich@gmail.com>
-// SPDX-FileCopyrightText: 2024 Emisse <99158783+Emisse@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Hannah Giovanna Dawson <karakkaraz@gmail.com>
-// SPDX-FileCopyrightText: 2024 IProduceWidgets <107586145+IProduceWidgets@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Jake Huxell <JakeHuxell@pm.me>
-// SPDX-FileCopyrightText: 2024 Krunklehorn <42424291+Krunklehorn@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Mervill <mervills.email@gmail.com>
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2024 Thomas <87614336+Aeshus@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 avery <51971268+graevy@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 eoineoineoin <github@eoinrul.es>
-// SPDX-FileCopyrightText: 2025 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
-//
-// SPDX-License-Identifier: MIT
-
 using System.Linq;
 using System.Numerics;
 using Content.Server.Administration;
@@ -78,9 +52,9 @@ public sealed partial class ArrivalsSystem : EntitySystem
     [Dependency] private IConfigurationManager _cfgManager = default!;
     [Dependency] private IConsoleHost _console = default!;
     [Dependency] private IGameTiming _timing = default!;
-    [Dependency] private IPrototypeManager _protoManager = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private ActorSystem _actor = default!;
+    [Dependency] private BatterySystem _batterySystem = default!; // Moffstation
     [Dependency] private BiomeSystem _biomes = default!;
     [Dependency] private DeviceNetworkSystem _deviceNetworkSystem = default!;
     [Dependency] private GameTicker _ticker = default!;
@@ -96,7 +70,6 @@ public sealed partial class ArrivalsSystem : EntitySystem
     [Dependency] private EntityQuery<PendingClockInComponent> _pendingQuery = default!;
     [Dependency] private EntityQuery<ArrivalsBlacklistComponent> _blacklistQuery = default!;
     [Dependency] private EntityQuery<MobStateComponent> _mobQuery = default!;
-    [Dependency] private BatterySystem _batterySystem = default!;  // Moffstation - Arrivals fixes
 
     /// <summary>
     /// If enabled then spawns players on an alternate map so they can take a shuttle to the station.
@@ -135,9 +108,9 @@ public sealed partial class ArrivalsSystem : EntitySystem
         SubscribeLocalEvent<ArrivalsShuttleComponent, FTLStartedEvent>(OnArrivalsFTL);
         SubscribeLocalEvent<ArrivalsShuttleComponent, FTLCompletedEvent>(OnArrivalsDocked);
 
-        SubscribeLocalEvent<ArrivalsShuttleComponent, FirstArrivalEvent>(OnFirstArrival); // Moffstation - First arrival event
-
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(SendDirections);
+
+        SubscribeLocalEvent<ArrivalsShuttleComponent, FirstArrivalEvent>(OnFirstArrival); // Moffstation - First arrival event
 
         // Don't invoke immediately as it will get set in the natural course of things.
         Enabled = _cfgManager.GetCVar(CCVars.ArrivalsShuttles);
@@ -612,7 +585,7 @@ public sealed partial class ArrivalsSystem : EntitySystem
         if (_cfgManager.GetCVar(CCVars.ArrivalsPlanet))
         {
             var template = _random.Pick(_arrivalsBiomeOptions);
-            _biomes.EnsurePlanet(mapUid, _protoManager.Index(template));
+            _biomes.EnsurePlanet(mapUid, ProtoMan.Index(template));
             var restricted = new RestrictedRangeComponent
             {
                 Range = _cfgManager.GetCVar(CCVars.ArrivalsRange)
