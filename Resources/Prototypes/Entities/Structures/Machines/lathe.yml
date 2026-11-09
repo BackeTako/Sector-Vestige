@@ -139,6 +139,8 @@
     - PowerCellsStatic
     - ElectronicsStatic
     - CDAutolatheStatic #CD - Custom Recepies
+    - SVAutolatheStatic #SV - Custom Recepies
+    - HydroponicsStatic
   - type: EmagLatheRecipes
     emagStaticPacks:
     - SecurityAmmoStatic
@@ -488,7 +490,8 @@
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
-    stealGroup: MedicalTechFabCircuitboard
+    stealGroup:
+    - MedicalTechFabCircuitboard
   - type: OreSiloClient
   - type: LatheAnnouncing
     channels: [Medical]
@@ -519,6 +522,7 @@
     - ClothingCivilian
     - ClothingCargo
     - ClothingCommand
+    - ClothingDresses
     - ClothingEngineering
     - ClothingMedical
     - ClothingScience
